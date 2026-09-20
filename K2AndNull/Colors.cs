@@ -23,4 +23,11 @@ public static class Colors
     public static Color Hyperfocus => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(0, 60, 95, byte.MaxValue);
     public static Color Unstable => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(57, 255, 20, byte.MaxValue);
     public static Color Ventable => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(88, 90, 204, byte.MaxValue);
+
+    //Null
+    public static Color Micromanager => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(38, 104, 148, 255);
+    public static Color Mortician => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(0, 68, 218, 255);
+    public static Color Shackled => new Color32(145, 155, 155, 255);
+    public static Color Exposed => new Color32(220, 175, 51, 255);
+    public static Color Workaholic => new Color32(124, 142, 158, 255);
 }

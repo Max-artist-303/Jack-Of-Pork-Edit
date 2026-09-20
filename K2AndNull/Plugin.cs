@@ -49,7 +49,6 @@ public partial class Plugin : BasePlugin, IMiraPlugin
     public override void Load()
     {
         ReactorCredits.Register("K2 And Null", Version, IsDevBuild, ReactorCredits.AlwaysShow);
-        IL2CPPChainloader.Instance.Finished += K2AmongUs.Modules.ExtensionLocale.SearchInternalLocale;
 
         try
         {

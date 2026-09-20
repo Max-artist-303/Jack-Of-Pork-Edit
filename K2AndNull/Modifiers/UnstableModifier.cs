@@ -32,26 +32,23 @@ using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Game.Universal;
 
-/// <inheritdoc/>
+ 
 public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
 {
-    /// <inheritdoc/>
+     
     public bool isUnstable { get; set; }
 
-    /// <inheritdoc/>
+     
     public override string ModifierName => "Unstable";
-    
-    /// <inheritdoc/>
-    public override string LocaleKey => "Unstable";
 
-    /// <inheritdoc/>
+     
     public override string IntroInfo => "You are unstable";
 
-    /// <inheritdoc/>
+     
     public override bool HideFromGuessing => true;
 
 
-    /// <inheritdoc/>
+     
     public override string GetDescription()
     {
         int minTPTime = (int)OptionGroupSingleton<UnstableOptions>.Instance.UnstableMinCooldown;
@@ -63,7 +60,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         }
         return "Randomly Teleport With Other Players Every " + minTPTime + " - " + maxTPTime + " Seconds";
     }
-    /// <inheritdoc/>
+     
     public string GetAdvancedDescription()
     {
         return "Randomly Teleport With Other Players Throughout The Round" + MiscUtils.AppendOptionsText(base.GetType());
@@ -76,31 +73,31 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
             return new ModifierUiConfiguration(K2AndNull.Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
-    /// <inheritdoc/>
+     
     public override ModifierFaction FactionType => ModifierFaction.UniversalPassive;
 
-    /// <inheritdoc/>
+     
     public override int GetAssignmentChance()
     {
         return CustomChance;
     }
-    /// <inheritdoc/>
+     
     public override int GetAmountPerGame()
     {
         return CustomAmount;
     }
-    /// <inheritdoc/>
+     
     public override float IntroSize => 5f;
-    /// <inheritdoc/>
+     
     public override bool HideOnUi => false;
-    /// <inheritdoc/>
+     
     public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Unstable;
-    /// <inheritdoc/>
+     
     public override int CustomAmount => (int)OptionGroupSingleton<UnstableOptions>.Instance.UnstableCount;
-    /// <inheritdoc/>
+     
     public override int CustomChance => (int)OptionGroupSingleton<UnstableOptions>.Instance.UnstableChance;
 
-    /// <inheritdoc/>
+     
     public override void OnMeetingStart()
     {
         if(base.Player.HasDied() && base.Player.AmOwner)
@@ -113,7 +110,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
 
     float tpTimer;
 
-    /// <inheritdoc/>
+     
     public override void Update()
     {
         base.Update();
@@ -131,7 +128,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         }
     }
 
-    /// <inheritdoc/>
+     
     void RandomlyTeleport()
     {
         if(!(MeetingHud.Instance || ExileController.Instance))
@@ -157,7 +154,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         return UnityEngine.Random.Range(minTPTime, maxTPTime);
     }
 
-    /// <inheritdoc/>
+     
     public override void OnDeath(DeathReason reason)
     {
         base.OnDeath(reason);
