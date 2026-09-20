@@ -4725,19 +4725,19 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0-v",
+    "version": "0.1.0-v",
     "restore": {
-      "projectUniqueName": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\K2AndNull\\Plugin.csproj",
-      "projectName": "Plugin",
-      "projectPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\K2AndNull\\Plugin.csproj",
+      "projectUniqueName": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\K2AndNull.csproj",
+      "projectName": "K2AndNull",
+      "projectPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\K2AndNull.csproj",
       "packagesPath": "C:\\Users\\K2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\K2AndNull\\obj\\",
+      "outputPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\NuGet.Config",
+        "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\NuGet.Config",
         "C:\\Users\\K2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -4748,7 +4748,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\packages.local\\": {},
+        "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\packages.local\\": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.bepinex.dev/v3/index.json": {},
         "https://nuget.reactor.gg/v3/index.json": {},

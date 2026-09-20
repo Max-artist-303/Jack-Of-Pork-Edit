@@ -6,14 +6,14 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "K2sAmongUsMod/1.0.0-dev": {
+      "K2AndNull/0.1-v": {
         "dependencies": {
           "AllOfUs.MiraAPI": "0.4.3",
           "Reactor": "2.5.0-ci.371",
           "TownOfUsMira": "1.7.1"
         },
         "runtime": {
-          "K2sAmongUsMod.dll": {}
+          "K2AndNull.dll": {}
         }
       },
       "AllOfUs.MiraAPI/0.4.3": {
@@ -50,7 +50,7 @@
     }
   },
   "libraries": {
-    "K2sAmongUsMod/1.0.0-dev": {
+    "K2AndNull/0.1-v": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

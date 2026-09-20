@@ -10,7 +10,7 @@ using TownOfUs.Modules.Localization;
 namespace K2AmongUs.Options.Roles.Crewmate;
 
     /// <inheritdoc/>
-public sealed class StealthyOptions : AbstractOptionGroup<StealthyRole>
+public sealed class StealthyOptions : AbstractOptionGroup<SnoopRole>
 {
     /// <inheritdoc/>
     public override string GroupName => "Snoop Options";

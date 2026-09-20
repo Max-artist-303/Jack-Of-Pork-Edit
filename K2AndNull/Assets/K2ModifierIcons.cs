@@ -6,7 +6,7 @@ namespace K2AmongUs.Assets;
 /// <inheritdoc/>
 public static class K2ModifierIcons
 {
-    private const string ShortPath = "K2sAmongUsMod.Resources.ModifierIcons";
+    private const string ShortPath = "K2AndNull.Resources.ModifierIcons";
 
     public static LoadableAsset<Sprite> Blind { get; } = new LoadableResourceAsset($"{ShortPath}.Blind.png", 200);
     public static LoadableAsset<Sprite> Rivalry { get; } = new LoadableResourceAsset($"{ShortPath}.Rivalry.png", 200);

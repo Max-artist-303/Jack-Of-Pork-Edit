@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IFW0meCvDnY=",
+  "dgSpecHash": "59PApj1DN8c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2 and Null's Mod\\K2AndNull\\Plugin.csproj",
+  "projectFilePath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\K2AndNull.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\K2\\.nuget\\packages\\allofus.miraapi\\0.4.3\\allofus.miraapi.0.4.3.nupkg.sha512",
     "C:\\Users\\K2\\.nuget\\packages\\amongus.gamelibs.steam\\2026.8.18\\amongus.gamelibs.steam.2026.8.18.nupkg.sha512",

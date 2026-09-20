@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>K2sAmongUsMod</name>
+        <name>K2AndNull</name>
     </assembly>
     <members>
         <member name="T:K2AmongUs.Assets.K2Assets">
@@ -103,70 +103,70 @@
         <member name="M:K2AmongUs.Buttons.Crewmate.VentableVentButton.OnClick">
              <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton">
+        <member name="T:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.TextOutlineColor">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.TextOutlineColor">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Name">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.Name">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Keybind">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.Keybind">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Cooldown">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.Cooldown">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.EffectDuration">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.EffectDuration">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.Sprite">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.Sprite">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.ZeroIsInfinite">
+        <member name="P:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.ZeroIsInfinite">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.CanUse">
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.CanUse">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.OnClick">
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.OnClick">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.StealthySwoopButton.OnEffectEnd">
+        <member name="M:K2AmongUs.Buttons.HideAndSeek.Hider.SnoopSwoopButton.OnEffectEnd">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Buttons.Neutral.RestlessKillButton">
+        <member name="T:K2AmongUs.Buttons.Neutral.ForbearingKillButton">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Name">
+        <member name="P:K2AmongUs.Buttons.Neutral.ForbearingKillButton.Name">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Keybind">
+        <member name="P:K2AmongUs.Buttons.Neutral.ForbearingKillButton.Keybind">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.TextOutlineColor">
+        <member name="P:K2AmongUs.Buttons.Neutral.ForbearingKillButton.TextOutlineColor">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Cooldown">
+        <member name="P:K2AmongUs.Buttons.Neutral.ForbearingKillButton.Cooldown">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Buttons.Neutral.RestlessKillButton.Sprite">
+        <member name="P:K2AmongUs.Buttons.Neutral.ForbearingKillButton.Sprite">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.CreateButton(UnityEngine.Transform)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ForbearingKillButton.CreateButton(UnityEngine.Transform)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.Enabled(RoleBehaviour)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ForbearingKillButton.Enabled(RoleBehaviour)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.SetDiseasedTimer(System.Single)">
+        <member name="M:K2AmongUs.Buttons.Neutral.ForbearingKillButton.SetDiseasedTimer(System.Single)">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.GetTarget">
+        <member name="M:K2AmongUs.Buttons.Neutral.ForbearingKillButton.GetTarget">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Buttons.Neutral.RestlessKillButton.OnClick">
+        <member name="M:K2AmongUs.Buttons.Neutral.ForbearingKillButton.OnClick">
             <inheritdoc/>
         </member>
         <member name="T:K2AmongUs.Buttons.Neutral.ZombieReviveButton">
@@ -213,57 +213,6 @@
         </member>
         <member name="M:K2AmongUs.Events.Crewmate.JackOfAllEvents.HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent)">
             <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.K2AmongUsColors">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsColors.Child">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsColors.Scrubber">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsColors.Mimic">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.K2AmongUsPlayerColors">
-            <inheritdoc/>
-        </member>
-        <member name="T:K2AmongUs.K2AmongUsPlugin">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.Culture">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.OptionsTitleText">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.IsDevBuild">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.K2AmongUsPlugin.GetConfigFile">
-            <inheritdoc/>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.Harmony">
-            <inheritdoc/>
-        </member>
-        <member name="M:K2AmongUs.K2AmongUsPlugin.Load">
-            <inheritdoc/>
-        </member>
-        <member name="F:K2AmongUs.K2AmongUsPlugin.Id">
-            <summary>
-            Id of the <see cref="T:K2AmongUs.K2AmongUsPlugin"/>.
-            </summary>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.Name">
-            <summary>
-            Gets the name of the <see cref="T:K2AmongUs.K2AmongUsPlugin"/>.
-            </summary>
-        </member>
-        <member name="P:K2AmongUs.K2AmongUsPlugin.Version">
-            <summary>
-            Gets the version of the <see cref="T:K2AmongUs.K2AmongUsPlugin"/>.
-            </summary>
         </member>
         <member name="T:K2AmongUs.Modifiers.Game.Universal.BlindModifier">
             <inheritdoc/>
@@ -832,43 +781,43 @@
         <member name="M:K2AmongUs.Roles.Crewmate.JackOfAllRole.CheckAddModifier(PlayerControl)">
             <inheritdoc/>
         </member>
-        <member name="T:K2AmongUs.Roles.Crewmate.StealthyRole">
+        <member name="T:K2AmongUs.Roles.Crewmate.SnoopRole">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.StealthyRole.#ctor(System.IntPtr)">
+        <member name="M:K2AmongUs.Roles.Crewmate.SnoopRole.#ctor(System.IntPtr)">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.DoomHintType">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.DoomHintType">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.RoleName">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.RoleName">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.LocaleKey">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.LocaleKey">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.RoleDescription">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.RoleDescription">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.RoleLongDescription">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.RoleLongDescription">
             <inheritdoc/>
         </member>
-        <member name="M:K2AmongUs.Roles.Crewmate.StealthyRole.GetAdvancedDescription">
+        <member name="M:K2AmongUs.Roles.Crewmate.SnoopRole.GetAdvancedDescription">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.Abilities">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.Abilities">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.RoleColor">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.RoleColor">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.Team">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.Team">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.RoleAlignment">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.RoleAlignment">
             <inheritdoc/>
         </member>
-        <member name="P:K2AmongUs.Roles.Crewmate.StealthyRole.Configuration">
+        <member name="P:K2AmongUs.Roles.Crewmate.SnoopRole.Configuration">
             <inheritdoc/>
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ForbearingRole.WinConditionMet">
@@ -1032,6 +981,48 @@
         </member>
         <member name="M:K2AmongUs.Roles.Neutral.ZombieLeaderRole.CanUse(IUsable)">
             <inheritdoc/>
+        </member>
+        <member name="T:K2AndNull.Colors">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AndNull.PlayerColors">
+            <inheritdoc/>
+        </member>
+        <member name="T:K2AndNull.Plugin">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AndNull.Plugin.Culture">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AndNull.Plugin.OptionsTitleText">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AndNull.Plugin.IsDevBuild">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AndNull.Plugin.GetConfigFile">
+            <inheritdoc/>
+        </member>
+        <member name="P:K2AndNull.Plugin.Harmony">
+            <inheritdoc/>
+        </member>
+        <member name="M:K2AndNull.Plugin.Load">
+            <inheritdoc/>
+        </member>
+        <member name="F:K2AndNull.Plugin.Id">
+            <summary>
+            Id of the <see cref="T:K2AndNull.Plugin"/>.
+            </summary>
+        </member>
+        <member name="P:K2AndNull.Plugin.Name">
+            <summary>
+            Gets the name of the <see cref="T:K2AndNull.Plugin"/>.
+            </summary>
+        </member>
+        <member name="P:K2AndNull.Plugin.Version">
+            <summary>
+            Gets the version of the <see cref="T:K2AndNull.Plugin"/>.
+            </summary>
         </member>
     </members>
 </doc>
