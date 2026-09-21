@@ -99,6 +99,7 @@ public enum OurRpcCalls : uint
 
 // Make mimic more like neutral ambassador
 // Add Light Blade's Semi-Transparent Modifier
+// Add Max's Bear idea (with tweaks)
 
 // Add Extroverted And Introverted Cooldown Modifiers
 
