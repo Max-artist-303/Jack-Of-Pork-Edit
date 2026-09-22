@@ -102,6 +102,19 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
     }
 
     #region Deceiver Deceive Exceptions
+    [HarmonyPatch(typeof(EndGameResult), "Create", [ typeof(MessageReader) ])]
+    public static class DeceiverDoesntWinWithCrewPatch
+    {
+        public static void Prefix()
+        {
+            confuseRole = false;
+        }
+        public static void Postfix()
+        {
+            ReConfuse();
+        }
+    }
+
     [HarmonyPatch(typeof(AssassinModifier), "ClickGuess", [typeof(PlayerVoteArea), typeof(MeetingHud)])]
 	public static class AssassinGuessDeceiverPatch
 	{

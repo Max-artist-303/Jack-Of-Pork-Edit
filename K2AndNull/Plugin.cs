@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AndNull;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "1.0.2")]
+[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1.0")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -89,8 +89,6 @@ public enum OurRpcCalls : uint
 
 // Add Lower Cooldown To Bounty Hunter Stuff
 
-// Deceiver Shows As Winner For Deceived People
-
 // Disable Person With Bounty From Calling Meeting
 
 // ================ OTHER ================
@@ -108,4 +106,7 @@ public enum OurRpcCalls : uint
 // =============== FIXES ===============
 /*
  * Deceiver Has Option For No Longer Deceiving Crew Killing
+ * Deceiver No Longer Wins With Crew For Deceived People
+ * Added Option For Bounty Target To Be Unknowing That They're The Target
+ * Added Option For Bounty Hunter Players To Not Include Crew Killing
 */

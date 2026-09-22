@@ -16,6 +16,12 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
     [ModdedNumberOption("Bounties To Win", 1f, 5f, 1f)]
     public float BountiesToWin { get; set; } = 3;
 
+    [ModdedToggleOption("Target Knows They're Being Targeted")]
+    public bool TargetKnows { get; set; } = false;
+
+    [ModdedToggleOption("Crewmate Killings See Bounty Target")]
+    public bool CrewAreHunters {  get; set; } = true;
+
     [ModdedNumberOption("Faction Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
     public float randFactMod { get; set; } = 10f;
     [ModdedNumberOption("Universal Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]

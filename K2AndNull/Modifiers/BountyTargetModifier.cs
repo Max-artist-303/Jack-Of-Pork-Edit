@@ -53,7 +53,8 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
         if (Player.AmOwner)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            if(OptionGroupSingleton<BountyHunterOptions>.Instance.TargetKnows)
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         }
         else if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
         {
@@ -81,7 +82,7 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
     static bool ShouldGetBountyNotif(PlayerControl player)
     {
-        return player.Data.Role.GetRoleAlignment() == TownOfUs.Roles.RoleAlignment.CrewmateKilling || !player.Data.Role.IsCrewmate() || player.Data.IsDead;
+        return (player.Data.Role.GetRoleAlignment() == TownOfUs.Roles.RoleAlignment.CrewmateKilling && OptionGroupSingleton<BountyHunterOptions>.Instance.CrewAreHunters) || !player.Data.Role.IsCrewmate() || player.Data.IsDead;
     }
     static void GivePlayerBonus(PlayerControl player, PlayerControl target)
     {
