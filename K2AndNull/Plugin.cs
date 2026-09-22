@@ -18,7 +18,7 @@ using UnityEngine;
 namespace K2AndNull;
 
 /// <inheritdoc/>
-[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1.0")]
+[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -97,7 +97,6 @@ public enum OurRpcCalls : uint
 
 // Make mimic more like neutral ambassador
 // Add Light Blade's Semi-Transparent Modifier
-// Add Max's Bear idea (with tweaks)
 
 // Add Extroverted And Introverted Cooldown Modifiers
 
@@ -109,4 +108,7 @@ public enum OurRpcCalls : uint
  * Deceiver No Longer Wins With Crew For Deceived People
  * Added Option For Bounty Target To Be Unknowing That They're The Target
  * Added Option For Bounty Hunter Players To Not Include Crew Killing
+ * Fixed Scrubber Bug Where Scrubber Wouldn't Scrub If You Left The Target
+ * Fixed Scrubber Bug Where Scrubber Would Scrub The Wrong Person
+ * Added Option For Scrubber Delay Configs
 */

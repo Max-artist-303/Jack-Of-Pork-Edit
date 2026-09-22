@@ -19,6 +19,8 @@ namespace K2AmongUs.Buttons.Crewmate;
 ///  <inheritdoc/>
 public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, PlayerControl>
 {
+    PlayerControl scrubbedPlayer;
+
     /// <inheritdoc/>
     public override string Name => "SCRUB";
     /// <inheritdoc/>
@@ -57,6 +59,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
             Error("Cleanser Cleanse: Target is null");
             return;
         }
+        scrubbedPlayer = Target;
     }
 
     public override void OnEffectEnd()
@@ -65,9 +68,9 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
 
         if (Role.Player.AmOwner)
         {
-            ScrubberRole.RpcScrubModifiers(Role.Player, Target);
+            ScrubberRole.RpcScrubModifiers(Role.Player, scrubbedPlayer);
             ResetCooldownAndOrEffect();
         }
     }
-    public override float EffectDuration => 5;
+    public override float EffectDuration => OptionGroupSingleton<ScrubberOptions>.Instance.ScrubDelay;
 }
