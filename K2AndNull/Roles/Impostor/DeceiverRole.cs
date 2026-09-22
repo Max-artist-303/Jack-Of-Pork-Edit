@@ -185,7 +185,8 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 			if (__result is not DeceiverRole || __instance.IsDead) return;
 			if(__instance.AmOwner
 				&& (__instance.IsDead
-                || __result.Player.HasModifier<BaseRevealModifier>())) return;
+                || __result.Player.HasModifier<BaseRevealModifier>())
+                || (__result.GetRoleAlignment() == RoleAlignment.CrewmateKilling && !OptionGroupSingleton<DeceiverOptions>.Instance.DeceiveCrewKillers)) return;
 
 			if(OptionGroupSingleton<DeceiverOptions>.Instance.DeceiverDisplayedAs == DeceiverOptions.DeceiverRoleDisplayed.Investigator)
 				__result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<InvestigatorRole>());

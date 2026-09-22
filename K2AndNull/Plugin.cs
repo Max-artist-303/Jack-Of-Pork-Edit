@@ -107,7 +107,5 @@ public enum OurRpcCalls : uint
 
 // =============== FIXES ===============
 /*
- * Fixed Namespaces
- * Fixed File Paths For Assets
- * Fixed K2's Stuff To Be Cleaner Before Merging
+ * Deceiver Has Option For No Longer Deceiving Crew Killing
 */

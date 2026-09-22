@@ -24,4 +24,7 @@ public sealed class DeceiverOptions : AbstractOptionGroup<DeceiverRole>
     /// <inheritdoc/>
     [ModdedEnumOption("Deceiver Shows As", typeof(DeceiverRoleDisplayed), ["Investigator", "Random Crew"])]
     public DeceiverRoleDisplayed DeceiverDisplayedAs { get; set; } = DeceiverRoleDisplayed.Investigator;
+
+    [ModdedToggleOption("Deceive Crew Killing")]
+    public bool DeceiveCrewKillers { get; set; } = false;
 }
