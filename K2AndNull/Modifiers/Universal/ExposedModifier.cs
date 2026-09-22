@@ -12,7 +12,8 @@ namespace NullsMod.Modifiers.Universal;
 
 public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(K2AndNull.Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(NullsColors.Exposed, TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override string IdPart => "Exposed";
     public override string ModifierName => "Exposed";
     public override string IntroInfo => "Your vote is Exposed!";
     // public override bool HideOnUi => false;
@@ -33,7 +34,7 @@ public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
     public override LoadableAsset<Sprite>? ModifierIcon => NullsIcons.Exposed;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalVisibility;
-    public override Color FreeplayFileColor => K2AndNull.Colors.Exposed;
+    public override Color FreeplayFileColor => NullsColors.Exposed;
 
     public List<CustomButtonWikiDescription> Abilities { get; } = [];
 

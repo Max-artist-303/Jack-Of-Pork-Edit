@@ -1,13 +1,13 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace NullsMod.Assets;
+namespace K2AndNull.Assets;
 
 public static class NullsIcons
 {
     // THIS FILE SHOULD ONLY HOLD ROLE ICONS
 
-    private const string ShortPath = "K2AndNull.Resources";
+    private const string ShortPath = "NullsMod.Resources";
 
     public static LoadableAsset<Sprite> Micromanager { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Micromanager.png", 200);
     public static LoadableAsset<Sprite> Workaholic { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Workaholic.png", 200);
@@ -17,5 +17,6 @@ public static class NullsIcons
     public static LoadableAsset<Sprite> Camouflager { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Camouflager.png", 200);
     public static LoadableAsset<Sprite> CamouflagerButton { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.CamouflagerButton.png", 200);
     public static LoadableAsset<Sprite> Exposed { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Exposed.png", 200);
+    public static LoadableAsset<Sprite> Battery { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Battery.png", 200);
 
 }
