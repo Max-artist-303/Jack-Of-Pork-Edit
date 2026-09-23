@@ -21,23 +21,25 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
 
     [ModdedToggleOption("Crewmate Killings See Bounty Target")]
     public bool CrewAreHunters {  get; set; } = true;
+    [ModdedToggleOption("Bounty On The Same Player In A Row")]
+    public bool BountyInARow { get; set; } = false;
 
     [ModdedNumberOption("Faction Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float randFactMod { get; set; } = 10f;
+    public float RandFactMod { get; set; } = 10f;
     [ModdedNumberOption("Universal Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float randUnivMod { get; set; } = 10f;
+    public float RandUnivMod { get; set; } = 10f;
     /*
     [ModdedNumberOption("Lower Cooldowns Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
     public float lowerCooldowns { get; set; } = 10f;
     */
     [ModdedNumberOption("Allow Venting Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float giveVentable { get; set; } = 10f;
+    public float GiveVentable { get; set; } = 10f;
     [ModdedNumberOption("Extra Vote Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float giveExtraVote { get; set; } = 10f;
+    public float GiveExtraVote { get; set; } = 10f;
     [ModdedNumberOption("Reveal Role Weight (CK Only)", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float revealCKRole { get; set; } = 10f;
+    public float RevealCKRole { get; set; } = 10f;
     [ModdedNumberOption("Double Shot Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float giveDblShot { get; set; } = 10f;
+    public float GiveDblShot { get; set; } = 10f;
     [ModdedNumberOption("Temporary Shield Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
-    public float shieldNextRound { get; set; } = 10f;
+    public float ShieldNextRound { get; set; } = 10f;
 }

@@ -34,34 +34,21 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace K2AmongUs.Roles.Neutral;
 
-/// <inheritdoc/>
 public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable
 {
-    /// <inheritdoc/>
     public bool HasImpostorVision => true;
-    /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
-    /// <inheritdoc/>
     public string RoleName => "Zombie";
-    /// <inheritdoc/>
     public string RoleDescription => "THE APOCOLYPSE HAS BEGUN!";
-    /// <inheritdoc/>
     public string RoleLongDescription => "Convert Dead Players Into Zombies.";
     
-    /// <inheritdoc/>
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    /// <inheritdoc/>
     public Color RoleColor => K2AndNull.Colors.Zombie;
-    /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-    /// <inheritdoc/>
     public RoleBehaviour AppearAs => (RoleBehaviour)RoleId.Get<ZombieRole>();
-    /// <inheritdoc/>
     public bool IsGuessable => false;
-    /// <inheritdoc/>
     public new bool IsDraftable => false;
-    /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Zombie.LoadAsset(), "K2AmongUs.Roles.Neutral.Zombie", 1.45f),
@@ -74,21 +61,33 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         TasksCountForProgress = false,
     };
 
-    /// <inheritdoc/>
     public List<CustomButtonWikiDescription> Abilities
     {
         get
         {
-            return new List<CustomButtonWikiDescription>
-            {
-				new("Infect", "Mark A Player. If They Die This Round, They Will Revive As A Zombie", TouRoleIcons.Altruist),
-            };
+            return 
+            [
+				new($"Revive", "Revive Dead Bodies turning them into a loyal Zombie servant", 
+                    TouRoleIcons.Altruist),
+            ];
         }
     }
+// Replace OnRoleSet with initialize for a test
+    // public override void OnRoleSet()
+    // {
+    //     foreach(BaseModifier modifier in Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))
+    //     {
+    //         Player.RemoveModifier(modifier);
+    //     }
 
-    /// <inheritdoc/>
-    public override void OnRoleSet()
+    //     Player.RpcAddModifier<ZombieRevealedModifier>();
+    //     Player.RpcAddModifier<ZombieAllianceModifier>();
+    // }
+
+    public override void Initialize(PlayerControl player)
     {
+        RoleBehaviourStubs.Initialize(this, player);
+
         foreach(BaseModifier modifier in Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))
         {
             Player.RemoveModifier(modifier);
@@ -107,13 +106,11 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         return false;
     }
 
-    /// <inheritdoc/>
     public override bool DidWin(GameOverReason gameOverReason)
     {
         return WinConditionMet();
     }
     
-    /// <inheritdoc/>
     public override bool CanUse(IUsable usable)
     {
         if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
@@ -125,7 +122,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         return console == null || console.AllowImpostor;
     }
 
-    /// <inheritdoc/>
     public void Update()
     {
         if(Player == null || Player.Data.IsDead) return;
@@ -165,46 +161,33 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     }
 }
 
-/// <inheritdoc/>
 public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant, IContinuesGame
 {
-    /// <inheritdoc/>
     public bool HasImpostorVision => true;
-    /// <inheritdoc/>
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
-    /// <inheritdoc/>
     public DoomableType DoomHintType => DoomableType.Death;
-    /// <inheritdoc/>
     public string RoleName => "Zombie Leader";
-    /// <inheritdoc/>
     public string RoleDescription => "START AN APOCOLYPSE";
-    /// <inheritdoc/>
     public string RoleLongDescription => "Convert Dead Players Into Zombies!";
     
-    /// <inheritdoc/>
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    /// <inheritdoc/>
     public List<CustomButtonWikiDescription> Abilities
     {
         get
         {
-            return new List<CustomButtonWikiDescription>
-            {
-				new("Infect", "Mark A Player. If They Die This Round, They Will Revive As A Zombie", TouRoleIcons.Altruist),
-            };
+            return 
+            [
+				new($"Revive", "Revive Dead Bodies turning them into a loyal Zombie servant", 
+                    TouRoleIcons.Altruist),
+            ];
         }
     }
 
-    /// <inheritdoc/>
     public Color RoleColor => K2AndNull.Colors.Zombie;
-    /// <inheritdoc/>
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-    /// <inheritdoc/>
     public RoleBehaviour AppearAs => (RoleBehaviour)RoleId.Get<ZombieLeaderRole>();
-    /// <inheritdoc/>
     public bool IsGuessable => PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data.Role is VigilanteRole;
-    /// <inheritdoc/>
     public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "K2AmongUs.Roles.Neutral.ZombieLeader", 1.45f),
@@ -212,17 +195,21 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         Icon = K2RoleIcons.ZombieLeader,
     };
 
-    /// <inheritdoc/>
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
 
-    public override void OnRoleSet()
-    {
-        base.OnRoleSet();
+    // public override void OnRoleSet()
+    // {
+    //     base.OnRoleSet();
 
-        Player.AddModifier<ZombieAllianceModifier>();
+    //     Player.AddModifier<ZombieAllianceModifier>();
+    // }
+    public override void Initialize(PlayerControl player)
+    {
+        RoleBehaviourStubs.Initialize(this, player);
+
+        Player.RpcAddModifier<ZombieAllianceModifier>();
     }
     float timer;
-    /// <inheritdoc/>
     public void Update()
     {
         if(Player == null || Player.Data.IsDead) return;
@@ -293,13 +280,13 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         return numNonZombies < zombies.Count() && MiscUtils.KillersAliveCount == 0;
     }
 
-    /// <inheritdoc/>
+
     public override bool DidWin(GameOverReason gameOverReason)
     {
         return WinConditionMet() && gameOverReason != GameOverReason.CrewmatesByTask && gameOverReason != GameOverReason.CrewmatesByVote;
     }
     
-    /// <inheritdoc/>
+
     public override bool CanUse(IUsable usable)
     {
         if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))

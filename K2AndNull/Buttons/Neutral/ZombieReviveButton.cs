@@ -24,40 +24,39 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace K2AmongUs.Buttons.Neutral;
 
-/// <inheritdoc/>
 public class ZombieReviveButton : TownOfUsButton
 {
-    /// <inheritdoc/>
+
     public override string Name => "REVIVE";
-    /// <inheritdoc/>
+
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    /// <inheritdoc/>
+
     public override Color TextOutlineColor => K2AndNull.Colors.Zombie;
-    /// <inheritdoc/>
-    public override float Cooldown => 0;
-    /// <inheritdoc/>
+
+    public override float Cooldown => OptionGroupSingleton<ZombieOptions>().Instance.ZombieReviveCd;
+
     public override bool ZeroIsInfinite { get; set; } = true;
-    /// <inheritdoc/>
+
     public override LoadableAsset<Sprite> Sprite => TouCrewAssets.ReviveSprite;
 
-    /// <inheritdoc/>
+
     public override bool Enabled(RoleBehaviour? role)
     {
         return role is ZombieRole || role is ZombieLeaderRole;
     }
 
-    /// <inheritdoc/>
+
     public override bool CanUse()
     {
         return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
     }
-    /// <inheritdoc/>
+
     public override bool CanClick()
     {
         return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
     }
 
-    /// <inheritdoc/>
+
     protected override void OnClick()
     {
         List<DeadBody> bodiesInRange = Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Where(b => !(MiscUtils.PlayerById(b.ParentId).GetRoleWhenAlive() is ZombieLeaderRole)).ToList();
@@ -68,7 +67,7 @@ public class ZombieReviveButton : TownOfUsButton
         }
     }
 
-    /// <inheritdoc/>
+
     public static void SetZombieRole(PlayerControl player, DeadBody body)
     {
         if (player.HasModifier<ZombieRevealedModifier>()) return;
