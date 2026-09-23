@@ -12,24 +12,23 @@ using UnityEngine;
 
 namespace K2AmongUs.Roles.Crewmate;
 
-/// <inheritdoc/>
 public sealed class SnoopRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
-    /// <inheritdoc/>
+
     public DoomableType DoomHintType => DoomableType.Trickster;
-    /// <inheritdoc/>
+
     public string RoleName => "Snoop";
-    /// <inheritdoc/>
+
     public string LocaleKey => RoleName;
-    /// <inheritdoc/>
+
     public string RoleDescription => "Hide in plain sight and find the impostors";
-    /// <inheritdoc/>
+
     public string RoleLongDescription => RoleDescription;
 
-    /// <inheritdoc/>
+
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    /// <inheritdoc/>
+
     [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities
     {
@@ -42,14 +41,14 @@ public sealed class SnoopRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRo
         }
     }
 
-    /// <inheritdoc/>
+
     public Color RoleColor => K2AndNull.Colors.Snoop;
-    /// <inheritdoc/>
+
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
-    /// <inheritdoc/>
+
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
 
-    /// <inheritdoc/>
+
     public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Chameleon.LoadAsset(), "K2AmongUs.Roles.Crewmate.Snoop", 1.45f),

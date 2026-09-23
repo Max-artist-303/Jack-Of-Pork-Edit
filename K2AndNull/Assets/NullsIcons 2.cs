@@ -1,7 +1,7 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace K2AndNull.Assets;
+namespace NullsMod.Assets;
 
 public static class NullsIcons
 {

@@ -15,40 +15,24 @@ using TownOfUs.Roles.Crewmate;
 using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Neutral;
-
-/// <inheritdoc/>
 public sealed class ZombieRevealedModifier : BaseRevealModifier
 {
-    /// <inheritdoc/>
     public override string ModifierName => "Zombie Revealed";
-    /// <inheritdoc/>
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
-    /// <inheritdoc/>
     public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieRole>());
 
-    /// <inheritdoc/>
     public override bool RevealRole => true;
-    /// <inheritdoc/>
     public override bool Visible => true;
-    /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
 }
-
-/// <inheritdoc/>
 public sealed class ZombieLeaderRevealedModifier : BaseRevealModifier
 {
-    /// <inheritdoc/>
     public override string ModifierName => "Zombie Leader Revealed";
-    /// <inheritdoc/>
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
-    /// <inheritdoc/>
     public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieLeaderRole>());
 
-    /// <inheritdoc/>
     public override bool RevealRole => true;
-    /// <inheritdoc/>
     public override bool Visible => PlayerControl.LocalPlayer.Data.Role is ZombieRole;
-    /// <inheritdoc/>
     public override string ExtraRoleText => string.Empty;
 }
 
@@ -61,7 +45,6 @@ public sealed class  ZombieAllianceModifier : AllianceGameModifier
         return 0;
     }
 
-    /// <inheritdoc/>
     public override bool? DidWin(GameOverReason gameOverReason)
     {
         if (MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead))

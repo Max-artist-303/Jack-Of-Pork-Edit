@@ -56,9 +56,8 @@ public sealed class CamouflagerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITown
         {
             return
             [
-                new($"Camouflage",
-                    $"Camouflage.WikiDescription",
-                    TouImpAssets.CamouflageSprite),
+                new($"Camouflage", $"Camouflage Changes the Appearance of every player making them gray and with {OptionGroupSingleton<CamouflagerOptions>().CamoVision} you can see everyone's names",
+                    NullsIcons.CamouflageButton),
             ];
         }
     }
