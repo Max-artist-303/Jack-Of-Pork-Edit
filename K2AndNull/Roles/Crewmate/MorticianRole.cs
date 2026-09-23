@@ -14,7 +14,6 @@ using TownOfUs.Extensions;
 using TownOfUs.Assets;
 using TownOfUs.Roles;
 using TownOfUs;
-using NullsMod.Assets;
 using NullsMod.Options.Roles.Crewmate;
 using NullsMod.Modifiers.Hidden;
 
@@ -33,8 +32,8 @@ public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
-        Icon = NullsIcons.Mortician,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
+        Icon = K2AndNull.Assets.NullsIcons.Mortician,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         IntroSound = TouAudio.ScientistIntroSound
     };

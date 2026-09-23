@@ -7,7 +7,6 @@ using TownOfUs.Buttons;
 using TownOfUs.Utilities;
 using TownOfUs;
 using UnityEngine;
-using NullsMod.Assets;
 using NullsMod.Modifiers.Universal;
 using NullsMod.Modifiers.Hidden;
 
@@ -38,7 +37,7 @@ public static class ShackledEvents
             $"<b>{text}</b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: NullsIcons.Shackled.LoadAsset());
+            spr: K2AndNull.Assets.NullsIcons.Shackled.LoadAsset());
 
         notif?.AdjustNotification();
     }

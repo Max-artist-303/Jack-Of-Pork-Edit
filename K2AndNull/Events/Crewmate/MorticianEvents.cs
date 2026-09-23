@@ -13,7 +13,6 @@ using MiraAPI.Events.Vanilla.Meeting;
 using AmongUs.GameOptions;
 using NullsMod.Options.Roles.Crewmate;
 using NullsMod.Roles.Crewmate;
-using NullsMod.Assets;
 using NullsMod.Patches;
 using Reactor.Networking.Rpc;
 
@@ -83,7 +82,7 @@ public static class MorticianEvents
             $"<b>The <color=#{ColorUtility.ToHtmlStringRGBA(K2AndNull.Colors.Mortician)}>Mortician</color> performed an Autopsy on {target.Data.PlayerName}</b>",
             Color.white,
             new Vector3(0f, 2f, -20f),
-            spr: NullsIcons.MorticianAbility.LoadAsset());
+            spr: K2AndNull.Assets.NullsIcons.MorticianAbility.LoadAsset());
 
         notification.AdjustNotification();
         notification.alphaTimer = 5f;

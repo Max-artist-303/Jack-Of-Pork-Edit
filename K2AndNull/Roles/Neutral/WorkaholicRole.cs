@@ -15,7 +15,6 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Roles;
 using TownOfUs;
 using UnityEngine;
-using NullsMod.Assets;
 using NullsMod.Options.Roles.Neutral;
 using NullsMod.Modifiers.Hidden;
 
@@ -56,9 +55,9 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
         IntroSound = WorkahoilcIntro,
-        Icon = NullsIcons.Workaholic,
+        Icon = K2AndNull.Assets.NullsIcons.Workaholic,
         OptionsScreenshot = TouBanners.NeutralRoleBanner,
         GhostRole = (RoleTypes)RoleId.Get<WorkaholicGhostRole>(),
         MaxRoleCount = 1,

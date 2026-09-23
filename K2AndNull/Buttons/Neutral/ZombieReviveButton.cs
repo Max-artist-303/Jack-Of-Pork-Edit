@@ -1,6 +1,8 @@
 using K2AmongUs.Modifiers.Neutral;
+using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
 using MiraAPI.Events;
+using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
@@ -33,7 +35,7 @@ public class ZombieReviveButton : TownOfUsButton
 
     public override Color TextOutlineColor => K2AndNull.Colors.Zombie;
 
-    public override float Cooldown => OptionGroupSingleton<ZombieOptions>().Instance.ZombieReviveCd;
+    public override float Cooldown => OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveCd;
 
     public override bool ZeroIsInfinite { get; set; } = true;
 

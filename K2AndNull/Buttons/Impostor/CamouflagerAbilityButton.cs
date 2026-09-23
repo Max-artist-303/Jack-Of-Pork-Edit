@@ -13,7 +13,6 @@ using TownOfUs.Options.Maps;
 using UnityEngine;
 using UnityEngine.UI;
 using NullsMod.Options.Roles.Impostor;
-using NullsMod.Assets;
 using NullsMod.Modifiers.Hidden;
 using NullsMod.Roles.Impostor;
 
@@ -24,7 +23,7 @@ public sealed class CamouflagerAbilityButton : TownOfUsRoleButton<CamouflagerRol
     public override string Name => "Camouflage";
     public override Color TextOutlineColor => TownOfUsColors.Impostor;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
-    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? NullsIcons.CamouflagerButton : NullsIcons.CamouflagerButton;
+    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? K2AndNull.Assets.NullsIcons.CamouflagerButton : K2AndNull.Assets.NullsIcons.CamouflagerButton;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<CamouflagerOptions>.Instance.CamoCooldown + MapCooldown, 5f, 120f);
     public override float EffectDuration => OptionGroupSingleton<CamouflagerOptions>.Instance.CamoDuration;
 

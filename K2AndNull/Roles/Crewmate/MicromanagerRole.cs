@@ -25,7 +25,6 @@ using TownOfUs.Modules;
 using TownOfUs.Options;
 using TownOfUs.Assets;
 using TownOfUs.Roles;
-using NullsMod.Assets;
 using NullsMod.Options.Roles.Crewmate;
 using NullsMod.Events.Crewmate;
 using NullsMod.Modifiers.Hidden;
@@ -51,8 +50,8 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
-        Icon = NullsIcons.Micromanager,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
+        Icon = K2AndNull.Assets.NullsIcons.Micromanager,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         TasksCountForProgress = false,
         HideSettings = false,
@@ -265,7 +264,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             $"There are no more tasks available to manage.",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: NullsIcons.Micromanager.LoadAsset());
+            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
 
             warn.AdjustNotification();
             return;
@@ -305,7 +304,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             $"<b>{microColor.ToTextColor()}You completed </color>{TownOfUsColors.Crewmate.ToTextColor()}{playerText}'s</color> {TownOfUsColors.Doomsayer.ToTextColor()}{taskText}</color>. </color></b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: NullsIcons.Micromanager.LoadAsset());
+            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
 
         notif.AdjustNotification();
 
@@ -506,7 +505,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
                 var notif1 = Helpers.CreateAndShowNotification(
                     $"<b>{K2AndNull.Colors.Micromanager.ToTextColor()}{"You are now clickable by players!"}</b></color>",
                     Color.white,
-                    new Vector3(0f, 1f, -20f), spr: NullsIcons.Micromanager.LoadAsset());
+                    new Vector3(0f, 1f, -20f), spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
                 notif1.AdjustNotification();
             }
         }

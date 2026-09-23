@@ -8,6 +8,7 @@ using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
+using MiraAPI.Events.Vanilla.Meeting.Voting;
 using MiraAPI.Events.Vanilla.Player;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
@@ -36,6 +37,7 @@ namespace K2AmongUs.Modifiers;
 public sealed class BountyTargetModifier : AllianceGameModifier
 {
     public override string ModifierName => "Bounty Target";
+
     public override string GetDescription()
     {
         return "You Are The Bounty Hunter Target...\nGood Luck!";
@@ -44,6 +46,12 @@ public sealed class BountyTargetModifier : AllianceGameModifier
     public override void OnActivate()
     {
         base.OnActivate();
+
+        if (Player.HasModifier<BountySparedModifier>())
+        {
+            ModifierComponent.RemoveModifier(this);
+            return;
+        }
 
         if (Player.Data.IsDead || !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
         {
@@ -61,6 +69,7 @@ public sealed class BountyTargetModifier : AllianceGameModifier
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
             Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
         }
+        Player.AddModifier<BountySparedModifier>();
     }
 
     public void Update()
@@ -149,7 +158,6 @@ public sealed class BountyArrowModifier(PlayerControl owner, Color color, float 
         }
     }
 }
-
 public sealed class BountyRewardModifier : TouGameModifier
 {
     public override string ModifierName => "Bounty Reward Modifier";
@@ -187,13 +195,13 @@ public sealed class BountyRewardModifier : TouGameModifier
 
         // Random Good Modifier From Your Faction
         if(Player.Data.Role.IsCrewmate())
-            for (int i = 0; i < (int)opts.randFactMod; i++)
+            for (int i = 0; i < (int)opts.RandFactMod; i++)
             {
                 rewards.Add(RewardType.GoodFactMod);
             }
 
         // Give Random Good Universal Modifier
-        for (int i = 0; i < (int)opts.randUnivMod; i++)
+        for (int i = 0; i < (int)opts.RandUnivMod; i++)
         {
             rewards.Add(RewardType.GoodUnivMod);
         }
@@ -208,33 +216,33 @@ public sealed class BountyRewardModifier : TouGameModifier
 
         // Give Ventable (if can't vent)
         if(!canVent)
-            for (int i = 0; i < (int)opts.giveVentable; i++)
+            for (int i = 0; i < (int)opts.GiveVentable; i++)
             {
                 rewards.Add(RewardType.GiveVentable);
             }
 
         // Extra Vote (JOA Extra Vote Modifier?)
-        for (int i = 0; i < (int)opts.giveExtraVote; i++)
+        for (int i = 0; i < (int)opts.GiveExtraVote; i++)
         {
             rewards.Add(RewardType.ExtraVote);
         }
 
         // Reveal Role (If Crew Killing)
         if(thisFaction == RoleAlignment.CrewmateKilling)
-            for (int i = 0; i < (int)opts.revealCKRole; i++)
+            for (int i = 0; i < (int)opts.RevealCKRole; i++)
             {
                 rewards.Add(RewardType.RevealRole);
             }
 
         // Double Shot (If you have assassin and no double shot)
         if(canGetDouble)
-            for (int i = 0; i < (int)opts.giveDblShot; i++)
+            for (int i = 0; i < (int)opts.GiveDblShot; i++)
             {
                 rewards.Add(RewardType.DoubleShot);
             }
 
         // Shield until end of next round
-        for (int i = 0; i < (int)opts.shieldNextRound; i++)
+        for (int i = 0; i < (int)opts.ShieldNextRound; i++)
         {
             rewards.Add(RewardType.GiveShield);
         }
@@ -380,6 +388,25 @@ public sealed class BountyRewardModifier : TouGameModifier
         foreach(PlayerControl player in MiraAPI.Utilities.Helpers.GetAlivePlayers().Where(p => p.HasModifier<BountyTargetModifier>()))
         {
             player.RpcRemoveModifier<BountyTargetModifier>();
+        }
+    }
+}
+public sealed class BountySparedModifier : BaseModifier
+{
+    public override string ModifierName => "Bounty Immune";
+    public override bool HideOnUi => true;
+
+    public override void OnDeath(DeathReason reason)
+    {
+        ModifierComponent.RemoveModifier(this);
+    }
+
+    [RegisterEvent(0)]
+    public static void OnVotingCompleteEvent(VotingCompleteEvent @event)
+    {
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.HasModifier<BountySparedModifier>()))
+        {
+            player.RemoveModifier<BountySparedModifier>();
         }
     }
 }

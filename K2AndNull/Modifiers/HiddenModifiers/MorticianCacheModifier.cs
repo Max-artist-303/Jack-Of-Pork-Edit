@@ -5,7 +5,6 @@ using TownOfUs.Utilities;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Impostor.Herbalist;
 using UnityEngine;
-using NullsMod.Assets;
 using NullsMod.Roles.Crewmate;
 using NullsMod.Events.Crewmate;
 
@@ -27,8 +26,8 @@ public sealed class MorticianCacheModifier : BaseModifier
             return;
         }
 
-        _meetingMenu = new MeetingMenu(Player.Data.Role, Click, MeetingAbilityType.Click, 
-            NullsIcons.MorticianAbility, exemption: IsExempt, activeColor: Color.white, hoverColor: new Color(0.8f, 0.8f, 0.8f))
+        _meetingMenu = new MeetingMenu(Player.Data.Role, Click, MeetingAbilityType.Click,
+            K2AndNull.Assets.NullsIcons.MorticianAbility, exemption: IsExempt, activeColor: Color.white, hoverColor: new Color(0.8f, 0.8f, 0.8f))
         {
             Position = new Vector3(-0.40f, 0f, -3f)
         };

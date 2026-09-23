@@ -111,4 +111,7 @@ public enum OurRpcCalls : uint
  * Fixed Scrubber Bug Where Scrubber Wouldn't Scrub If You Left The Target
  * Fixed Scrubber Bug Where Scrubber Would Scrub The Wrong Person
  * Added Option For Scrubber Delay Configs
+ * Modified Zombie Abilities
+ * Made Snoop Button Cancelable
+ * Made Bounty Hunter Unable To Target The Same Person Multiple Times In A Row
 */

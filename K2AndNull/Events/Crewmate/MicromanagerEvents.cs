@@ -8,7 +8,6 @@ using Reactor.Networking.Attributes;
 using Reactor.Networking.Rpc;
 using Reactor.Utilities;
 using Reactor;
-using NullsMod.Assets;
 using NullsMod.Roles.Crewmate;
 using NullsMod.Options.Roles.Crewmate;
 
@@ -70,7 +69,7 @@ public static class MicromanagerEvents
         }
 
         var notif = Helpers.CreateAndShowNotification(message, Color.white, new Vector3(0f, 1f, -20f),
-            spr: NullsIcons.Micromanager.LoadAsset());
+            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
 
         notif?.AdjustNotification();
     }

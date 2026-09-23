@@ -5,14 +5,13 @@ using TownOfUs.Modifiers;
 using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
-using NullsMod.Assets;
 using NullsMod.Options.Modifiers;
 
 namespace NullsMod.Modifiers.Universal;
 
 public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(NullsColors.Exposed, TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(K2AndNull.Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
     public override string IdPart => "Exposed";
     public override string ModifierName => "Exposed";
     public override string IntroInfo => "Your vote is Exposed!";
@@ -31,10 +30,10 @@ public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale => "Your votes are visible to everyone!";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => NullsIcons.Exposed;
+    public override LoadableAsset<Sprite>? ModifierIcon => K2AndNull.Assets.NullsIcons.Exposed;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalVisibility;
-    public override Color FreeplayFileColor => NullsColors.Exposed;
+    public override Color FreeplayFileColor => K2AndNull.Colors.Exposed;
 
     public List<CustomButtonWikiDescription> Abilities { get; } = [];
 

@@ -5,14 +5,13 @@ using TownOfUs.Modifiers;
 using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
-using NullsMod.Assets;
 using NullsMod.Options.Modifiers;
 
 namespace NullsMod.Modifiers.Universal;
 
 public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(NullsColors.Exposed, TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(K2AndNull.Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
     public override string IdPart => "Battery";
     public override string ModifierName => "Battery";
     public override string IntroInfo => "Use Utilities Whenever!";
@@ -30,10 +29,10 @@ public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale() => "Lets you use Utilities during Comms Disabled sabotage";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => NullsIcons.Battery;
+    public override LoadableAsset<Sprite>? ModifierIcon => K2AndNull.Assets.NullsIcons.Battery;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalUtility;
-    public override Color FreeplayFileColor => Colors.Battery;
+    public override Color FreeplayFileColor => K2AndNull.Colors.Battery;
 
     public List<CustomButtonWikiDescription> Abilities { get; } = [];
 

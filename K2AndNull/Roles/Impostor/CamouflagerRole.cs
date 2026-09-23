@@ -13,8 +13,8 @@ using TownOfUs.Assets;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Extensions;
-using NullsMod.Assets;
 using NullsMod.Options.Roles.Impostor;
+using MiraAPI.GameOptions;
 
 namespace NullsMod.Roles.Impostor;
 
@@ -39,9 +39,9 @@ public sealed class CamouflagerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITown
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(NullsIcons.Camouflager.LoadAsset(), "Camouflager", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Camouflager.LoadAsset(), "Camouflager", 1.45f),
         OptionsScreenshot = TouBanners.ImpostorRoleBanner,
-        Icon = NullsIcons.Camouflager
+        Icon = K2AndNull.Assets.NullsIcons.Camouflager
     };
 
     public override void Initialize(PlayerControl player)
@@ -56,8 +56,8 @@ public sealed class CamouflagerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITown
         {
             return
             [
-                new($"Camouflage", $"Camouflage Changes the Appearance of every player making them gray and with {OptionGroupSingleton<CamouflagerOptions>().CamoVision} you can see everyone's names",
-                    NullsIcons.CamouflageButton),
+                new($"Camouflage", $"Camouflage Changes the Appearance of every player making them gray and with {OptionGroupSingleton<CamouflagerOptions>.Instance.CamoVision} you can see everyone's names",
+                    K2AndNull.Assets.NullsIcons.CamouflagerButton),
             ];
         }
     }
