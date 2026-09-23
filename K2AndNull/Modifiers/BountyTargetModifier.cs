@@ -61,10 +61,9 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
         if (Player.AmOwner)
         {
-            if(OptionGroupSingleton<BountyHunterOptions>.Instance.TargetKnows)
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         }
-        else if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
+        else
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
             Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
@@ -91,11 +90,11 @@ public sealed class BountyTargetModifier : AllianceGameModifier
 
     static bool ShouldGetBountyNotif(PlayerControl player)
     {
-        return (player.Data.Role.GetRoleAlignment() == TownOfUs.Roles.RoleAlignment.CrewmateKilling && OptionGroupSingleton<BountyHunterOptions>.Instance.CrewAreHunters) || !player.Data.Role.IsCrewmate() || player.Data.IsDead;
+        return player.Data.Role.GetRoleAlignment() != RoleAlignment.CrewmateProtective && !player.HasModifier<BountyTargetModifier>();
     }
     static void GivePlayerBonus(PlayerControl player, PlayerControl target)
     {
-        if (ShouldGetBountyNotif(PlayerControl.LocalPlayer) && !player.AmOwner)
+        if (!player.AmOwner)
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Has Been Claimed...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         }
@@ -227,8 +226,8 @@ public sealed class BountyRewardModifier : TouGameModifier
             rewards.Add(RewardType.ExtraVote);
         }
 
-        // Reveal Role (If Crew Killing)
-        if(thisFaction == RoleAlignment.CrewmateKilling)
+        // Reveal Role (If Crew)
+        if(Player.Data.Role.IsCrewmate())
             for (int i = 0; i < (int)opts.RevealCKRole; i++)
             {
                 rewards.Add(RewardType.RevealRole);

@@ -24,7 +24,7 @@ public sealed class BountyShieldModifier : BaseShieldModifier, IAnimated
 {
     public bool collectedThisRound = true;
 
-    public override string ModifierName => "Bounty Shield";
+    public override string ModifierName => "Shield Reward";
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.FirstRoundShield;
     public override Color FreeplayFileColor => Color.white;
 

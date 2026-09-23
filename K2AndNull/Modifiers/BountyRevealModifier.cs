@@ -9,7 +9,7 @@ namespace K2AmongUs.Modifiers;
 
 public sealed class BountyRevealModifier : BaseRevealModifier
 {
-    public override string ModifierName => "Bounty Reveal Modifier";
+    public override string ModifierName => "Reveal Reward";
 
     public override string GetDescription()
     {

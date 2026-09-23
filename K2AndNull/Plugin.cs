@@ -104,6 +104,7 @@ public enum OurRpcCalls : uint
 
 // =============== FIXES ===============
 /*
+ * Combined K2's Mod and Null's Mod
  * Deceiver Has Option For No Longer Deceiving Crew Killing
  * Deceiver No Longer Wins With Crew For Deceived People
  * Added Option For Bounty Target To Be Unknowing That They're The Target
@@ -114,4 +115,6 @@ public enum OurRpcCalls : uint
  * Modified Zombie Abilities
  * Made Snoop Button Cancelable
  * Made Bounty Hunter Unable To Target The Same Person Multiple Times In A Row
+ * Reworked Bounty Hunter (Now Anyone Can Hunt The Bounty! Along with other misc. changes)
+ * General Bug Fixes
 */
