@@ -66,17 +66,19 @@ public sealed class BountyTargetModifier : AllianceGameModifier
         else
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
-            Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
+            
+            if(OptionGroupSingleton<BountyHunterOptions>.Instance.TargetArrow)
+                Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
         }
+
         Player.AddModifier<BountySparedModifier>();
     }
 
     public void Update()
     {
-        if (Player.Data.IsDead || !MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
+        if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
         {
-            if (ShouldGetBountyNotif(PlayerControl.LocalPlayer))
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", K2AndNull.Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
         
             ModifierComponent.RemoveModifier(this);
         }
@@ -88,10 +90,6 @@ public sealed class BountyTargetModifier : AllianceGameModifier
         ModifierComponent.RemoveModifier(this);
     }
 
-    static bool ShouldGetBountyNotif(PlayerControl player)
-    {
-        return player.Data.Role.GetRoleAlignment() != RoleAlignment.CrewmateProtective && !player.HasModifier<BountyTargetModifier>();
-    }
     static void GivePlayerBonus(PlayerControl player, PlayerControl target)
     {
         if (!player.AmOwner)

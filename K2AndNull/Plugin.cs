@@ -116,5 +116,6 @@ public enum OurRpcCalls : uint
  * Made Snoop Button Cancelable
  * Made Bounty Hunter Unable To Target The Same Person Multiple Times In A Row
  * Reworked Bounty Hunter (Now Anyone Can Hunt The Bounty! Along with other misc. changes)
+ * Added Battery Modifier
  * General Bug Fixes
 */

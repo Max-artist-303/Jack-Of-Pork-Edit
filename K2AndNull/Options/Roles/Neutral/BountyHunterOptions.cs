@@ -16,6 +16,9 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
     [ModdedNumberOption("Bounties To Win", 1f, 5f, 1f)]
     public float BountiesToWin { get; set; } = 3;
 
+    [ModdedToggleOption("Arrow To Bounty Target")]
+    public bool TargetArrow { get; set; } = true;
+
     [ModdedNumberOption("Hunted Player Grace Period", 0f, 60f, 5f, MiraNumberSuffixes.Seconds)]
     public float HuntedGracePeriod { get; set; } = 15;
 

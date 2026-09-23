@@ -35,12 +35,13 @@ public static class ZombiePatches
         if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))
         {
             Info("No Zombie Leader Found, Zombies Remain Dead");
+            return;
         }
 
-        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.Data.Role is ZombieRole && p.AmOwner))
+        PlayerControl myPlayer = PlayerControl.LocalPlayer;
+        if(myPlayer.Data.IsDead && myPlayer.Data.Role is ZombieRole)
         {
-            Info("Reviving Zombie: " + player.Data.PlayerName);
-            player.RpcBasicRevive();
+            myPlayer.RpcBasicRevive();
         }
     }
 

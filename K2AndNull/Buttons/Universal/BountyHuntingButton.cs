@@ -32,7 +32,7 @@ public sealed class BountyHuntingButton : TownOfUsKillRoleButton<RoleBehaviour, 
 
     public override bool Enabled(RoleBehaviour? role)
     {
-        return MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.HasModifier<BountyTargetModifier>() && !p.AmOwner && p.Data.Role is not BountyHunterRole && !p.Data.IsDead);
+        return MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.HasModifier<BountyTargetModifier>() && !p.AmOwner && p.Data.Role is not BountyHunterRole && !p.Data.IsDead && p.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.CrewmateProtective);
     }
 
     public override bool CanUse()
