@@ -8,7 +8,7 @@ namespace NullsMod.Modifiers.Hidden;
 public sealed class WorkaholicRevealModifier : BaseRevealModifier
 {
     public override string ModifierName => "Workaholic Reveal";
-    public override ChangeRoleResult ChangeRoleResult { get; set; } =ChangeRoleResult.Nothing;
+    public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
     public override bool RevealRole { get; set; } = true;
     public override RoleBehaviour? ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<WorkaholicRole>());
 

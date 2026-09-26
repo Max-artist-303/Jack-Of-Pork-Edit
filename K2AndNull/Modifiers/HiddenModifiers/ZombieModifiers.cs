@@ -6,6 +6,7 @@ using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
+using NullsMod.Roles.Neutral;
 using Reactor.Utilities;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game;
@@ -17,13 +18,15 @@ using UnityEngine;
 namespace K2AmongUs.Modifiers.Neutral;
 public sealed class ZombieRevealedModifier : BaseRevealModifier
 {
-    public override string ModifierName => "Zombie Revealed";
+    public override string ModifierName => "Zombie Reveal";
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
-    public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieRole>());
+    public override bool RevealRole { get; set; } = true;
+    public override RoleBehaviour? ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieRole>());
 
-    public override bool RevealRole => true;
-    public override bool Visible => true;
-    public override string ExtraRoleText => string.Empty;
+    public override void OnDeath(DeathReason reason)
+    {
+        base.OnDeath(reason);
+    }
 }
 public sealed class ZombieLeaderRevealedModifier : BaseRevealModifier
 {
@@ -31,8 +34,8 @@ public sealed class ZombieLeaderRevealedModifier : BaseRevealModifier
     public override ChangeRoleResult ChangeRoleResult { get; set; } = ChangeRoleResult.Nothing;
     public override RoleBehaviour ShownRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<ZombieLeaderRole>());
 
-    public override bool RevealRole => true;
-    public override bool Visible => PlayerControl.LocalPlayer.Data.Role is ZombieRole;
+    public override bool RevealRole => PlayerControl.LocalPlayer.Data.Role is ZombieRole || PlayerControl.LocalPlayer.Data.Role is ZombieLeaderRole;
+    public override bool Visible => PlayerControl.LocalPlayer.Data.Role is ZombieRole || PlayerControl.LocalPlayer.Data.Role is ZombieLeaderRole;
     public override string ExtraRoleText => string.Empty;
 }
 

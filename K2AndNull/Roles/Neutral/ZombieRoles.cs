@@ -5,6 +5,7 @@ using K2AmongUs.Modifiers.Neutral;
 using K2AmongUs.Options.Roles.Neutral;
 using K2AmongUs.Patches.WinConditions;
 using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.Events.Vanilla.Meeting;
 using MiraAPI.GameEnd;
 using MiraAPI.GameOptions;
@@ -73,17 +74,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             ];
         }
     }
-// Replace OnRoleSet with initialize for a test
-    // public override void OnRoleSet()
-    // {
-    //     foreach(BaseModifier modifier in Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))
-    //     {
-    //         Player.RemoveModifier(modifier);
-    //     }
-
-    //     Player.RpcAddModifier<ZombieRevealedModifier>();
-    //     Player.RpcAddModifier<ZombieAllianceModifier>();
-    // }
 
     public override void Initialize(PlayerControl player)
     {
@@ -144,9 +134,21 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     [RegisterEvent(0)]
     public static void StartOfMeetingEvent(StartMeetingEvent @event)
     {
-        foreach(PlayerControl player in Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
+        foreach (PlayerControl player in Helpers.GetAlivePlayers().Where(p => p.Data.Role is ZombieRole))
         {
             player.RpcSpecialMurder(player, true, true, true, false, false, false, false, false, "Undead");
+        }
+    }
+    [RegisterEvent(0)]
+    public static void StartOfRoundEvent(RoundStartEvent @event)
+    {
+        if (@event.TriggeredByIntro) return;
+
+        Info("Respawning Zombies");
+        foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray().Where(p => p.GetRoleWhenAlive() is ZombieRole))
+        {
+            Info("Respawning " + player.Data.PlayerName);
+            player.RpcFullRevive(false, player.GetTruePosition(), RoleId.Get<ZombieRole>(), false);
         }
     }
 
