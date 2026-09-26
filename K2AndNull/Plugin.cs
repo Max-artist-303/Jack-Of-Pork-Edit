@@ -87,21 +87,6 @@ public enum OurRpcCalls : uint
     ScrubModifiers = 0
 }
 
-// Add Lower Cooldown To Bounty Hunter Stuff
-
-// Disable Person With Bounty From Calling Meeting
-
-// ================ OTHER ================
-
-// Make README pretty
-
-// Make mimic more like neutral ambassador
-// Add Light Blade's Semi-Transparent Modifier
-
-// Add Extroverted And Introverted Cooldown Modifiers
-
-// Buttons Can Be Clicked During Sabotage But Have The Blocking Symbol
-
 // =============== FIXES ===============
 /*
  * Combined K2's Mod and Null's Mod
@@ -117,5 +102,7 @@ public enum OurRpcCalls : uint
  * Made Bounty Hunter Unable To Target The Same Person Multiple Times In A Row
  * Reworked Bounty Hunter (Now Anyone Can Hunt The Bounty! Along with other misc. changes)
  * Added Battery Modifier
+ * Zombies Should Properly Die In Meetings
+ * Zombies Should Properly Revive After Meetings
  * General Bug Fixes
 */
