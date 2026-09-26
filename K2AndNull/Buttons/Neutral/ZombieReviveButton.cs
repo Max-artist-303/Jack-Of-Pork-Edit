@@ -17,6 +17,7 @@ using TownOfUs.Modifiers.Game.Crewmate;
 using TownOfUs.Modules;
 using TownOfUs.Modules.TimeLord;
 using TownOfUs.Networking;
+using TownOfUs.Modifiers;
 using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
 using TownOfUs.Utilities.Appearances;
@@ -42,13 +43,22 @@ public class ZombieReviveButton : TownOfUsButton
 
     public override bool CanUse()
     {
+        if (HudManager.Instance.Chat.IsOpenOrOpening || MeetingHud.Instance)
+        {
+            return false;
+        }
+
+        if (PlayerControl.LocalPlayer.GetModifiers<DisabledModifier>().Any(x => !x.CanUseAbilities))
+        {
+            return false;
+        }
         return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
     }
 
-    public override bool CanClick()
-    {
-        return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
-    }
+    // public override bool CanClick()
+    // {
+    //     return Helpers.GetNearestDeadBodies(PlayerControl.LocalPlayer.transform.position, ShipStatus.Instance.MaxLightRadius * 0.1f, Helpers.CreateFilter(Constants.NotShipMask)).Any(b => MiscUtils.PlayerById(b.ParentId).Data.Role is not ZombieRole);
+    // }
 
     protected override void OnClick()
     {
