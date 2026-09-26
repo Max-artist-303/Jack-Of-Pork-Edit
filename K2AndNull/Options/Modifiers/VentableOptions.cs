@@ -10,21 +10,16 @@ using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Modifiers.Game.Universal;
 
-/// <inheritdoc/>
 public sealed class VentableOptions : AbstractOptionGroup<VentableModifier>
 {
-    /// <inheritdoc/>
-    public override string GroupName => "Ventable Options";
+        public override string GroupName => "Ventable Options";
     
-    /// <inheritdoc/>
-    [ModdedNumberOption("Ventable Count", 0f, 5f, 1f)]
+        [ModdedNumberOption("Ventable Count", 0f, 5f, 1f)]
     public float VentableCount { get; set; } = 1f;
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Ventable Chance", 0f, 100f, 10f, MiraNumberSuffixes.Percent)]
+        [ModdedNumberOption("Ventable Chance", 0f, 100f, 10f, MiraNumberSuffixes.Percent)]
     public float VentableChance { get; set; } = 50f;
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Max Vents", 0f, 100f, 1f, MiraNumberSuffixes.None, null, true)]
+        [ModdedNumberOption("Max Vents", 0f, 100f, 1f, MiraNumberSuffixes.None, null, true)]
     public float MaxVents { get; set; } = 0f;
 }

@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace K2AmongUs.Assets;
 
-/// <inheritdoc/>
 public static class K2RoleIcons
 {
     // THIS FILE SHOULD ONLY HOLD ROLE ICONS

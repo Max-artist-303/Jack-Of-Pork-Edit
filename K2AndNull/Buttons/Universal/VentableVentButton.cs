@@ -12,34 +12,25 @@ using TownOfUs.Buttons;
 
 namespace K2AmongUs.Buttons.Crewmate;
 
-///  <inheritdoc/>
 public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
 {
-    ///  <inheritdoc/>
-    public override string Name => "VENT";
-    ///  <inheritdoc/>
-    public override BaseKeybind Keybind => Keybinds.VentAction;
-    ///  <inheritdoc/>
-    public override Color TextOutlineColor => K2AndNull.Colors.Ventable;
-    ///  <inheritdoc/>
-    public override float Cooldown => 0;
-    ///  <inheritdoc/>
-    public override LoadableAsset<Sprite> Sprite => TouNeutAssets.JuggVentSprite;
+        public override string Name => "VENT";
+        public override BaseKeybind Keybind => Keybinds.VentAction;
+        public override Color TextOutlineColor => K2AndNull.Colors.Ventable;
+        public override float Cooldown => 0;
+        public override LoadableAsset<Sprite> Sprite => TouNeutAssets.JuggVentSprite;
 
-    ///  <inheritdoc/>
-    public override bool Enabled(RoleBehaviour? role)
+        public override bool Enabled(RoleBehaviour? role)
     {
         return !Disabled && role?.Player.HasModifier<VentableModifier>() == true;
     }
 
-    ///  <inheritdoc/>
-    public override Vent GetTarget()
+        public override Vent GetTarget()
     {
         return DestroyableSingleton<HudManager>.Instance.ImpostorVentButton.currentTarget;
     }
 
-    ///  <inheritdoc/>
-    public override void SetOutline(bool active)
+        public override void SetOutline(bool active)
     {
         if (Target != null && !PlayerControl.LocalPlayer.HasDied())
         {
@@ -47,8 +38,7 @@ public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
         }
     }
 
-    ///  <inheritdoc/>
-    public override bool CanUse()
+        public override bool CanUse()
     {
         
         if (TimeLordRewindSystem.IsRewinding)
@@ -72,8 +62,7 @@ public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
         return (PlayerControl.LocalPlayer.inVent || (base.Timer <= 0f && base.Target != null)) && (!base.LimitedUses || base.UsesLeft > 0);
     }
 
-    ///  <inheritdoc/>
-    protected override void OnClick()
+        protected override void OnClick()
     {
         if(Target != null && !PlayerControl.LocalPlayer.inVent)
         {

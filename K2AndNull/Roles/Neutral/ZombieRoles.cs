@@ -210,6 +210,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     {
         RoleBehaviourStubs.Initialize(this, player);
 
+        Player.RpcAddModifier<ZombieLeaderRevealedModifier>();
         Player.RpcAddModifier<ZombieAllianceModifier>();
     }
     float timer;
@@ -226,7 +227,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             {
                 var body = bodiesInRange[i];
 
-                if(MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.PlayerId == body.ParentId))
+                if(Helpers.GetAlivePlayers().Any(p => p.PlayerId == body.ParentId))
                 {
                     body.ClearBody();
                 }

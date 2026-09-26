@@ -9,18 +9,14 @@ using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Roles.Crewmate;
 
-/// <inheritdoc/>
 public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
 {
-    /// <inheritdoc/>
-    public override string GroupName => "Gossip";
+        public override string GroupName => "Gossip";
     
-    /// <inheritdoc/>
-    [ModdedNumberOption("Gossip Cooldown", 0f, 15f, 1f, MiraNumberSuffixes.Seconds)]
+        [ModdedNumberOption("Gossip Cooldown", 0f, 15f, 1f, MiraNumberSuffixes.Seconds)]
     public float GossipCooldown { get; set; } = 1f;
     
-    /// <inheritdoc/>
-    [ModdedNumberOption("Gossip Roles Count", 0f, 20f, 1f)]
+        [ModdedNumberOption("Gossip Roles Count", 0f, 20f, 1f)]
     public float GossipRoles { get; set; } = 7f;
 
     // <inheritdoc/>

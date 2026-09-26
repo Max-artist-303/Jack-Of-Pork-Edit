@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace K2AndNull;
 
-/// <inheritdoc/>
 public static class Colors
 {
     // Crew Colors

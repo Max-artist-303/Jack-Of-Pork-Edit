@@ -9,7 +9,6 @@ using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Roles.Impostor;
 
-/// <inheritdoc/>
 public sealed class DeceiverOptions : AbstractOptionGroup<DeceiverRole>
 {
     public enum DeceiverRoleDisplayed
@@ -18,11 +17,9 @@ public sealed class DeceiverOptions : AbstractOptionGroup<DeceiverRole>
         RandomCrew
     }
 
-    /// <inheritdoc/>
-    public override string GroupName => "Deceiver Options";
+        public override string GroupName => "Deceiver Options";
     
-    /// <inheritdoc/>
-    [ModdedEnumOption("Deceiver Shows As", typeof(DeceiverRoleDisplayed), ["Investigator", "Random Crew"])]
+        [ModdedEnumOption("Deceiver Shows As", typeof(DeceiverRoleDisplayed), ["Investigator", "Random Crew"])]
     public DeceiverRoleDisplayed DeceiverDisplayedAs { get; set; } = DeceiverRoleDisplayed.Investigator;
 
     [ModdedToggleOption("Deceive Crew Killing")]

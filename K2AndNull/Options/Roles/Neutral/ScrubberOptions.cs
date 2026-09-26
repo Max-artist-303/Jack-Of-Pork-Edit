@@ -9,14 +9,11 @@ using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Roles.Neutral;
 
-/// <inheritdoc/>
 public sealed class ScrubberOptions : AbstractOptionGroup<ScrubberRole>
 {
-    /// <inheritdoc/>
-    public override string GroupName => "Cleanser Options";
+        public override string GroupName => "Cleanser Options";
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Scrub Cooldown", 5f, 60f, 5f, MiraNumberSuffixes.Seconds)]
+        [ModdedNumberOption("Scrub Cooldown", 5f, 60f, 5f, MiraNumberSuffixes.Seconds)]
     public float ScrubCooldown { get; set; } = 30f;
 
     [ModdedNumberOption("Scrub Delay", 0f, 10f, 0.5f, MiraNumberSuffixes.Seconds)]

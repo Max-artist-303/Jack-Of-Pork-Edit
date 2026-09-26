@@ -22,32 +22,22 @@ using UnityEngine;
 
 namespace K2AmongUs.Roles.Crewmate;
 
-/// <inheritdoc/>
 public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public int NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;
 
-    /// <inheritdoc/>
-    public DoomableType DoomHintType => DoomableType.Perception;
-    /// <inheritdoc/>
-    public string LocaleKey => "Jack Of All";
-    /// <inheritdoc/>
-    public string RoleName => "Jack Of All";
-    /// <inheritdoc/>
-    public string RoleDescription => "Have a lot of modifiers";
-    /// <inheritdoc/>
-    public string RoleLongDescription => RoleDescription + "\n(May Get More By Doing Tasks)";
-    /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
+        public DoomableType DoomHintType => DoomableType.Perception;
+        public string LocaleKey => "Jack Of All";
+        public string RoleName => "Jack Of All";
+        public string RoleDescription => "Have a lot of modifiers";
+        public string RoleLongDescription => RoleDescription + "\n(May Get More By Doing Tasks)";
+        public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
 
-    /// <inheritdoc/>
-    public Color RoleColor => K2AndNull.Colors.JackOfAll;
+        public Color RoleColor => K2AndNull.Colors.JackOfAll;
 
-    /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+        public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
 
-    /// <inheritdoc/>
-    public CustomRoleConfiguration Configuration => new(this)
+        public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.JackOfAll.LoadAsset(), "K2AmongUs.Roles.Crewmate.JackOfAll", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
@@ -55,11 +45,9 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     };
 
 
-    /// <inheritdoc/>
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+        public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    /// <inheritdoc/>
-    public override void Initialize(PlayerControl player)
+        public override void Initialize(PlayerControl player)
     {
         RoleBehaviourStubs.Initialize(this, player);
 
@@ -146,8 +134,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         }
     }
 
-    /// <inheritdoc/>
-    public static void CheckAddModifier(PlayerControl player)
+        public static void CheckAddModifier(PlayerControl player)
     {
         if(player.AmOwner && player.Data.Role is JackOfAllRole)
         {

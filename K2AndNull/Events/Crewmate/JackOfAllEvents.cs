@@ -10,10 +10,8 @@ using TownOfUs.Modules;
 
 namespace K2AmongUs.Events.Crewmate
 {
-	/// <inheritdoc/>
 	public static class JackOfAllEvents
 	{
-		/// <inheritdoc/>
 		[RegisterEvent(0)]
 		public static void CompleteTaskEvent(CompleteTaskEvent @event)
 		{
@@ -32,7 +30,6 @@ namespace K2AmongUs.Events.Crewmate
 			}
 		}
 
-        /// <inheritdoc/>
         [RegisterEvent(0)]
         public static void HandleVoteEvent(MiraAPI.Events.Vanilla.Meeting.Voting.HandleVoteEvent @event)
         {

@@ -17,7 +17,6 @@ using UnityEngine;
 
 namespace K2AndNull;
 
-/// <inheritdoc/>
 [BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
@@ -27,25 +26,17 @@ namespace K2AndNull;
 [ReactorModFlags(ModFlags.RequireOnAllClients)]
 public partial class Plugin : BasePlugin, IMiraPlugin
 {
-    /// <inheritdoc/>
     public static CultureInfo Culture => TownOfUs.TownOfUsPlugin.Culture;
-
-    /// <inheritdoc/>
     public string OptionsTitleText => "K2 And Null";
-
-    /// <inheritdoc/>
     public static bool IsDevBuild => false;
 
-    /// <inheritdoc/>
     public ConfigFile GetConfigFile()
     {
         return Config;
     }
 
-    /// <inheritdoc/>
     public Harmony Harmony { get; } = new(Id);
 
-    /// <inheritdoc/>
     public override void Load()
     {
         ReactorCredits.Register("K2 And Null", Version, IsDevBuild, ReactorCredits.AlwaysShow);
@@ -106,3 +97,6 @@ public enum OurRpcCalls : uint
  * Zombies Should Properly Revive After Meetings
  * General Bug Fixes
 */
+// ========== Nulls Fixes =============
+// Removed Inheritdoc in every instance
+// Fixed Zombie Reveal logic

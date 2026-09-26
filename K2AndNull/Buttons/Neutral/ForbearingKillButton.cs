@@ -13,41 +13,31 @@ using UnityEngine;
 
 namespace K2AmongUs.Buttons.Neutral;
 
-/// <inheritdoc/>
 public sealed class ForbearingKillButton : TownOfUsKillRoleButton<ForbearingRole, PlayerControl>, IDiseaseableButton,
     IKillButton
 {
-    /// <inheritdoc/>
     public override string Name => TranslationController.Instance.GetStringWithDefault(StringNames.KillLabel, "Kill");
-    /// <inheritdoc/>
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    /// <inheritdoc/>
     public override Color TextOutlineColor => K2AndNull.Colors.Forbearing;
-    /// <inheritdoc/>
     public override float Cooldown => Role != null ? OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown - OptionGroupSingleton<ForbearingOptions>.Instance.RestlessMeetingDecrease * Role.numMeetingsSkipped : 15;
-    /// <inheritdoc/>
     public override LoadableAsset<Sprite> Sprite => TouAssets.KillSprite;
 
-    /// <inheritdoc/>
     public override void CreateButton(Transform parent)
     {
         base.CreateButton(parent);
         Coroutines.Start(MiscUtils.CoMoveButtonIndex(this, false));
     }
 
-    /// <inheritdoc/>
     public override bool Enabled(RoleBehaviour? role)
     {
         return role is ForbearingRole && Role.numMeetingsSkipped >= 0;
     }
 
-    /// <inheritdoc/>
     public void SetDiseasedTimer(float multiplier)
     {
         SetTimer(Cooldown * multiplier);
     }
 
-    /// <inheritdoc/>
     public override PlayerControl? GetTarget()
     {
         if (!OptionGroupSingleton<LoversOptions>.Instance.LoversKillEachOther && PlayerControl.LocalPlayer.IsLover())
@@ -58,7 +48,6 @@ public sealed class ForbearingKillButton : TownOfUsKillRoleButton<ForbearingRole
         return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance);
     }
 
-    /// <inheritdoc/>
     protected override void OnClick()
     {
         if (Target == null)

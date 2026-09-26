@@ -8,11 +8,9 @@ using UnityEngine;
 
 namespace K2AmongUs.Patches.WinConditions;
 
-/// <inheritdoc/>
 public sealed class ZombieGameOver : CustomGameOver
 {
-	/// <inheritdoc/>
-	public override bool VerifyCondition(PlayerControl playerControl, NetworkedPlayerInfo[] winners)
+		public override bool VerifyCondition(PlayerControl playerControl, NetworkedPlayerInfo[] winners)
     {
 
         if (Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole))
@@ -29,8 +27,7 @@ public sealed class ZombieGameOver : CustomGameOver
 		return false;
     }
 
-	/// <inheritdoc/>
-	public override void AfterEndGameSetup(EndGameManager endGameManager)
+		public override void AfterEndGameSetup(EndGameManager endGameManager)
 	{
 		endGameManager.BackgroundBar.material.SetColor(ShaderID.Color, K2AndNull.Colors.Zombie);
 		TextMeshPro text = UnityEngine.Object.Instantiate<TextMeshPro>(endGameManager.WinText);

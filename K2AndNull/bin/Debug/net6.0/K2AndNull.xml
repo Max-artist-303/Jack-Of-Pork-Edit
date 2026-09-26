@@ -514,6 +514,7 @@
         <member name="M:K2AndNull.Plugin.Load">
             <inheritdoc/>
         </member>
+ 73a2063 (Removed ///Inheritdoc and Fixed Zombie Reveal Logic)
         <member name="F:K2AndNull.Plugin.Id">
             <summary>
             Id of the <see cref="T:K2AndNull.Plugin"/>.

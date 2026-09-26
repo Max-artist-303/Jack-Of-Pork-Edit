@@ -7,12 +7,10 @@ using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 
 namespace K2AmongUs.Patches;
 
-/// <inheritdoc/>
 [HarmonyPriority(Priority.Last)]
 [HarmonyPatch(typeof(ShipStatus), "CalculateLightRadius")]
 public static class VisionPatch
 {
-/// <inheritdoc/>
     public static void Postfix(ShipStatus __instance, NetworkedPlayerInfo player, ref float __result)
     {
         if (MiscUtils.CurrentGamemode() == TouGamemode.HideAndSeek)

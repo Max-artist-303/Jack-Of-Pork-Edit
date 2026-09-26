@@ -17,34 +17,25 @@ using MiraAPI.Utilities;
 
 namespace K2AmongUs.Buttons.Crewmate;
 
-///  <inheritdoc/>
 public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerControl>
 {
-    /// <inheritdoc/>
     public override string Name => "OVERHEAR";
-    /// <inheritdoc/>
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    /// <inheritdoc/>
     public override Color TextOutlineColor => K2AndNull.Colors.Gossip;
-    /// <inheritdoc/>
     public override float Cooldown => OptionGroupSingleton<GossipOptions>.Instance.GossipCooldown;
-    /// <inheritdoc/>
     public override LoadableAsset<Sprite> Sprite => TouModifierIcons.Crewpostor;
 
-    /// <inheritdoc/>
     public override void CreateButton(Transform parent)
     {
         base.CreateButton(parent);
         Coroutines.Start(MiscUtils.CoMoveButtonIndex(this, false));
     }
 
-    /// <inheritdoc/>
     public override PlayerControl? GetTarget()
     {
         return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance);
     }
 
-    /// <inheritdoc/>
     protected override void OnClick()
     {
         if (Target == null)

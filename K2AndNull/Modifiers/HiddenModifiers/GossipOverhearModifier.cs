@@ -15,11 +15,9 @@ using TownOfUs.Extensions;
 
 namespace K2AmongUs.Modifiers.Crewmate;
 
-/// <inheritdoc/>
 public sealed class GossipOverhearModifier : BaseModifier
 {
-    /// <inheritdoc/>
-    public GossipOverhearModifier(List<RoleBehaviour> rolesList)
+        public GossipOverhearModifier(List<RoleBehaviour> rolesList)
     {
         GossipRoles = rolesList;
     }
@@ -34,16 +32,12 @@ public sealed class GossipOverhearModifier : BaseModifier
         GossipRoles = roleNames.Select(name => DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().First(r => r.GetRoleName() == name)).ToList();
     }
 
-    /// <inheritdoc/>
-    public List<RoleBehaviour> GossipRoles = [];
+        public List<RoleBehaviour> GossipRoles = [];
 
-    /// <inheritdoc/>
-    public override string ModifierName => "Gossip Target";
-    /// <inheritdoc/>
-    public override bool HideOnUi => true;
+        public override string ModifierName => "Gossip Target";
+        public override bool HideOnUi => true;
 
-    /// <inheritdoc/>
-    public override void OnActivate()
+        public override void OnActivate()
     {
         base.OnActivate();
 
@@ -56,16 +50,14 @@ public sealed class GossipOverhearModifier : BaseModifier
         }
     }
 
-    /// <inheritdoc/>
-    public override void OnDeath(DeathReason reason)
+        public override void OnDeath(DeathReason reason)
     {
         base.OnDeath(reason);
 
         Player.RemoveModifier(this);
     }
 
-    /// <inheritdoc/>
-    public override void OnMeetingStart()
+        public override void OnMeetingStart()
     {
         if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is GossipRole)) return;
 
@@ -81,8 +73,7 @@ public sealed class GossipOverhearModifier : BaseModifier
         GossipRoles = new List<RoleBehaviour>();
     }
 
-    /// <inheritdoc/>
-    public static List<RoleBehaviour> GenerateGossipRoles(PlayerControl player)
+        public static List<RoleBehaviour> GenerateGossipRoles(PlayerControl player)
     {
         int randRolesCount = (int)OptionGroupSingleton<GossipOptions>.Instance.GossipRoles;
         List<RoleBehaviour> possibleRolesList = new List<RoleBehaviour>();

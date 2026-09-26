@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace K2AmongUs.Assets;
 
-/// <inheritdoc/>
 public static class K2ModifierIcons
 {
     private const string ShortPath = "K2AndNull.Resources.ModifierIcons";

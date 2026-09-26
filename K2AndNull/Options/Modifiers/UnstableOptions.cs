@@ -12,25 +12,19 @@ using UnityEngine;
 
 namespace K2AmongUs.Options.Modifiers.UniversalModifierOptions;
 
-/// <inheritdoc/>
 public sealed class UnstableOptions : AbstractOptionGroup<UnstableModifier>
 {
-    /// <inheritdoc/>
-    public override string GroupName => "Unstable Options";
+        public override string GroupName => "Unstable Options";
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Unstable Count", 0f, 5f, 1f)]
+        [ModdedNumberOption("Unstable Count", 0f, 5f, 1f)]
     public float UnstableCount { get; set; } = 1f;
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Unstable Chance", 0f, 100f, 10f, MiraNumberSuffixes.Percent)]
+        [ModdedNumberOption("Unstable Chance", 0f, 100f, 10f, MiraNumberSuffixes.Percent)]
     public float UnstableChance { get; set; } = 0f;
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Minimum TP Cooldown", 0f, 120f, 5f, MiraNumberSuffixes.Seconds)]
+        [ModdedNumberOption("Minimum TP Cooldown", 0f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float UnstableMinCooldown { get; set; } = 30f;
 
-    /// <inheritdoc/>
-    [ModdedNumberOption("Maximum TP Cooldown", 5f, 120f, 5f, MiraNumberSuffixes.Seconds)]
+        [ModdedNumberOption("Maximum TP Cooldown", 5f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float UnstableMaxCooldown { get; set; } = 100f;
 }

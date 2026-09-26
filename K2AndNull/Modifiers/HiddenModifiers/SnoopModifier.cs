@@ -17,25 +17,17 @@ using UnityEngine;
 
 namespace K2AmongUs.Modifiers.Crewmate;
 
-/// <inheritdoc/>
 public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
 {
-    /// <inheritdoc/>
-    public override string ModifierName => "Stealthy";
-    /// <inheritdoc/>
-    public override float Duration => OptionGroupSingleton<StealthyOptions>.Instance.SneakDuration;
-    /// <inheritdoc/>
-    public override bool HideOnUi => true;
-    /// <inheritdoc/>
-    public override bool AutoStart => true;
-    /// <inheritdoc/>
-    public override bool VisibleToOthers => false;
+        public override string ModifierName => "Stealthy";
+        public override float Duration => OptionGroupSingleton<StealthyOptions>.Instance.SneakDuration;
+        public override bool HideOnUi => true;
+        public override bool AutoStart => true;
+        public override bool VisibleToOthers => false;
 
-    /// <inheritdoc/>
-    public bool VisualPriority => true;
+        public bool VisualPriority => true;
 
-    /// <inheritdoc/>
-    public VisualAppearance GetVisualAppearance()
+        public VisualAppearance GetVisualAppearance()
     {
         Color playerColor = (Player.AmOwner || (PlayerControl.LocalPlayer.DiedOtherRound() && OptionGroupSingleton<GeneralOptions>.Instance.TheDeadKnow)) ? new Color(0f, 0f, 0f, 0.1f) : Color.clear;
         return new VisualAppearance(Player.GetDefaultModifiedAppearance(), TownOfUsAppearances.Swooper)
@@ -50,14 +42,12 @@ public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
             ColorBlindTextColor = Color.clear
         };
     }
-    /// <inheritdoc/>
-    public override void OnMeetingStart()
+        public override void OnMeetingStart()
     {
         Player.RpcRemoveModifier(this.GetType());
     }
 
-    /// <inheritdoc/>
-    public override void OnActivate()
+        public override void OnActivate()
     {
         if (base.Player.AmOwner)
         {
@@ -71,8 +61,7 @@ public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
         MiraEventManager.InvokeEvent<TouAbilityEvent>(new TouAbilityEvent(AbilityType.SwooperSwoop, base.Player, null, null));
     }
 
-    /// <inheritdoc/>
-    public override void OnDeactivate()
+        public override void OnDeactivate()
     {
         base.Player.ResetAppearance(false, false);
         base.Player.cosmetics.ToggleNameVisible(true);

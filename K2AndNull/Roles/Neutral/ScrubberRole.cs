@@ -23,27 +23,19 @@ using UnityEngine;
 
 namespace K2AmongUs.Roles.Neutral;
 
-/// <inheritdoc/>
 public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public bool didWin { get; set; }
 
-    /// <inheritdoc/>
-    public DoomableType DoomHintType => DoomableType.Fearmonger;
-    /// <inheritdoc/>
-    public string LocaleKey => "Scrubber";
-    /// <inheritdoc/>
-    public string RoleName => "Scrubber";
-    /// <inheritdoc/>
-    public string RoleDescription => "Cleanse the land of modifiers to win";
-    /// <inheritdoc/>
-    public string RoleLongDescription => RoleDescription;
+        public DoomableType DoomHintType => DoomableType.Fearmonger;
+        public string LocaleKey => "Scrubber";
+        public string RoleName => "Scrubber";
+        public string RoleDescription => "Cleanse the land of modifiers to win";
+        public string RoleLongDescription => RoleDescription;
 
-    /// <inheritdoc/>
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+        public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    /// <inheritdoc/>
-    [HideFromIl2Cpp]
+        [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities
     {
         get
@@ -55,15 +47,11 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         }
     }
 
-    /// <inheritdoc/>
-    public Color RoleColor => K2AndNull.Colors.Scrubber;
-    /// <inheritdoc/>
-    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-    /// <inheritdoc/>
-    public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
+        public Color RoleColor => K2AndNull.Colors.Scrubber;
+        public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+        public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
 
-    /// <inheritdoc/>
-    public CustomRoleConfiguration Configuration => new(this)
+        public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Scrubber.LoadAsset(), "K2AmongUs.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,
@@ -95,8 +83,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         return WinConditionMet();
     }
 
-    /// <inheritdoc/>
-    public override bool CanUse(IUsable usable)
+        public override bool CanUse(IUsable usable)
     {
         if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
         {

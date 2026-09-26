@@ -9,17 +9,13 @@ using TownOfUs.Modules.Localization;
 
 namespace K2AmongUs.Options.Roles.Crewmate;
 
-    /// <inheritdoc/>
 public sealed class StealthyOptions : AbstractOptionGroup<SnoopRole>
 {
-    /// <inheritdoc/>
     public override string GroupName => "Snoop Options";
     
-    /// <inheritdoc/>
     [ModdedNumberOption("Sneak Cooldown", 0f, 60f, 1f, MiraNumberSuffixes.Seconds)]
     public float SneakCooldown { get; set; } = 30f;
 
-    /// <inheritdoc/>
     [ModdedNumberOption("Sneak Duration", 10f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float SneakDuration { get; set; } = 30f;
 }

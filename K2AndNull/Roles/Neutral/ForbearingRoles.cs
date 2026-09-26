@@ -72,7 +72,6 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         }
     }
 
-    /// <inheritdoc/>
     public bool WinConditionMet()
     {
         if (Player.HasDied())
@@ -90,7 +89,6 @@ public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         return WinConditionMet();
     }
 
-    /// <inheritdoc/>
     public override bool CanUse(IUsable usable)
     {
         if (!GameManager.Instance.LogicUsables.CanUse(usable, Player))
