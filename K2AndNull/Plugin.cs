@@ -101,3 +101,4 @@ public enum OurRpcCalls : uint
 // Removed Inheritdoc in every instance
 // Fixed Zombie Reveal logic
 // Fixed Zombie cd logic
+// Added Camouflager Sabotage Setting

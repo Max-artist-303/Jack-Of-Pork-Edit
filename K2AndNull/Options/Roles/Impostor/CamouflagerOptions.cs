@@ -14,6 +14,8 @@ public sealed class CamouflagerOptions : AbstractRoleOptionGroup<CamouflagerRole
 
     [ModdedNumberOption("Ability Duration", 5f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float CamoDuration { get; set; } = 20f;
+    [ModdedToggleOption("Can Sabotage During Camouflage")]
+    public bool SaboCamo { get; set; } = false;
 
     [ModdedToggleOption("Passive Camo Vision")]
     public bool CamoVision { get; set; } = true;
