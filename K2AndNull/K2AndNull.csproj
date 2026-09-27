@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <EnableNETAnalyzers>false</EnableNETAnalyzers>
         <NoWarn>$(NoWarn);1591;S125;S1104;S3604;S3878;S3887;S2386;S2223;S3903;S1871;S3626;S1125;S927;S1643;S1444;S1481;S2325;S2933;S3923;S3400;S2696;S1185;CA1707;CA1051;CA1822;CA1805;CA1708;MSB3277</NoWarn>
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <DebugType>embedded</DebugType>
 
         <VersionPrefix>0.1</VersionPrefix>
