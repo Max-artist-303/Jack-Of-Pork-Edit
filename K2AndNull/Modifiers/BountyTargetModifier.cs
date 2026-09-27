@@ -36,6 +36,8 @@ namespace K2AmongUs.Modifiers;
 
 public sealed class BountyTargetModifier : AllianceGameModifier
 {
+    int buttonsLeft;
+    
     public override string ModifierName => "Bounty Target";
 
     public override string GetDescription()
@@ -72,6 +74,15 @@ public sealed class BountyTargetModifier : AllianceGameModifier
         }
 
         Player.AddModifier<BountySparedModifier>();
+
+        buttonsLeft = Player.RemainingEmergencies;
+        Player.RemainingEmergencies = 0;
+    }
+    public override void OnDeactivate()
+    {
+        Player.RemainingEmergencies = buttonsLeft;
+
+        base.OnDeactivate();
     }
 
     public void Update()
@@ -112,6 +123,19 @@ public sealed class BountyTargetModifier : AllianceGameModifier
     public override int GetAssignmentChance()
     {
         return 0;
+    }
+
+    [HarmonyPatch(typeof(RoleBehaviour), "CanVent")]
+    [HarmonyPrefix]
+    public static bool DontVentAsTarget(ref RoleBehaviour __instance)
+    {
+        if(__instance.Player.HasModifier<BountyTargetModifier>())
+        {
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About It...", Color.red, null, K2RoleIcons.BountyHunter.LoadAsset());
+            return false;
+        }
+
+        return true;
     }
 }
 public sealed class BountyArrowModifier(PlayerControl owner, Color color, float update) : ArrowTargetModifier(owner, color, update)
