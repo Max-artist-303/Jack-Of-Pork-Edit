@@ -51,29 +51,33 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
                 Player.RpcAddModifier<AssassinModifier>();
             }
             numMeetingsSkipped++;
-            // if(numMeetingsSkipped < 0)
-            // {
-            //     numMeetingsSkipped++;
-            //     // Helpers.CreateAndShowNotification(
-            //     //     "There is no decision, a killer has awoken...",
-            //     //     RoleColor,
-            //     //     new Vector3(0f, 1f, -20f),
-            //     //     null,
-            //     //     TouRoleIcons.Jackal.LoadAsset()
-            //     // );
-            // }
-            // else if(OptionGroupSingleton<TimeKeeperOptions>.Instance.AlwaysDecreaseCd)
-            // {
-            //     numMeetingsSkipped++;
 
-            //     // Helpers.CreateAndShowNotification(
-            //     //     "The Killer Is Getting Tired Of Waiting...",
-            //     //     RoleColor,
-            //     //     new Vector3(0f, 1f, -20f),
-            //     //     null,
-            //     //     TouRoleIcons.Jackal.LoadAsset()
-            //     // );
-            // }
+            if (!OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeNotif) return;
+
+            if(numMeetingsSkipped < 0)
+            {
+                numMeetingsSkipped++;
+
+                Helpers.CreateAndShowNotification(
+                    "There is no decision, a killer has awoken...",
+                    RoleColor,
+                    new Vector3(0f, 1f, -20f),
+                    null,
+                    TouRoleIcons.Jackal.LoadAsset()
+                );
+            }
+            else if(OptionGroupSingleton<TimeKeeperOptions>.Instance.AlwaysDecreaseCd)
+            {
+                numMeetingsSkipped++;
+
+                Helpers.CreateAndShowNotification(
+                    "The Killer Is Getting Tired Of Waiting...",
+                    RoleColor,
+                    new Vector3(0f, 1f, -20f),
+                    null,
+                    TouRoleIcons.Jackal.LoadAsset()
+                );
+            }
         }
     }
 

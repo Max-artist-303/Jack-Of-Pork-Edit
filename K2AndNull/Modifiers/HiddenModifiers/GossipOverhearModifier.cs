@@ -106,7 +106,7 @@ public sealed class GossipOverhearModifier : BaseModifier
         {
             var getableRoles = new List<RoleBehaviour>();
 
-            if(UnityEngine.Random.Range(0, 101) <= 45)
+            if(UnityEngine.Random.Range(0, 101) <= OptionGroupSingleton<GossipOptions>.Instance.CrewWeight)
             {
                 getableRoles = allRoles.Where(r => r.IsCrewmate()).ToList();
 
