@@ -102,3 +102,7 @@ public enum OurRpcCalls : uint
 // Fixed Zombie Reveal logic
 // Fixed Zombie cd logic
 // Added Camouflager Sabotage Setting
+// Modified Gossip Settings
+// Modified Snoop Settings
+// Modified Forbearing Settings
+// Renamed Forbearing to Time Keeper

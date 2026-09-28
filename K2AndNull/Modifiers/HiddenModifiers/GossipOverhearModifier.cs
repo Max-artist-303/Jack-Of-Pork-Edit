@@ -59,7 +59,7 @@ public sealed class GossipOverhearModifier : BaseModifier
 
         public override void OnMeetingStart()
     {
-        if(!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is GossipRole)) return;
+        if(!Helpers.GetAlivePlayers().Any(p => p.GetRoleWhenAlive() is GossipRole)) return;
 
         if(Player == null)
         {
@@ -104,9 +104,9 @@ public sealed class GossipOverhearModifier : BaseModifier
 
         for (int i = 0; i < randRolesCount; i++)
         {
-            List<RoleBehaviour> getableRoles = new List<RoleBehaviour>();
+            var getableRoles = new List<RoleBehaviour>();
 
-            if(UnityEngine.Random.Range(0, 101) <= OptionGroupSingleton<GossipOptions>.Instance.CrewWeight)
+            if(UnityEngine.Random.Range(0, 101) <= 45)
             {
                 getableRoles = allRoles.Where(r => r.IsCrewmate()).ToList();
 

@@ -13,13 +13,13 @@ using UnityEngine;
 
 namespace K2AmongUs.Buttons.Neutral;
 
-public sealed class ForbearingKillButton : TownOfUsKillRoleButton<ForbearingRole, PlayerControl>, IDiseaseableButton,
+public sealed class TimeKeeperKillButton : TownOfUsKillRoleButton<TimeKeeperRole, PlayerControl>, IDiseaseableButton,
     IKillButton
 {
     public override string Name => TranslationController.Instance.GetStringWithDefault(StringNames.KillLabel, "Kill");
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => K2AndNull.Colors.Forbearing;
-    public override float Cooldown => Role != null ? OptionGroupSingleton<ForbearingOptions>.Instance.RestlessCooldown - OptionGroupSingleton<ForbearingOptions>.Instance.RestlessMeetingDecrease * Role.numMeetingsSkipped : 15;
+    public override Color TextOutlineColor => K2AndNull.Colors.TimeKeeper;
+    public override float Cooldown => Role != null ? OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeKeeperCooldown - OptionGroupSingleton<TimeKeeperOptions>.Instance.CooldownDecrease * Role.numMeetingsSkipped : 15;
     public override LoadableAsset<Sprite> Sprite => TouAssets.KillSprite;
 
     public override void CreateButton(Transform parent)
@@ -30,7 +30,7 @@ public sealed class ForbearingKillButton : TownOfUsKillRoleButton<ForbearingRole
 
     public override bool Enabled(RoleBehaviour? role)
     {
-        return role is ForbearingRole && Role.numMeetingsSkipped >= 0;
+        return role is TimeKeeperRole && Role.numMeetingsSkipped >= 0;
     }
 
     public void SetDiseasedTimer(float multiplier)
@@ -52,7 +52,7 @@ public sealed class ForbearingKillButton : TownOfUsKillRoleButton<ForbearingRole
     {
         if (Target == null)
         {
-            Error("Restless Kill: Target is null");
+            Error("Time Kill: Target is null");
             return;
         }
 

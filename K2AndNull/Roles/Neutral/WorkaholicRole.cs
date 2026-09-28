@@ -187,7 +187,6 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
 
         var toAdd = new List<NormalPlayerTask>();
 
-        // Temporary changes
         for (int i = 0; i < (int)options.ExtraCommonTasks; i++)
             toAdd.Add(commonTasks[UnityEngine.Random.Range(0, commonTasks.Length)]);
 
@@ -199,7 +198,7 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
 
         foreach (var prefab in toAdd)
         {
-            var task = UnityEngine.Object.Instantiate(prefab, Player.transform);
+            var task = Instantiate(prefab, Player.transform);
 
             task.Id = (uint)tasks.Count;
             task.Owner = Player;

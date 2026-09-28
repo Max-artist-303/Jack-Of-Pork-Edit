@@ -10,6 +10,7 @@ using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Modifiers.Game.Assailant;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
@@ -18,57 +19,61 @@ using UnityEngine;
 
 namespace K2AmongUs.Roles.Neutral;
 
-public sealed class ForbearingRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
+public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
     public int numMeetingsSkipped = -1;
 
-    public string RoleName => "Forbearing";
-    public string LocaleKey => "Forbearing";
+    public string RoleName => "Time Keeper";
+    public string LocaleKey => "Time Keeper";
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleDescription => "You are patient, but irritated...";
     public string RoleLongDescription => "Decrease Your Cooldowns Each Meeting That Is Skipped Or Tied.";
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    public Color RoleColor => K2AndNull.Colors.Forbearing;
+    public Color RoleColor => K2AndNull.Colors.TimeKeeper;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Forbearing.LoadAsset(), "K2AmongUs.Roles.Neutral.Forbearing", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.TimeKeeper.LoadAsset(), "K2AmongUs.Roles.Neutral.Forbearing", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
-        Icon = K2RoleIcons.Forbearing,
-        CanUseVent = OptionGroupSingleton<ForbearingOptions>.Instance.ForbearingCanVent
+        Icon = K2RoleIcons.TimeKeeper,
+        CanUseVent = true
+        // CanUseVent = OptionGroupSingleton<TimeKeeperOptions>.Instance.ForbearingCanVent
     };
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
     public override void OnVotingComplete()
     {
         if (MeetingHud.Instance.exiledPlayer == null)
         {
-            Player.RpcAddModifier<TownOfUs.Modifiers.Game.Assailant.AssassinModifier>();
-
-            if(numMeetingsSkipped < 0)
+            if(!Player.HasModifier<AssassinModifier>())
             {
-                numMeetingsSkipped++;
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification(
-                    "There is no decision, a killer has awoken...",
-                    RoleColor,
-                    new Vector3(0f, 1f, -20f),
-                    null,
-                    TouRoleIcons.Jackal.LoadAsset()
-                );
+                Player.RpcAddModifier<AssassinModifier>();
             }
-            else if(OptionGroupSingleton<ForbearingOptions>.Instance.RestlessEveryMeeting)
-            {
-                numMeetingsSkipped++;
+            numMeetingsSkipped++;
+            // if(numMeetingsSkipped < 0)
+            // {
+            //     numMeetingsSkipped++;
+            //     // Helpers.CreateAndShowNotification(
+            //     //     "There is no decision, a killer has awoken...",
+            //     //     RoleColor,
+            //     //     new Vector3(0f, 1f, -20f),
+            //     //     null,
+            //     //     TouRoleIcons.Jackal.LoadAsset()
+            //     // );
+            // }
+            // else if(OptionGroupSingleton<TimeKeeperOptions>.Instance.AlwaysDecreaseCd)
+            // {
+            //     numMeetingsSkipped++;
 
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification(
-                    "The Killer Is Getting Tired Of Waiting...",
-                    RoleColor,
-                    new Vector3(0f, 1f, -20f),
-                    null,
-                    TouRoleIcons.Jackal.LoadAsset()
-                );
-            }
+            //     // Helpers.CreateAndShowNotification(
+            //     //     "The Killer Is Getting Tired Of Waiting...",
+            //     //     RoleColor,
+            //     //     new Vector3(0f, 1f, -20f),
+            //     //     null,
+            //     //     TouRoleIcons.Jackal.LoadAsset()
+            //     // );
+            // }
         }
     }
 
