@@ -80,28 +80,4 @@ public enum OurRpcCalls : uint
 
 // =============== FIXES ===============
 /*
- * Combined K2's Mod and Null's Mod
- * Deceiver Has Option For No Longer Deceiving Crew Killing
- * Deceiver No Longer Wins With Crew For Deceived People
- * Added Option For Bounty Target To Be Unknowing That They're The Target
- * Added Option For Bounty Hunter Players To Not Include Crew Killing
- * Fixed Scrubber Bug Where Scrubber Wouldn't Scrub If You Left The Target
- * Fixed Scrubber Bug Where Scrubber Would Scrub The Wrong Person
- * Added Option For Scrubber Delay Configs
- * Modified Zombie Abilities
- * Made Snoop Button Cancelable
- * Made Bounty Hunter Unable To Target The Same Person Multiple Times In A Row
- * Reworked Bounty Hunter (Now Anyone Can Hunt The Bounty! Along with other misc. changes)
- * Added Battery Modifier
- * Zombies Should Properly Die In Meetings
- * Zombies Should Properly Revive After Meetings
- * General Bug Fixes
 */
-// ========== Nulls Fixes =============
-// Removed Inheritdoc in every instance
-// Fixed Zombie Reveal logic
-// Fixed Zombie cd logic
-// Added Camouflager Sabotage Setting
-// Modified Snoop Settings
-// Modified Forbearing Settings
-// Renamed Forbearing to Time Keeper

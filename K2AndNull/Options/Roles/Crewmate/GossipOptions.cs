@@ -22,6 +22,6 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
     [ModdedToggleOption("Shares Info")]
     public bool ShowGossip { get; set; } = true;
 
-    [ModdedNumberOption("Crew Role Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]
+    [ModdedNumberOption("Crew Role Weight", 25f, 75f, 5f, MiraNumberSuffixes.Percent)]
     public float CrewWeight { get; set; } = 50;
 }
