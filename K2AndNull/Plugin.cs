@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace K2AndNull;
 
-[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1")]
+[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1.0")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
