@@ -1,9 +1,9 @@
-﻿using AmongUs.GameOptions;
+using AmongUs.GameOptions;
 using HarmonyLib;
-using K2AmongUs.Assets;
-using K2AmongUs.Modifiers.Neutral;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Patches.WinConditions;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Modifiers.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Patches.WinConditions;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.Events.Vanilla.Meeting;
@@ -34,7 +34,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
-namespace K2AmongUs.Roles.Neutral;
+namespace JackOfAllMods.Roles.Neutral;
 
 public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IUnguessable
 {
@@ -46,14 +46,14 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    public Color RoleColor => K2AndNull.Colors.Zombie;
+    public Color RoleColor => JackOfAllMods.Colors.Zombie;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleBehaviour AppearAs => (RoleBehaviour)RoleId.Get<ZombieRole>();
     public bool IsGuessable => false;
     public new bool IsDraftable => false;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Zombie.LoadAsset(), "K2AmongUs.Roles.Neutral.Zombie", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Zombie.LoadAsset(), "JackOfAllMods.Roles.Neutral.Zombie", 1.45f),
         Icon = K2RoleIcons.Zombie,
         HideSettings = true,
         CanModifyChance = false,
@@ -158,7 +158,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     {
         if(player.AmOwner && player.Data.Role is ZombieRole)
         {
-            Coroutines.Start(MiscUtils.CoFlash(K2AndNull.Colors.Zombie));
+            Coroutines.Start(MiscUtils.CoFlash(JackOfAllMods.Colors.Zombie));
             TouAudio.PlaySound(TouAudio.AltruistReviveSound);
         }
     }
@@ -187,13 +187,13 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         }
     }
 
-    public Color RoleColor => K2AndNull.Colors.Zombie;
+    public Color RoleColor => JackOfAllMods.Colors.Zombie;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleBehaviour AppearAs => (RoleBehaviour)RoleId.Get<ZombieLeaderRole>();
     public bool IsGuessable => PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data.Role is VigilanteRole;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "K2AmongUs.Roles.Neutral.ZombieLeader", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "JackOfAllMods.Roles.Neutral.ZombieLeader", 1.45f),
         IntroSound = TouAudio.ScreamIntro,
         Icon = K2RoleIcons.ZombieLeader,
     };

@@ -4,19 +4,19 @@
         <name>K2AndNull</name>
     </assembly>
     <members>
-        <member name="F:K2AndNull.Plugin.Id">
+        <member name="F:JackOfAllMods.Plugin.Id">
             <summary>
-            Id of the <see cref="T:K2AndNull.Plugin"/>.
+            Id of the <see cref="T:JackOfAllMods.Plugin"/>.
             </summary>
         </member>
-        <member name="P:K2AndNull.Plugin.Name">
+        <member name="P:JackOfAllMods.Plugin.Name">
             <summary>
-            Gets the name of the <see cref="T:K2AndNull.Plugin"/>.
+            Gets the name of the <see cref="T:JackOfAllMods.Plugin"/>.
             </summary>
         </member>
-        <member name="P:K2AndNull.Plugin.Version">
+        <member name="P:JackOfAllMods.Plugin.Version">
             <summary>
-            Gets the version of the <see cref="T:K2AndNull.Plugin"/>.
+            Gets the version of the <see cref="T:JackOfAllMods.Plugin"/>.
             </summary>
         </member>
     </members>

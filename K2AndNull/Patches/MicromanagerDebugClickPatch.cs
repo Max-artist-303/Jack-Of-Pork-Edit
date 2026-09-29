@@ -5,10 +5,10 @@
 // using TownOfUs.Events.TouEvents;
 // using UnityEngine;
 // using TownOfUs.Utilities;
-// using NullsMod.Roles.Crewmate;
-// using NullsMod.Assets;
+// using JackOfAllMods.Roles.Crewmate;
+// using JackOfAllMods.Assets;
 
-// namespace NullsMod.Patches;
+// namespace JackOfAllMods.Patches;
 
 // [HarmonyPatch]
 // public static class MicromanagerDebugClickPatch

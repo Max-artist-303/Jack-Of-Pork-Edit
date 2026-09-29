@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Player;
 using MiraAPI.GameOptions;
@@ -8,10 +8,10 @@ using Reactor.Networking.Attributes;
 using Reactor.Networking.Rpc;
 using Reactor.Utilities;
 using Reactor;
-using NullsMod.Roles.Crewmate;
-using NullsMod.Options.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
 
-namespace NullsMod.Events.Crewmate;
+namespace JackOfAllMods.Events.Crewmate;
 public static class MicromanagerEvents
 {
     [RegisterEvent]
@@ -69,7 +69,7 @@ public static class MicromanagerEvents
         }
 
         var notif = Helpers.CreateAndShowNotification(message, Color.white, new Vector3(0f, 1f, -20f),
-            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JackOfAllMods.Assets.NullsIcons.Micromanager.LoadAsset());
 
         notif?.AdjustNotification();
     }

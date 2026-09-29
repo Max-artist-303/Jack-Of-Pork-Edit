@@ -2,9 +2,9 @@ using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 
-namespace K2AmongUs.Options.Roles.Neutral;
+namespace JackOfAllMods.Options.Roles.Neutral;
 
 public sealed class TimeKeeperOptions : AbstractOptionGroup<TimeKeeperRole>
 {

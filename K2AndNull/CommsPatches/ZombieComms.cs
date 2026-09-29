@@ -1,4 +1,4 @@
-﻿using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using PerfectComms.Api;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace K2sAmongUsMod.CommsPatches;
+namespace JackOfAllMods.CommsPatches;
 
 public static class ZombieComms
 {

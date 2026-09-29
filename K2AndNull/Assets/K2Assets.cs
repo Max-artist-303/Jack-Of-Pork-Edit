@@ -1,10 +1,10 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace K2AmongUs.Assets;
+namespace JackOfAllMods.Assets;
 
 public static class K2Assets
 {
-    private const string ShortPath = "K2AndNull.Resources.Other";
+    private const string ShortPath = "JackOfAllMods.Resources.Other";
     public static LoadableAsset<Sprite> BountyTarget { get; } = new LoadableResourceAsset($"{ShortPath}.Bounty Target.png", 200);
 }

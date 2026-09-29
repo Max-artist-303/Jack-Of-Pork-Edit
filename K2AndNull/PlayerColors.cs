@@ -1,6 +1,6 @@
-﻿using MiraAPI.Colors;
+using MiraAPI.Colors;
 
-namespace K2AndNull;
+namespace JackOfAllMods;
 
 [RegisterCustomColors]
 public static class PlayerColors

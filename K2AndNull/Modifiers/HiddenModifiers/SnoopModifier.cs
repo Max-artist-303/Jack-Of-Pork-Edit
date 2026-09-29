@@ -1,5 +1,5 @@
 using HarmonyLib;
-using K2AmongUs.Options.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
@@ -15,7 +15,7 @@ using TownOfUs.Utilities;
 using TownOfUs.Utilities.Appearances;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Crewmate;
+namespace JackOfAllMods.Modifiers.Crewmate;
 
 public sealed class StealthySwoopModifier : ConcealedModifier, IVisualAppearance
 {

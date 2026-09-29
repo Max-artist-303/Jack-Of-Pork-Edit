@@ -7,16 +7,16 @@ using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Utilities;
 using Reactor.Utilities.Extensions;
-using K2AmongUs.Modifiers.Game.Universal;
+using JackOfAllMods.Modifiers.Game.Universal;
 using TownOfUs.Buttons;
 
-namespace K2AmongUs.Buttons.Crewmate;
+namespace JackOfAllMods.Buttons.Crewmate;
 
 public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
 {
         public override string Name => "VENT";
         public override BaseKeybind Keybind => Keybinds.VentAction;
-        public override Color TextOutlineColor => K2AndNull.Colors.Ventable;
+        public override Color TextOutlineColor => JackOfAllMods.Colors.Ventable;
         public override float Cooldown => 0;
         public override LoadableAsset<Sprite> Sprite => TouNeutAssets.JuggVentSprite;
 
@@ -34,7 +34,7 @@ public sealed class VentableVentButton : TownOfUsTargetButton<Vent>
     {
         if (Target != null && !PlayerControl.LocalPlayer.HasDied())
         {
-            Target.SetOutline(active, true, K2AndNull.Colors.Ventable);
+            Target.SetOutline(active, true, JackOfAllMods.Colors.Ventable);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿using MiraAPI.Events;
+using MiraAPI.Events;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Modifiers;
@@ -10,9 +10,9 @@ using TownOfUs.Options.Modifiers.Universal;
 using TownOfUs.Options.Roles.Impostor;
 using TownOfUs.Utilities;
 using UnityEngine;
-using NullsMod.Options.Modifiers;
+using JackOfAllMods.Options.Modifiers;
 
-namespace NullsMod.Modifiers.Hidden;
+namespace JackOfAllMods.Modifiers.Hidden;
 
 public sealed class ShackledDragModifier(byte bodyId) : BaseModifier
 {

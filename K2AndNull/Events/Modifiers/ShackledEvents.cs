@@ -7,10 +7,10 @@ using TownOfUs.Buttons;
 using TownOfUs.Utilities;
 using TownOfUs;
 using UnityEngine;
-using NullsMod.Modifiers.Universal;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Modifiers.Universal;
+using JackOfAllMods.Modifiers.Hidden;
 
-namespace NullsMod.Events.Modifiers;
+namespace JackOfAllMods.Events.Modifiers;
 
 public static class ShackledEvents
 {
@@ -31,13 +31,13 @@ public static class ShackledEvents
             .Replace("<player>", target.Data.PlayerName)
             .Replace(
                 "<modifier>",
-                $"{K2AndNull.Colors.Shackled.ToTextColor()}Shackled</color>");
+                $"{JackOfAllMods.Colors.Shackled.ToTextColor()}Shackled</color>");
 
         var notif = Helpers.CreateAndShowNotification(
             $"<b>{text}</b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: K2AndNull.Assets.NullsIcons.Shackled.LoadAsset());
+            spr: JackOfAllMods.Assets.NullsIcons.Shackled.LoadAsset());
 
         notif?.AdjustNotification();
     }

@@ -1,6 +1,6 @@
-using K2AmongUs.Modifiers.Neutral;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Modifiers.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
@@ -25,13 +25,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
-namespace K2AmongUs.Buttons.Neutral;
+namespace JackOfAllMods.Buttons.Neutral;
 
 public class ZombieReviveButton : TownOfUsButton
 {
     public override string Name => "REVIVE";
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => K2AndNull.Colors.Zombie;
+    public override Color TextOutlineColor => JackOfAllMods.Colors.Zombie;
     public override float Cooldown => OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveCd;
     public override bool ZeroIsInfinite { get; set; } = true;
     public override LoadableAsset<Sprite> Sprite => TouCrewAssets.ReviveSprite;

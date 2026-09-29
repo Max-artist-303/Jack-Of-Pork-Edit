@@ -1,11 +1,11 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace K2AmongUs.Assets;
+namespace JackOfAllMods.Assets;
 
 public static class K2ModifierIcons
 {
-    private const string ShortPath = "K2AndNull.Resources.ModifierIcons";
+    private const string ShortPath = "JackOfAllMods.Resources.ModifierIcons";
 
     public static LoadableAsset<Sprite> Blind { get; } = new LoadableResourceAsset($"{ShortPath}.Blind.png", 200);
     public static LoadableAsset<Sprite> Rivalry { get; } = new LoadableResourceAsset($"{ShortPath}.Rivalry.png", 200);

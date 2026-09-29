@@ -6,9 +6,9 @@ using TownOfUs.Options;
 using TownOfUs.Roles.Crewmate;
 using UnityEngine;
 using Object = UnityEngine.Object;
-using NullsMod.Modifiers.Universal;
+using JackOfAllMods.Modifiers.Universal;
 
-namespace NullsMod.Patches;
+namespace JackOfAllMods.Patches;
 
 [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.BloopAVoteIcon))]
 public static class ExposedPatch

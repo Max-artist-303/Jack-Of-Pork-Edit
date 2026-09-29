@@ -1,14 +1,14 @@
-using K2AmongUs.Modifiers.Game.Universal;
+using JackOfAllMods.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
-using K2AmongUs.Roles.Crewmate;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Crewmate;
+using JackOfAllMods.Roles.Neutral;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
 
-namespace K2AmongUs.Options.Modifiers.Game.Universal;
+namespace JackOfAllMods.Options.Modifiers.Game.Universal;
 
 public sealed class VentableOptions : AbstractOptionGroup<VentableModifier>
 {

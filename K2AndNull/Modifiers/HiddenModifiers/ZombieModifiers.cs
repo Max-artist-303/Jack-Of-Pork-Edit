@@ -1,6 +1,6 @@
 using AmongUs.GameOptions;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
@@ -15,7 +15,7 @@ using TownOfUs.Networking;
 using TownOfUs.Roles.Crewmate;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Neutral;
+namespace JackOfAllMods.Modifiers.Neutral;
 public sealed class ZombieRevealedModifier : BaseRevealModifier
 {
     public override string ModifierName => "Zombie Reveal";
@@ -105,7 +105,7 @@ public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowD
         {
             if (zombieRole.AmOwner)
             {
-                zombieRole.AddModifier<ZombieArrowModifier>(deadBody, K2AndNull.Colors.Zombie);
+                zombieRole.AddModifier<ZombieArrowModifier>(deadBody, JackOfAllMods.Colors.Zombie);
             }
         }
     }

@@ -1,12 +1,12 @@
 using System.Runtime.CompilerServices;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.GameEnd;
 using MiraAPI.Utilities;
 using TMPro;
 using TownOfUs.Modules;
 using UnityEngine;
 
-namespace K2AmongUs.Patches.WinConditions;
+namespace JackOfAllMods.Patches.WinConditions;
 
 public sealed class ZombieGameOver : CustomGameOver
 {
@@ -29,13 +29,13 @@ public sealed class ZombieGameOver : CustomGameOver
 
 		public override void AfterEndGameSetup(EndGameManager endGameManager)
 	{
-		endGameManager.BackgroundBar.material.SetColor(ShaderID.Color, K2AndNull.Colors.Zombie);
+		endGameManager.BackgroundBar.material.SetColor(ShaderID.Color, JackOfAllMods.Colors.Zombie);
 		TextMeshPro text = UnityEngine.Object.Instantiate<TextMeshPro>(endGameManager.WinText);
 		text.text = "Zombies Win!";
-		text.color = K2AndNull.Colors.Zombie;
+		text.color = JackOfAllMods.Colors.Zombie;
 		DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(17, 2);
 		defaultInterpolatedStringHandler.AppendLiteral("<color=#");
-		defaultInterpolatedStringHandler.AppendFormatted(K2AndNull.Colors.Zombie);
+		defaultInterpolatedStringHandler.AppendFormatted(JackOfAllMods.Colors.Zombie);
 		defaultInterpolatedStringHandler.AppendLiteral(">");
         defaultInterpolatedStringHandler.AppendLiteral("Zombies Win!</color>");
         GameHistory.WinningFaction = defaultInterpolatedStringHandler.ToStringAndClear();

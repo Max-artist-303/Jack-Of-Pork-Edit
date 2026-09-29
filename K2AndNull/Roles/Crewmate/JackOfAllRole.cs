@@ -1,6 +1,6 @@
-﻿using K2AmongUs.Assets;
-using K2AmongUs.Modifiers.Crewmate;
-using K2AmongUs.Options.Roles.Crewmate;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Modifiers.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
@@ -20,7 +20,7 @@ using TownOfUs.Roles;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Roles.Crewmate;
+namespace JackOfAllMods.Roles.Crewmate;
 
 public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
@@ -33,13 +33,13 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         public string RoleLongDescription => RoleDescription + "\n(May Get More By Doing Tasks)";
         public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
 
-        public Color RoleColor => K2AndNull.Colors.JackOfAll;
+        public Color RoleColor => JackOfAllMods.Colors.JackOfAll;
 
         public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
 
         public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.JackOfAll.LoadAsset(), "K2AmongUs.Roles.Crewmate.JackOfAll", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.JackOfAll.LoadAsset(), "JackOfAllMods.Roles.Crewmate.JackOfAll", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
         Icon = K2RoleIcons.JackOfAll
     };

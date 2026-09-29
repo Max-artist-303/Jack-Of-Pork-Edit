@@ -5,13 +5,13 @@ using TownOfUs.Modifiers;
 using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
-using NullsMod.Options.Modifiers;
+using JackOfAllMods.Options.Modifiers;
 
-namespace NullsMod.Modifiers.Universal;
+namespace JackOfAllMods.Modifiers.Universal;
 
 public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(K2AndNull.Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(JackOfAllMods.Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(JackOfAllMods.Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
     public override string IdPart => "Battery";
     public override string ModifierName => "Battery";
     public override string IntroInfo => "Use Utilities Whenever!";
@@ -29,10 +29,10 @@ public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale() => "Lets you use Utilities during Comms Disabled sabotage";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => K2AndNull.Assets.NullsIcons.Battery;
+    public override LoadableAsset<Sprite>? ModifierIcon => JackOfAllMods.Assets.NullsIcons.Battery;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalUtility;
-    public override Color FreeplayFileColor => K2AndNull.Colors.Battery;
+    public override Color FreeplayFileColor => JackOfAllMods.Colors.Battery;
 
     public List<CustomButtonWikiDescription> Abilities { get; } = [];
 

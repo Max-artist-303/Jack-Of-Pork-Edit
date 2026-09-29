@@ -1,7 +1,7 @@
 using HarmonyLib;
 using TownOfUs.Patches.Options;
 
-namespace NullsMod.Patches;
+namespace JackOfAllMods.Patches;
 
 [HarmonyPatch(typeof(DeadSeeVoteColorsPatch), nameof(DeadSeeVoteColorsPatch.Prefix))]
 public static class DisableDeadSeeVotesPatch

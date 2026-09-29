@@ -1,6 +1,6 @@
 using HarmonyLib;
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Modifiers.Game.Universal;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
@@ -12,7 +12,7 @@ using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Game.Universal;
+namespace JackOfAllMods.Modifiers.Game.Universal;
 
  
 public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
@@ -58,7 +58,7 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(K2AndNull.Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(JackOfAllMods.Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
 

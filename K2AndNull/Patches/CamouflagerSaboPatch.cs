@@ -1,9 +1,9 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MiraAPI.GameOptions;
 using TownOfUs.Options;
 using TownOfUs.Utilities;
-using NullsMod.Options.Roles.Impostor;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Options.Roles.Impostor;
+using JackOfAllMods.Modifiers.Hidden;
 using MiraAPI.Modifiers;
 
 namespace TownOfUs.Patches;

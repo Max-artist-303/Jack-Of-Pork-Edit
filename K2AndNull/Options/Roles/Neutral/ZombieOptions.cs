@@ -1,4 +1,4 @@
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
@@ -6,7 +6,7 @@ using MiraAPI.Utilities;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
 
-namespace K2AmongUs.Options.Roles.Neutral;
+namespace JackOfAllMods.Options.Roles.Neutral;
 public sealed class ZombieOptions : AbstractOptionGroup<ZombieLeaderRole>
 {
     public override string GroupName => "Zombie Options";

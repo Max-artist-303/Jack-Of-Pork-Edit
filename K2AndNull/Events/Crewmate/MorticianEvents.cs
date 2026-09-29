@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using Reactor.Networking.Attributes;
 using MiraAPI.Events;
@@ -11,12 +11,12 @@ using TownOfUs.Roles;
 using TownOfUs.Modules;
 using MiraAPI.Events.Vanilla.Meeting;
 using AmongUs.GameOptions;
-using NullsMod.Options.Roles.Crewmate;
-using NullsMod.Roles.Crewmate;
-using NullsMod.Patches;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
+using JackOfAllMods.Patches;
 using Reactor.Networking.Rpc;
 
-namespace NullsMod.Events.Crewmate;
+namespace JackOfAllMods.Events.Crewmate;
 
 public static class MorticianEvents
 {
@@ -79,10 +79,10 @@ public static class MorticianEvents
         }
 
         var notification = Helpers.CreateAndShowNotification(
-            $"<b>The <color=#{ColorUtility.ToHtmlStringRGBA(K2AndNull.Colors.Mortician)}>Mortician</color> performed an Autopsy on {target.Data.PlayerName}</b>",
+            $"<b>The <color=#{ColorUtility.ToHtmlStringRGBA(JackOfAllMods.Colors.Mortician)}>Mortician</color> performed an Autopsy on {target.Data.PlayerName}</b>",
             Color.white,
             new Vector3(0f, 2f, -20f),
-            spr: K2AndNull.Assets.NullsIcons.MorticianAbility.LoadAsset());
+            spr: JackOfAllMods.Assets.NullsIcons.MorticianAbility.LoadAsset());
 
         notification.AdjustNotification();
         notification.alphaTimer = 5f;
@@ -114,7 +114,7 @@ public static class MorticianEvents
         }
 
         var title =
-            $"<color=#{ColorUtility.ToHtmlStringRGBA(K2AndNull.Colors.Mortician)}>Mortician</color>";
+            $"<color=#{ColorUtility.ToHtmlStringRGBA(JackOfAllMods.Colors.Mortician)}>Mortician</color>";
 
         var message =
             $"Autopsy Results:\n" +

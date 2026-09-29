@@ -1,11 +1,11 @@
 using HarmonyLib;
-using K2AmongUs.Modifiers.Game.Universal;
+using JackOfAllMods.Modifiers.Game.Universal;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using TownOfUs.Utilities;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
+using JackOfAllMods.Options.Modifiers.UniversalModifierOptions;
 
-namespace K2AmongUs.Patches;
+namespace JackOfAllMods.Patches;
 
 [HarmonyPriority(Priority.Last)]
 [HarmonyPatch(typeof(ShipStatus), "CalculateLightRadius")]

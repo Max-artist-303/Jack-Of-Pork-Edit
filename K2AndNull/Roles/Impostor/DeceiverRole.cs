@@ -3,10 +3,10 @@ using HarmonyLib;
 using Hazel;
 using Il2CppInterop.Runtime.Attributes;
 using InnerNet;
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Roles.Crewmate;
-using K2AmongUs.Options.Roles.Impostor;
-using K2sAmongUsMod.Modifiers.HiddenModifiers;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Impostor;
+using JackOfAllMods.Modifiers.HiddenModifiers;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
@@ -56,7 +56,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Deceiver.LoadAsset(), "K2AmongUs.Roles.Impostor.Deceiver", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Deceiver.LoadAsset(), "JackOfAllMods.Roles.Impostor.Deceiver", 1.45f),
         UseVanillaKillButton = true,
         IntroSound = TouAudio.HackedSound,
         Icon = K2RoleIcons.Deceiver

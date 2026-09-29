@@ -10,7 +10,7 @@ using UnityEngine;
 using AmongUs.GameOptions;
 using TownOfUs.Utilities;
 
-namespace NullsMod.Patches;
+namespace JackOfAllMods.Patches;
 
 [HarmonyPatch]
 public static class MorticianPatch

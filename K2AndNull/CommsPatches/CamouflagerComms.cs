@@ -1,5 +1,5 @@
-﻿using MiraAPI.Modifiers;
-using NullsMod.Modifiers.Hidden;
+using MiraAPI.Modifiers;
+using JackOfAllMods.Modifiers.Hidden;
 using PerfectComms.Api;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TownOfUs.Utilities;
 
-namespace NullsMod.CommsPatches;
+namespace JackOfAllMods.CommsPatches;
 
 public static class CamouflagerComms
 {

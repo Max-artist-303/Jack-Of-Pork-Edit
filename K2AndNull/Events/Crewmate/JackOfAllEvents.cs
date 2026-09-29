@@ -1,14 +1,14 @@
-using K2AmongUs.Modifiers.Crewmate;
-using K2AmongUs.Options.Roles.Crewmate;
-using K2AmongUs.Roles.Crewmate;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Modifiers.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Player;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using TownOfUs.Modules;
 
-namespace K2AmongUs.Events.Crewmate
+namespace JackOfAllMods.Events.Crewmate
 {
 	public static class JackOfAllEvents
 	{

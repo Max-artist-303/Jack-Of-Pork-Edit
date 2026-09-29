@@ -1,11 +1,11 @@
-﻿using MiraAPI.Modifiers;
+using MiraAPI.Modifiers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace K2sAmongUsMod.Modifiers.HiddenModifiers;
+namespace JackOfAllMods.Modifiers.HiddenModifiers;
 
 internal class DeceiverModifier : BaseModifier
 {

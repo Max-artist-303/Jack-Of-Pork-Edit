@@ -1,4 +1,4 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Keybinds;
 using MiraAPI.Utilities;
@@ -12,18 +12,18 @@ using TownOfUs.Buttons;
 using TownOfUs.Options.Maps;
 using UnityEngine;
 using UnityEngine.UI;
-using NullsMod.Options.Roles.Impostor;
-using NullsMod.Modifiers.Hidden;
-using NullsMod.Roles.Impostor;
+using JackOfAllMods.Options.Roles.Impostor;
+using JackOfAllMods.Modifiers.Hidden;
+using JackOfAllMods.Roles.Impostor;
 
-namespace NullsMod.Buttons.Roles.Impostor;
+namespace JackOfAllMods.Buttons.Roles.Impostor;
 
 public sealed class CamouflagerAbilityButton : TownOfUsRoleButton<CamouflagerRole>, IAftermathableButton, ILegacyCapable
 {
     public override string Name => "Camouflage";
     public override Color TextOutlineColor => TownOfUsColors.Impostor;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
-    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? K2AndNull.Assets.NullsIcons.CamouflagerButton : K2AndNull.Assets.NullsIcons.CamouflagerButton;
+    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? JackOfAllMods.Assets.NullsIcons.CamouflagerButton : JackOfAllMods.Assets.NullsIcons.CamouflagerButton;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<CamouflagerOptions>.Instance.CamoCooldown + MapCooldown, 5f, 120f);
     public override float EffectDuration => OptionGroupSingleton<CamouflagerOptions>.Instance.CamoDuration;
 

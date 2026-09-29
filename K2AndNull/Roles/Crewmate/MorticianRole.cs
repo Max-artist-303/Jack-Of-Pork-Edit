@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Text;
 using TMPro;
 using MiraAPI.Modifiers;
@@ -14,17 +14,17 @@ using TownOfUs.Extensions;
 using TownOfUs.Assets;
 using TownOfUs.Roles;
 using TownOfUs;
-using NullsMod.Options.Roles.Crewmate;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Modifiers.Hidden;
 
-namespace NullsMod.Roles.Crewmate;
+namespace JackOfAllMods.Roles.Crewmate;
 
 public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public DoomableType DoomHintType => DoomableType.Perception;
     public string IdPart => "Mortician";
     public string RoleName => "Mortician";
-    public Color RoleColor => K2AndNull.Colors.Mortician;
+    public Color RoleColor => JackOfAllMods.Colors.Mortician;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
     public int AbilityUses { get; set; } 
@@ -32,8 +32,8 @@ public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
-        Icon = K2AndNull.Assets.NullsIcons.Mortician,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JackOfAllMods.Assets.NullsIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
+        Icon = JackOfAllMods.Assets.NullsIcons.Mortician,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         IntroSound = TouAudio.ScientistIntroSound
     };
@@ -42,7 +42,7 @@ public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public string RoleMedDescriptionLocale => "Reveal dead players during the Meeting!";
     public string RoleLongDescription => 
         $"Reveal dead roles to everyone, and report bodies to figure out the killer.\n" +
-        $"Autopsy Uses: <color=#{ColorUtility.ToHtmlStringRGBA(K2AndNull.Colors.Mortician)}>{AbilityUses}</color>";
+        $"Autopsy Uses: <color=#{ColorUtility.ToHtmlStringRGBA(JackOfAllMods.Colors.Mortician)}>{AbilityUses}</color>";
     public string GetAdvancedDescription()
     {
         return

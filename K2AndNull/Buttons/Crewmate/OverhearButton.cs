@@ -1,11 +1,11 @@
-using K2AmongUs.Modifiers.Crewmate;
+using JackOfAllMods.Modifiers.Crewmate;
 using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using K2AmongUs.Options.Roles.Crewmate;
-using K2AmongUs.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Extensions;
@@ -15,13 +15,13 @@ using UnityEngine;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 
-namespace K2AmongUs.Buttons.Crewmate;
+namespace JackOfAllMods.Buttons.Crewmate;
 
 public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerControl>
 {
     public override string Name => "OVERHEAR";
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => K2AndNull.Colors.Gossip;
+    public override Color TextOutlineColor => JackOfAllMods.Colors.Gossip;
     public override float Cooldown => OptionGroupSingleton<GossipOptions>.Instance.GossipCooldown;
     public override LoadableAsset<Sprite> Sprite => TouModifierIcons.Crewpostor;
 
@@ -62,6 +62,6 @@ public sealed class OverhearButton : TownOfUsRoleButton<GossipRole, PlayerContro
         }
 
         string notifyString = "You are overhearing " + Target.Data.PlayerName + ".\nYou will " + (OptionGroupSingleton<GossipOptions>.Instance.ShowGossip ? "tell everyone" : "learn") + " something about them next meeting.";
-        MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, K2AndNull.Colors.Gossip, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
+        MiraAPI.Utilities.Helpers.CreateAndShowNotification(notifyString, JackOfAllMods.Colors.Gossip, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
     }
 }

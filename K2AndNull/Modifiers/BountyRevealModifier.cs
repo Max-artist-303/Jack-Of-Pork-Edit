@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TownOfUs.Modifiers;
 
-namespace K2AmongUs.Modifiers;
+namespace JackOfAllMods.Modifiers;
 
 public sealed class BountyRevealModifier : BaseRevealModifier
 {

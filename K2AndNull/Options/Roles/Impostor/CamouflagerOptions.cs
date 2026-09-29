@@ -1,9 +1,9 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.Utilities;
-using NullsMod.Roles.Impostor;
+using JackOfAllMods.Roles.Impostor;
 
-namespace NullsMod.Options.Roles.Impostor;
+namespace JackOfAllMods.Options.Roles.Impostor;
 
 public sealed class CamouflagerOptions : AbstractRoleOptionGroup<CamouflagerRole>
 {

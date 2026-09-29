@@ -1,5 +1,5 @@
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Modifiers.UniversalModifierOptions;
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
 using TownOfUs.Assets;
@@ -9,7 +9,7 @@ using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Game.Universal;
+namespace JackOfAllMods.Modifiers.Game.Universal;
 
  
 public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
@@ -34,7 +34,7 @@ public sealed class HyperfocusModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(K2AndNull.Colors.Hyperfocus, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(JackOfAllMods.Colors.Hyperfocus, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
      

@@ -1,8 +1,8 @@
-﻿using MiraAPI.Utilities;
+using MiraAPI.Utilities;
 using TownOfUs;
 using UnityEngine;
 
-namespace K2AndNull;
+namespace JackOfAllMods;
 
 public static class Colors
 {

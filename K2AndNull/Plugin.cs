@@ -1,9 +1,9 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
-using K2AmongUs.Assets;
-using K2sAmongUsMod.CommsPatches;
+using JackOfAllMods.Assets;
+using JackOfAllMods.CommsPatches;
 using MiraAPI;
 using MiraAPI.PluginLoading;
 using PerfectComms.Api;
@@ -15,9 +15,9 @@ using System.Globalization;
 using TownOfUs;
 using UnityEngine;
 
-namespace K2AndNull;
+namespace JackOfAllMods;
 
-[BepInAutoPlugin("com.K2AndNull.mod", "K2AndNull", "0.1.0")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "0.1.0")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -27,7 +27,7 @@ namespace K2AndNull;
 public partial class Plugin : BasePlugin, IMiraPlugin
 {
     public static CultureInfo Culture => TownOfUs.TownOfUsPlugin.Culture;
-    public string OptionsTitleText => "K2 And Null";
+    public string OptionsTitleText => "Jack of All Mods";
     public static bool IsDevBuild => false;
 
     public ConfigFile GetConfigFile()
@@ -39,7 +39,7 @@ public partial class Plugin : BasePlugin, IMiraPlugin
 
     public override void Load()
     {
-        ReactorCredits.Register("K2 And Null", Version, IsDevBuild, ReactorCredits.AlwaysShow);
+        ReactorCredits.Register("Jack of All Mods", Version, IsDevBuild, ReactorCredits.AlwaysShow);
 
         try
         {

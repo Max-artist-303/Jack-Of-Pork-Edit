@@ -2,19 +2,19 @@ using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
-using K2AmongUs.Options.Roles.Crewmate;
-using K2AmongUs.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Modifiers;
 using UnityEngine;
-using K2AmongUs.Modifiers.Crewmate;
+using JackOfAllMods.Modifiers.Crewmate;
 
-namespace K2AndNull.Buttons.Crewmate;
+namespace JackOfAllMods.Buttons.Crewmate;
 
 public sealed class SnoopSwoopButton : TownOfUsRoleButton<SnoopRole>
 {
-	public override Color TextOutlineColor => K2AndNull.Colors.Snoop;
+	public override Color TextOutlineColor => JackOfAllMods.Colors.Snoop;
 	public override string Name => "Snoop";
 	public override BaseKeybind Keybind => Keybinds.PrimaryAction;
 	public override float Cooldown => Math.Clamp(OptionGroupSingleton<StealthyOptions>.Instance.SneakCooldown + TownOfUsButton.MapCooldown, 5f, 120f);

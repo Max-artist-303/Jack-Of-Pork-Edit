@@ -1,9 +1,9 @@
-﻿using AmongUs.GameOptions;
+using AmongUs.GameOptions;
 using TownOfUs.Modifiers;
 using MiraAPI.Roles;
-using NullsMod.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 
-namespace NullsMod.Modifiers.Hidden;
+namespace JackOfAllMods.Modifiers.Hidden;
 
 public sealed class WorkaholicRevealModifier : BaseRevealModifier
 {

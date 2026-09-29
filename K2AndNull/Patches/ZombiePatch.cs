@@ -1,10 +1,10 @@
 using TownOfUs.Modules;
 using MiraAPI.Events;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using HarmonyLib;
 using MiraAPI.Events.Vanilla.Meeting.Voting;
 
-namespace K2AmongUs.Patches;
+namespace JackOfAllMods.Patches;
 
 public static class ZombiePatches
 {

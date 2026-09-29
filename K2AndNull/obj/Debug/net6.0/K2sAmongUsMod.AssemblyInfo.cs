@@ -17,8 +17,8 @@ using System.Reflection;
     "ifiers.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0-dev")]
-[assembly: System.Reflection.AssemblyProductAttribute("K2sAmongUsMod")]
-[assembly: System.Reflection.AssemblyTitleAttribute("K2sAmongUsMod")]
+[assembly: System.Reflection.AssemblyProductAttribute("JackOfAllMods")]
+[assembly: System.Reflection.AssemblyTitleAttribute("JackOfAllMods")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/AU-Avengers/TouExtensionExample")]
 

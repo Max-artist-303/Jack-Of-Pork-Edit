@@ -1,8 +1,8 @@
 using Il2CppSystem.Web.Util;
-using K2AmongUs.Modifiers;
-using K2AmongUs.Modifiers.Game.Universal;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Modifiers;
+using JackOfAllMods.Modifiers.Game.Universal;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
@@ -17,16 +17,16 @@ using TownOfUs.Modules;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Buttons.Game.Universal;
+namespace JackOfAllMods.Buttons.Game.Universal;
 
 public sealed class BountyHuntingButton : TownOfUsKillRoleButton<RoleBehaviour, PlayerControl>
 {
     public override string Name => "HUNT";
-    public override Color TextOutlineColor => K2AndNull.Colors.BountyHunter;
+    public override Color TextOutlineColor => JackOfAllMods.Colors.BountyHunter;
 
     public override float Cooldown => OptionGroupSingleton<BountyHunterOptions>.Instance.HuntedGracePeriod;
 
-    public override LoadableAsset<Sprite> Sprite => K2AmongUs.Assets.K2RoleIcons.BountyHunter;
+    public override LoadableAsset<Sprite> Sprite => JackOfAllMods.Assets.K2RoleIcons.BountyHunter;
 
     public override float Distance => base.Distance / 3f;
 

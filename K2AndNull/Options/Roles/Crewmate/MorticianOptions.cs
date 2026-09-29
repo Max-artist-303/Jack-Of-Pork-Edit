@@ -1,8 +1,8 @@
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
-using NullsMod.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
 
-namespace NullsMod.Options.Roles.Crewmate;
+namespace JackOfAllMods.Options.Roles.Crewmate;
 
 public sealed class MorticianOptions : AbstractRoleOptionGroup<MorticianRole>
 {

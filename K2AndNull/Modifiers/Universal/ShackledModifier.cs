@@ -5,13 +5,13 @@ using TownOfUs.Modifiers;
 using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
-using NullsMod.Options.Modifiers;
+using JackOfAllMods.Options.Modifiers;
 
-namespace NullsMod.Modifiers.Universal;
+namespace JackOfAllMods.Modifiers.Universal;
 
 public sealed class ShackledModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(K2AndNull.Colors.Shackled, TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Shackled.LoadAsset(), "Shackled", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(JackOfAllMods.Colors.Shackled, TmpSpriteUtils.CreateSpriteAsset(JackOfAllMods.Assets.NullsIcons.Shackled.LoadAsset(), "Shackled", 1.45f));
     public override string IdPart => "Shackled";
     public override string ModifierName => "Shackled";
     public override string IntroInfo => "Shackle your Killer!";
@@ -29,10 +29,10 @@ public sealed class ShackledModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale => "Shackle your killer, Chaining them to your dead body !";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => K2AndNull.Assets.NullsIcons.Shackled;
+    public override LoadableAsset<Sprite>? ModifierIcon => JackOfAllMods.Assets.NullsIcons.Shackled;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalPostmortem;
-    public override Color FreeplayFileColor => K2AndNull.Colors.Shackled;
+    public override Color FreeplayFileColor => JackOfAllMods.Colors.Shackled;
 
     public List<CustomButtonWikiDescription> Abilities { get; } = [];
 

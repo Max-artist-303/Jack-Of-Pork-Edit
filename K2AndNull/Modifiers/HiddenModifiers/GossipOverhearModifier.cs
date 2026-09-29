@@ -1,8 +1,8 @@
 using MiraAPI.Modifiers;
-using K2AmongUs.Roles.Crewmate;
+using JackOfAllMods.Roles.Crewmate;
 using TownOfUs.Modules;
 using MiraAPI.GameOptions;
-using K2AmongUs.Options.Roles.Crewmate;
+using JackOfAllMods.Options.Roles.Crewmate;
 using MiraAPI.Roles;
 using TownOfUs.Utilities;
 using MiraAPI.Utilities;
@@ -13,7 +13,7 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles;
 using TownOfUs.Extensions;
 
-namespace K2AmongUs.Modifiers.Crewmate;
+namespace JackOfAllMods.Modifiers.Crewmate;
 
 public sealed class GossipOverhearModifier : BaseModifier
 {

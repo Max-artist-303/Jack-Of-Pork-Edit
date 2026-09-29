@@ -5,7 +5,7 @@ using TownOfUs.Utilities;
 using Reactor.Utilities;
 
 
-namespace NullsMod.Modifiers.Hidden;
+namespace JackOfAllMods.Modifiers.Hidden;
 
 public sealed class MicromanagerManageTaskModifier(uint task) : BaseModifier
 {

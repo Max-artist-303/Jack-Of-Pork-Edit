@@ -1,7 +1,7 @@
-using K2AmongUs.Assets;
-using K2AmongUs.Modifiers.Neutral;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Modifiers.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Keybinds;
@@ -14,7 +14,7 @@ using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Buttons.Crewmate;
+namespace JackOfAllMods.Buttons.Crewmate;
 
 public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, PlayerControl>
 {
@@ -22,7 +22,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
 
     public override string Name => "SCRUB";
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => K2AndNull.Colors.Scrubber;
+    public override Color TextOutlineColor => JackOfAllMods.Colors.Scrubber;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<ScrubberOptions>.Instance.ScrubCooldown, 5f, 120f);
     public override LoadableAsset<Sprite> Sprite => K2RoleIcons.Scrubber;
 

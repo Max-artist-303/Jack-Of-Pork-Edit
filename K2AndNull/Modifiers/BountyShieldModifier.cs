@@ -1,4 +1,4 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.LocalSettings;
 using MiraAPI.Modifiers;
 using MiraAPI.Utilities.Assets;
@@ -18,7 +18,7 @@ using TownOfUs.Roles.Other;
 using TownOfUs.Utilities.Appearances;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers;
+namespace JackOfAllMods.Modifiers;
 
 public sealed class BountyShieldModifier : BaseShieldModifier, IAnimated
 {

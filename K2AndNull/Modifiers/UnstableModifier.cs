@@ -1,5 +1,5 @@
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Modifiers.UniversalModifierOptions;
 using MiraAPI.Events;
 using MiraAPI.GameOptions;
 using MiraAPI.Hud;
@@ -30,7 +30,7 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Game.Universal;
+namespace JackOfAllMods.Modifiers.Game.Universal;
 
  
 public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
@@ -70,7 +70,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(K2AndNull.Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(JackOfAllMods.Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
      
@@ -210,7 +210,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         if (play1.AmOwner && t1 is PlayerControl || play2.AmOwner && t2 is PlayerControl)
         {
             var notif1 = Helpers.CreateAndShowNotification(
-                $"<b>{K2AndNull.Colors.Unstable.ToTextColor()}You have been transported</color></b>", Color.white,
+                $"<b>{JackOfAllMods.Colors.Unstable.ToTextColor()}You have been transported</color></b>", Color.white,
                 new Vector3(0f, 1f, -20f), spr: K2ModifierIcons.Unstable.LoadAsset());
 
             notif1.AdjustNotification();

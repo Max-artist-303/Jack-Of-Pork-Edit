@@ -3,22 +3,22 @@ using MiraAPI.Keybinds;
 using MiraAPI.Networking;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
-using K2AmongUs.Options.Roles.Neutral;
-using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using TownOfUs.Assets;
 using TownOfUs.Buttons;
 using TownOfUs.Options.Modifiers.Alliance;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Buttons.Neutral;
+namespace JackOfAllMods.Buttons.Neutral;
 
 public sealed class TimeKeeperKillButton : TownOfUsKillRoleButton<TimeKeeperRole, PlayerControl>, IDiseaseableButton,
     IKillButton
 {
     public override string Name => TranslationController.Instance.GetStringWithDefault(StringNames.KillLabel, "Kill");
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => K2AndNull.Colors.TimeKeeper;
+    public override Color TextOutlineColor => JackOfAllMods.Colors.TimeKeeper;
     public override float Cooldown => Role != null ? OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeKeeperCooldown - OptionGroupSingleton<TimeKeeperOptions>.Instance.CooldownDecrease * Role.numMeetingsSkipped : 15;
     public override LoadableAsset<Sprite> Sprite => TouAssets.KillSprite;
 

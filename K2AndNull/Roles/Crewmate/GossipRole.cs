@@ -1,6 +1,6 @@
-﻿using Il2CppInterop.Runtime.Attributes;
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Roles.Crewmate;
+using Il2CppInterop.Runtime.Attributes;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Roles.Crewmate;
 using MiraAPI.GameOptions;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
@@ -13,7 +13,7 @@ using TownOfUs.Roles;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Roles.Crewmate;
+namespace JackOfAllMods.Roles.Crewmate;
 
 public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
@@ -42,7 +42,7 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         public static void GenerateGossip(PlayerControl player, List<RoleBehaviour> randomRolesList)
     {
         string alertString = "Gossip Has Been Spread About " + player.Data.PlayerName + "! View Details In The Chat!";
-        MiraAPI.Utilities.Helpers.CreateAndShowNotification(alertString, K2AndNull.Colors.Gossip, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
+        MiraAPI.Utilities.Helpers.CreateAndShowNotification(alertString, JackOfAllMods.Colors.Gossip, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
 
         string gossipString = "";
 
@@ -59,13 +59,13 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         MiscUtils.AddFakeChat(player.Data, "Gossip:", gossipString, false, true);
     }
     
-        public Color RoleColor => K2AndNull.Colors.Gossip;
+        public Color RoleColor => JackOfAllMods.Colors.Gossip;
         public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
         public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
 
         public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Gossip.LoadAsset(), "K2AmongUs.Roles.Crewmate.Gossip", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Gossip.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Gossip", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
         Icon = K2RoleIcons.Gossip
     };

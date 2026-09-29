@@ -1,6 +1,6 @@
-﻿using AmongUs.GameOptions;
-using K2AmongUs.Assets;
-using K2AmongUs.Options.Roles.Neutral;
+using AmongUs.GameOptions;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Options.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Roles;
@@ -17,7 +17,7 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace K2AmongUs.Roles.Neutral;
+namespace JackOfAllMods.Roles.Neutral;
 
 public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
@@ -30,12 +30,12 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public string RoleLongDescription => "Decrease Your Cooldowns Each Meeting That Is Skipped Or Tied.";
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-    public Color RoleColor => K2AndNull.Colors.TimeKeeper;
+    public Color RoleColor => JackOfAllMods.Colors.TimeKeeper;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.TimeKeeper.LoadAsset(), "K2AmongUs.Roles.Neutral.Forbearing", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.TimeKeeper.LoadAsset(), "JackOfAllMods.Roles.Neutral.Forbearing", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
         Icon = K2RoleIcons.TimeKeeper,
         CanUseVent = true

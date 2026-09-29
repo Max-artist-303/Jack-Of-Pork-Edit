@@ -1,4 +1,4 @@
-﻿using K2AmongUs.Options.Modifiers.UniversalModifierOptions;
+using JackOfAllMods.Options.Modifiers.UniversalModifierOptions;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TownOfUs.Interfaces;
 using UnityEngine;
 
-namespace K2AmongUs.Modifiers.Crewmate;
+namespace JackOfAllMods.Modifiers.Crewmate;
 
 internal class JackOfAllVotes : BaseModifier, IContinuesGame
 {

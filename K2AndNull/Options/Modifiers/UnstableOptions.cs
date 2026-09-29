@@ -1,4 +1,4 @@
-﻿using K2AmongUs.Modifiers.Game.Universal;
+using JackOfAllMods.Modifiers.Game.Universal;
 using System;
 using System.Runtime.CompilerServices;
 using MiraAPI.GameOptions;
@@ -10,7 +10,7 @@ using TownOfUs.Modules.Localization;
 using TownOfUs.Options.Modifiers;
 using UnityEngine;
 
-namespace K2AmongUs.Options.Modifiers.UniversalModifierOptions;
+namespace JackOfAllMods.Options.Modifiers.UniversalModifierOptions;
 
 public sealed class UnstableOptions : AbstractOptionGroup<UnstableModifier>
 {

@@ -1,4 +1,4 @@
-﻿using K2AmongUs.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 using PerfectComms.Api;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-namespace K2sAmongUsMod.CommsPatches;
+namespace JackOfAllMods.CommsPatches;
 internal static class PerfectCommsVoiceIntegration
 {
     private const string Mod = "com.K2sAmongUs.mod";

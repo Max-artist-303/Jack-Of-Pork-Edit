@@ -1,13 +1,13 @@
 using MiraAPI.Utilities.Assets;
 using UnityEngine;
 
-namespace K2AndNull.Assets;
+namespace JackOfAllMods.Assets;
 
 public static class NullsIcons
 {
     // THIS FILE SHOULD ONLY HOLD ROLE ICONS
 
-    private const string ShortPath = "K2AndNull.Resources";
+    private const string ShortPath = "JackOfAllMods.Resources";
 
     public static LoadableAsset<Sprite> Micromanager { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Micromanager.png", 200);
     public static LoadableAsset<Sprite> Workaholic { get; } = new LoadableResourceAsset($"{ShortPath}.RoleIcons.Workaholic.png", 200);

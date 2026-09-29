@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System.Collections;
 using System.Text.RegularExpressions;
 using Il2CppSystem.Text;
@@ -25,12 +25,12 @@ using TownOfUs.Modules;
 using TownOfUs.Options;
 using TownOfUs.Assets;
 using TownOfUs.Roles;
-using NullsMod.Options.Roles.Crewmate;
-using NullsMod.Events.Crewmate;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Events.Crewmate;
+using JackOfAllMods.Modifiers.Hidden;
 using TownOfUs.Options;
 
-namespace NullsMod.Roles.Crewmate;
+namespace JackOfAllMods.Roles.Crewmate;
 
 public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),IWikiDiscoverable, ITownOfUsRole, IGhostRole
 {
@@ -44,14 +44,14 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
     public float managedTaskProgression = 0f;
 
     private MicromanagerOptions opts = OptionGroupSingleton<MicromanagerOptions>.Instance;
-    public Color RoleColor => K2AndNull.Colors.Micromanager;
+    public Color RoleColor => JackOfAllMods.Colors.Micromanager;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmateAfterlife;
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
-        Icon = K2AndNull.Assets.NullsIcons.Micromanager,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JackOfAllMods.Assets.NullsIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
+        Icon = JackOfAllMods.Assets.NullsIcons.Micromanager,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         TasksCountForProgress = false,
         HideSettings = false,
@@ -264,7 +264,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             $"There are no more tasks available to manage.",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JackOfAllMods.Assets.NullsIcons.Micromanager.LoadAsset());
 
             warn.AdjustNotification();
             return;
@@ -298,13 +298,13 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
         var pattern = @" \(.*?\)";
         var playerText = randomCrew.Data.PlayerName;
         var taskText = Regex.Replace(sb.ToString(), pattern, string.Empty);
-        var microColor = K2AndNull.Colors.Micromanager;
+        var microColor = JackOfAllMods.Colors.Micromanager;
 
         var notif = Helpers.CreateAndShowNotification(
             $"<b>{microColor.ToTextColor()}You completed </color>{TownOfUsColors.Crewmate.ToTextColor()}{playerText}'s</color> {TownOfUsColors.Doomsayer.ToTextColor()}{taskText}</color>. </color></b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JackOfAllMods.Assets.NullsIcons.Micromanager.LoadAsset());
 
         notif.AdjustNotification();
 
@@ -503,9 +503,9 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             if (Player.AmOwner && !silent)
             {
                 var notif1 = Helpers.CreateAndShowNotification(
-                    $"<b>{K2AndNull.Colors.Micromanager.ToTextColor()}{"You are now clickable by players!"}</b></color>",
+                    $"<b>{JackOfAllMods.Colors.Micromanager.ToTextColor()}{"You are now clickable by players!"}</b></color>",
                     Color.white,
-                    new Vector3(0f, 1f, -20f), spr: K2AndNull.Assets.NullsIcons.Micromanager.LoadAsset());
+                    new Vector3(0f, 1f, -20f), spr: JackOfAllMods.Assets.NullsIcons.Micromanager.LoadAsset());
                 notif1.AdjustNotification();
             }
         }

@@ -15,10 +15,10 @@ using TownOfUs.Roles.Neutral;
 using TownOfUs.Roles;
 using TownOfUs;
 using UnityEngine;
-using NullsMod.Options.Roles.Neutral;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Options.Roles.Neutral;
+using JackOfAllMods.Modifiers.Hidden;
 
-namespace NullsMod.Roles.Neutral;
+namespace JackOfAllMods.Roles.Neutral;
 
 public sealed class WorkaholicRole(IntPtr cppPtr)
     : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IProgressTally, IUnlovable, IUnguessable
@@ -32,12 +32,12 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
     public bool FinishedTasks { get; private set; }
     public bool MetWinCon => FinishedTasks;
 
-    public Color RoleColor => K2AndNull.Colors.Workaholic;
+    public Color RoleColor => JackOfAllMods.Colors.Workaholic;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
     public RoleBehaviour AppearAs => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<WorkaholicRole>());
     public WorkaholicOptions options = OptionGroupSingleton<WorkaholicOptions>.Instance;
-    public static LoadableAsset<AudioClip> WorkahoilcIntro { get; } = new LoadableAudioResourceAsset($"NullsMod.Resources.Audio.WorkaholicIntro.wav");
+    public static LoadableAsset<AudioClip> WorkahoilcIntro { get; } = new LoadableAudioResourceAsset($"JackOfAllMods.Resources.Audio.WorkaholicIntro.wav");
 
     private bool _tasksAdded;
     private bool _revealSent;
@@ -55,9 +55,9 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2AndNull.Assets.NullsIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JackOfAllMods.Assets.NullsIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
         IntroSound = WorkahoilcIntro,
-        Icon = K2AndNull.Assets.NullsIcons.Workaholic,
+        Icon = JackOfAllMods.Assets.NullsIcons.Workaholic,
         OptionsScreenshot = TouBanners.NeutralRoleBanner,
         GhostRole = (RoleTypes)RoleId.Get<WorkaholicGhostRole>(),
         MaxRoleCount = 1,

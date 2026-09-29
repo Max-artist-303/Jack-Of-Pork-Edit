@@ -1,10 +1,10 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
-using NullsMod.Modifiers.Universal;
+using JackOfAllMods.Modifiers.Universal;
 
-namespace NullsMod.Options.Modifiers;
+namespace JackOfAllMods.Options.Modifiers;
 
 public sealed class BatteryOptions : AbstractOptionGroup<BatteryModifier>
 {

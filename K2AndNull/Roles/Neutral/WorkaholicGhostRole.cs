@@ -1,4 +1,4 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using TownOfUs.Utilities;
@@ -6,11 +6,11 @@ using TownOfUs.Interfaces;
 using UnityEngine;
 using TownOfUs;
 using TownOfUs.Roles.Neutral;
-using NullsMod.Options.Roles.Neutral;
+using JackOfAllMods.Options.Roles.Neutral;
 
 
 
-namespace NullsMod.Roles.Neutral;
+namespace JackOfAllMods.Roles.Neutral;
 
 public sealed class WorkaholicGhostRole(IntPtr cppPtr)
     : NeutralGhostRole(cppPtr), IProgressTally

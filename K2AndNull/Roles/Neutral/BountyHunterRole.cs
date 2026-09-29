@@ -1,9 +1,9 @@
-﻿using AmongUs.GameOptions;
+using AmongUs.GameOptions;
 using HarmonyLib;
-using K2AmongUs.Assets;
-using K2AmongUs.Modifiers;
-using K2AmongUs.Modifiers.Crewmate;
-using K2AmongUs.Options.Roles.Neutral;
+using JackOfAllMods.Assets;
+using JackOfAllMods.Modifiers;
+using JackOfAllMods.Modifiers.Crewmate;
+using JackOfAllMods.Options.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Meeting;
 using MiraAPI.GameOptions;
@@ -31,7 +31,7 @@ using MiraAPI.Events.Vanilla.Gameplay;
 using Reactor.Utilities;
 using TownOfUs.Modifiers.Neutral;
 
-namespace K2AmongUs.Roles.Neutral;
+namespace JackOfAllMods.Roles.Neutral;
 
 // I DON'T REMEMBER WHO GAVE ME THIS IDEA!!! :sob:
 public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
@@ -47,12 +47,12 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.BountyHunter.LoadAsset(), "K2AmongUs.Roles.Neutral.BountyHunter", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.BountyHunter.LoadAsset(), "JackOfAllMods.Roles.Neutral.BountyHunter", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
         Icon = K2RoleIcons.BountyHunter,
     };
 
-    public Color RoleColor => K2AndNull.Colors.BountyHunter;
+    public Color RoleColor => JackOfAllMods.Colors.BountyHunter;
 
     #region Meeting Stuff
     private MeetingMenu? meetingMenu;

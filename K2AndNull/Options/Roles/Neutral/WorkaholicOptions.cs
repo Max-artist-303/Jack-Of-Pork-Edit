@@ -1,10 +1,10 @@
-﻿using MiraAPI.GameOptions;
+using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
-using NullsMod.Roles.Neutral;
+using JackOfAllMods.Roles.Neutral;
 
-namespace NullsMod.Options.Roles.Neutral;
+namespace JackOfAllMods.Options.Roles.Neutral;
 
 public sealed class WorkaholicOptions : AbstractRoleOptionGroup<WorkaholicRole>
 {

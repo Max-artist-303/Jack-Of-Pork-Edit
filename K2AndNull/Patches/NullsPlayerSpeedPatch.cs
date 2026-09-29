@@ -1,8 +1,8 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MiraAPI.Modifiers;
-using NullsMod.Modifiers.Hidden;
+using JackOfAllMods.Modifiers.Hidden;
 
-namespace NullsMod.Patches;
+namespace JackOfAllMods.Patches;
 
 [HarmonyPatch(typeof(LogicOptions), nameof(LogicOptions.GetPlayerSpeedMod))]
 public static class NullsPlayerSpeedPatch

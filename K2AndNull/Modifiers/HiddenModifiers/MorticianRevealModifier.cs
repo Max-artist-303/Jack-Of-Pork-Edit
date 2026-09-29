@@ -10,10 +10,10 @@ using TownOfUs.Modules;
 using TownOfUs.Roles;
 using TownOfUs.Utilities;
 using UnityEngine;
-using NullsMod.Options.Roles.Crewmate;
-using NullsMod.Patches;
+using JackOfAllMods.Options.Roles.Crewmate;
+using JackOfAllMods.Patches;
 
-namespace NullsMod.Modifiers.Hidden;
+namespace JackOfAllMods.Modifiers.Hidden;
 
 // public sealed class MorticianRevealModifier(RoleBehaviour role) : BaseRevealModifier
 public sealed class MorticianRevealModifier : BaseRevealModifier
