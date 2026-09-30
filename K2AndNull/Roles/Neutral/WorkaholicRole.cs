@@ -27,7 +27,6 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
     // public string LocaleKey => "Workaholic";
     public string RoleName => "Workaholic";
     public bool IsUnlovable => true;
-    // public bool IsDraftable => true;
     public bool IsGuessable => false;
     public bool FinishedTasks { get; private set; }
     public bool MetWinCon => FinishedTasks;

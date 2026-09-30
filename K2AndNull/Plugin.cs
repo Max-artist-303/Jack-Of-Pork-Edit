@@ -87,4 +87,5 @@ public enum OurRpcCalls : uint
  * Bounty Reward Modifier No Longer Shows Up In The Wiki
  * Made Bounty Target Modifier Hidden
  * Zombies No Longer Win With Crew Without The Alliance Modifier
+ * Fixed Role Option Description Text (RoleMedDescription) For Roles
 */

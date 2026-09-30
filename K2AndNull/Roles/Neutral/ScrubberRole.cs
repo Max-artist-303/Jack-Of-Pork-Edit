@@ -31,6 +31,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     public string LocaleKey => "Scrubber";
     public string RoleName => "Scrubber";
     public string RoleDescription => "Cleanse the land of modifiers to win";
+    public string RoleMedDescription => RoleDescription;
     public string RoleLongDescription => RoleDescription;
 
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }

@@ -20,7 +20,7 @@ public sealed class DeceiverOptions : AbstractOptionGroup<DeceiverRole>
         public override string GroupName => "Deceiver Options";
     
         [ModdedEnumOption("Deceiver Shows As", typeof(DeceiverRoleDisplayed), ["Investigator", "Random Crew"])]
-    public DeceiverRoleDisplayed DeceiverDisplayedAs { get; set; } = DeceiverRoleDisplayed.Investigator;
+    public DeceiverRoleDisplayed DeceiverDisplayedAs { get; set; } = DeceiverRoleDisplayed.RandomCrew;
 
     [ModdedToggleOption("Deceive Crew Killing")]
     public bool DeceiveCrewKillers { get; set; } = false;

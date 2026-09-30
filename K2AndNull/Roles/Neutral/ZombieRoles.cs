@@ -42,6 +42,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
     public string RoleName => "Zombie";
     public string RoleDescription => "THE APOCOLYPSE HAS BEGUN!";
+    public string RoleMedDescription => "Convert Dead Players Into Zombies.";
     public string RoleLongDescription => "Convert Dead Players Into Zombies.";
     
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }

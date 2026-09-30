@@ -12,8 +12,7 @@ using JackOfAllMods.Options.Roles.Neutral;
 
 namespace JackOfAllMods.Roles.Neutral;
 
-public sealed class WorkaholicGhostRole(IntPtr cppPtr)
-    : NeutralGhostRole(cppPtr), IProgressTally
+public sealed class WorkaholicGhostRole(IntPtr cppPtr) : NeutralGhostRole(cppPtr), IProgressTally
 {
     public WorkaholicOptions options = OptionGroupSingleton<WorkaholicOptions>.Instance;
     public bool FinishedTasks { get; private set; }

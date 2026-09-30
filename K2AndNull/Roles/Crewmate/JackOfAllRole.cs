@@ -26,18 +26,18 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 {
     public int NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;
 
-        public DoomableType DoomHintType => DoomableType.Perception;
-        public string LocaleKey => "Jack Of All";
-        public string RoleName => "Jack Of All";
-        public string RoleDescription => "Have a lot of modifiers";
-        public string RoleLongDescription => RoleDescription + "\n(May Get More By Doing Tasks)";
-        public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
+    public DoomableType DoomHintType => DoomableType.Perception;
+    public string RoleName => "Jack Of All";
+    public string RoleDescription => "Have a lot of modifiers";
+    public string RoleMedDescription => RoleDescription;
+    public string RoleLongDescription => RoleDescription;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
 
-        public Color RoleColor => JackOfAllMods.Colors.JackOfAll;
+    public Color RoleColor => JackOfAllMods.Colors.JackOfAll;
 
-        public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
 
-        public CustomRoleConfiguration Configuration => new(this)
+    public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.JackOfAll.LoadAsset(), "JackOfAllMods.Roles.Crewmate.JackOfAll", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
@@ -45,9 +45,9 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     };
 
 
-        public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-        public override void Initialize(PlayerControl player)
+    public override void Initialize(PlayerControl player)
     {
         RoleBehaviourStubs.Initialize(this, player);
 

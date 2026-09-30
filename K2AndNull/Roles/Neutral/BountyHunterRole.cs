@@ -37,10 +37,10 @@ namespace JackOfAllMods.Roles.Neutral;
 public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public string RoleName => "Bounty Hunter";
-    public string LocaleKey => "Bounty Hunter";
     public DoomableType DoomHintType => DoomableType.Relentless;
     public string RoleDescription => "Chose Who Dies";
-    public string RoleLongDescription => "Pick A Person To Be Targeted Next Round And Get The Evils To Kill Them";
+    public string RoleMedDescription => "Put A Target On Someone. If Anyone Kills Them, They Get A Reward.";
+    public string RoleLongDescription => "Pick A Person To Be Targeted Next Round And Get Others To Kill Them";
     public string GetAdvancedDescription() { return "During The Meeting, Pick A Person To Be Targeted Next Round. If The Targeted Person Is Killed, Their Killer Gets A Predetermined \"Reward\".\n" + TownOfUs.Utilities.MiscUtils.AppendOptionsText(base.GetType()); }
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;

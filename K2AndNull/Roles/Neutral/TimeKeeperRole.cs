@@ -27,7 +27,8 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public string LocaleKey => "Time Keeper";
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleDescription => "You are patient, but irritated...";
-    public string RoleLongDescription => "Decrease Your Cooldowns Each Meeting That Is Skipped Or Tied.";
+    public string RoleMedDescription => "Decrease Your Cooldowns Whenever A Meeting Is Skipped Or Tied";
+    public string RoleLongDescription => "Decrease Your Cooldowns Whenever A Meeting Is Skipped Or Tied.";
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public Color RoleColor => JackOfAllMods.Colors.TimeKeeper;

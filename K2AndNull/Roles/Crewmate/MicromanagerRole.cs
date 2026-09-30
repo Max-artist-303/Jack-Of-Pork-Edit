@@ -34,7 +34,6 @@ namespace JackOfAllMods.Roles.Crewmate;
 
 public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),IWikiDiscoverable, ITownOfUsRole, IGhostRole
 {
-    public string LocaleKey => "Micromanager";
     public string RoleName => "Micromanager";
     //  public bool CompletedAllTasks => TaskStage is GhostTaskStage.CompletedTasks;
     public bool Setup { get; set; }

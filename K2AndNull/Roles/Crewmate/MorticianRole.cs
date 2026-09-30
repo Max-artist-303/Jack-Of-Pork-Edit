@@ -22,7 +22,6 @@ namespace JackOfAllMods.Roles.Crewmate;
 public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public DoomableType DoomHintType => DoomableType.Perception;
-    public string IdPart => "Mortician";
     public string RoleName => "Mortician";
     public Color RoleColor => JackOfAllMods.Colors.Mortician;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;

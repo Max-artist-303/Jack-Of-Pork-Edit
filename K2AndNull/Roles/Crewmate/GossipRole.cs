@@ -19,15 +19,15 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
 {
     static bool OnlyOneType = true;
 
-        public DoomableType DoomHintType => DoomableType.Insight;
-        public string LocaleKey => "Gossip";
-        public string RoleName => "Gossip";
-        public string RoleDescription => "Share some local lore!";
-        public string RoleLongDescription => "Overhear players, then gossip about them in the meeting.";
+    public DoomableType DoomHintType => DoomableType.Insight;
+    public string RoleName => "Gossip";
+    public string RoleDescription => "Share some local lore!";
+    public string RoleMedDescription => "Overhear players, then find out info about them in meetings.";
+    public string RoleLongDescription => "Overhear players, then gossip about them in the meeting.";
 
-        public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-        [HideFromIl2Cpp]
+    [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities
     {
         get

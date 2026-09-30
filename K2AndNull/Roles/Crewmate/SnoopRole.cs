@@ -16,15 +16,10 @@ public sealed class SnoopRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRo
 {
 
     public DoomableType DoomHintType => DoomableType.Trickster;
-
     public string RoleName => "Snoop";
-
-    public string LocaleKey => RoleName;
-
     public string RoleDescription => "Hide in plain sight and find the impostors";
-
+    public string RoleMedDescription => RoleDescription;
     public string RoleLongDescription => RoleDescription;
-
 
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 

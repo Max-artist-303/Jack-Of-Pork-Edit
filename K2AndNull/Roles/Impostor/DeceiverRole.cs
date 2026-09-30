@@ -44,9 +44,9 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     public RoleAlignment RoleAlignment => RoleAlignment.ImpostorConcealing;
     public string RoleName => "Deceiver";
-    public string LocaleKey => "Deceiver";
 
     public string RoleDescription => "You Seem Innocent To Others...";
+    public string RoleMedDescription => "Hide Your True Alignment And Role From Others";
     public string RoleLongDescription => "Appear As A Random, Not-In-Play Crewmate Role To Those Collecting Information From You.";
 	public string GetAdvancedDescription()
 	{
