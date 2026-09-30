@@ -106,7 +106,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
             scrubber.OnRoundStart();
     }
 
-    [MethodRpc((uint) OurRpcCalls.ScrubModifiers)]
+    [MethodRpc((uint) JAMRpcCalls.ScrubModifiers)]
     public static void RpcScrubModifiers(PlayerControl scrubber, PlayerControl scrubbedPlayer)
     {
         foreach (BaseModifier modifier in scrubbedPlayer.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi))

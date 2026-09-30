@@ -116,7 +116,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
         }
     }
 
-    [MethodRpc((uint)OurRpcCalls.DeceiverShield)]
+    [MethodRpc((uint)JAMRpcCalls.DeceiverShield)]
     public static void RpcDeceiverShield(PlayerControl deceiver, PlayerControl target, bool medicShield)
     {
         if(PlayerControl.LocalPlayer == deceiver || PlayerControl.LocalPlayer == target)

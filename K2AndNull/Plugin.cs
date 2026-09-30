@@ -73,7 +73,7 @@ public partial class Plugin : BasePlugin, IMiraPlugin
     }
 }
 
-public enum OurRpcCalls : uint
+public enum JAMRpcCalls : uint
 {
     ScrubModifiers = 0,
     DeceiverShield = 1
