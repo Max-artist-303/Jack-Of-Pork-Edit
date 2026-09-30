@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Hazel;
 using Il2CppSystem.Web.Util;
 using JackOfAllMods.Assets;
 using JackOfAllMods.Modifiers;
@@ -13,6 +14,7 @@ using MiraAPI.Events.Vanilla.Player;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
 using MiraAPI.Modifiers.Types;
+using MiraAPI.Utilities.Assets;
 using Rewired;
 using System;
 using System.Collections.Generic;
@@ -34,16 +36,16 @@ using UnityEngine;
 
 namespace JackOfAllMods.Modifiers;
 
-public sealed class BountyTargetModifier : AllianceGameModifier
+public sealed class BountyTargetModifier : BaseModifier
 {
     int buttonsLeft;
-    
     public override string ModifierName => "Bounty Target";
 
     public override string GetDescription()
     {
         return "You Are The Bounty Hunter Target...\nGood Luck!";
     }
+    public override bool HideOnUi => false;
 
     public override void OnActivate()
     {
@@ -120,11 +122,6 @@ public sealed class BountyTargetModifier : AllianceGameModifier
             GivePlayerBonus(@event.Source, @event.Target);
     }
 
-    public override int GetAssignmentChance()
-    {
-        return 0;
-    }
-
     [HarmonyPatch(typeof(RoleBehaviour), "CanVent")]
     [HarmonyPrefix]
     public static bool DontVentAsTarget(ref RoleBehaviour __instance)
@@ -136,6 +133,16 @@ public sealed class BountyTargetModifier : AllianceGameModifier
         }
 
         return true;
+    }
+
+    [HarmonyPatch(typeof(EndGameResult), "Create", [typeof(MessageReader)])]
+    [HarmonyPrefix]
+    public static void RemoveOnGameEnd()
+    {
+        MiraAPI.Utilities.Helpers.GetAlivePlayers().ForEach(p => {
+            if(p.HasModifier<BountyTargetModifier>())
+                p.RemoveModifier<BountyTargetModifier>();
+        });
     }
 }
 public sealed class BountyArrowModifier(PlayerControl owner, Color color, float update) : ArrowTargetModifier(owner, color, update)
@@ -179,14 +186,10 @@ public sealed class BountyArrowModifier(PlayerControl owner, Color color, float 
         }
     }
 }
-public sealed class BountyRewardModifier : TouGameModifier
+public sealed class BountyRewardModifier : BaseModifier
 {
     public override string ModifierName => "Bounty Reward Modifier";
-
-    public override int GetAssignmentChance()
-    {
-        return 0;
-    }
+    public override bool HideOnUi => true;
 
     public override void OnActivate()
     {
