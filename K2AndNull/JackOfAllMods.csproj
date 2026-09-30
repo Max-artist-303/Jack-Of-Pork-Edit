@@ -21,14 +21,17 @@
             <Private>false</Private>
         </Reference>
     </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="Events\Neutral\**" />
+      <EmbeddedResource Remove="Events\Neutral\**" />
+      <None Remove="Events\Neutral\**" />
+      <Reference Remove="Events\Neutral\**" />
+    </ItemGroup>
 
     <ItemGroup>
       <None Include="Assets\K2ModifierIcons.cs" />
       <None Include="Roles\Impostor\DeceiverRole.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Events\Neutral\" />
     </ItemGroup>
 
     <Import Project="../AmongUs.props" />

@@ -76,7 +76,8 @@ public partial class Plugin : BasePlugin, IMiraPlugin
 public enum JAMRpcCalls : uint
 {
     ScrubModifiers = 0,
-    DeceiverShield = 1
+    DeceiverShield = 1,
+    MicromanageTask = 2
 }
 
 // =============== FIXES ===============
@@ -88,4 +89,5 @@ public enum JAMRpcCalls : uint
  * Made Bounty Target Modifier Hidden
  * Zombies No Longer Win With Crew Without The Alliance Modifier
  * Fixed Role Option Description Text (RoleMedDescription) For Roles
+ * Changed Micromanager To Use An RPC Call Instead Of A Modifier
 */

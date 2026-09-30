@@ -29,6 +29,7 @@ using JackOfAllMods.Options.Roles.Crewmate;
 using JackOfAllMods.Events.Crewmate;
 using JackOfAllMods.Modifiers.Hidden;
 using TownOfUs.Options;
+using Reactor.Networking.Attributes;
 
 namespace JackOfAllMods.Roles.Crewmate;
 
@@ -239,7 +240,6 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
         GameHistory.PlayerStats[Player.PlayerId].DiedThisRound = false;
     }
 
-
     public void CompleteRandomCrewTask()
     {
         if (!Player.AmOwner)
@@ -288,8 +288,8 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
         var randomTask = tasks[0];
 
         HudManager.Instance.ShowTaskComplete();
-        randomCrew.RpcAddModifier<MicromanagerManageTaskModifier>(randomTask.Id);
-        // randomCrew.RpcCompleteTask(randomTask.Id);
+
+        RpcCompleteTask(randomCrew, randomTask.Id);
 
         var sb = new StringBuilder();
         randomTask.AppendTaskText(sb);
@@ -312,6 +312,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
 
         MicromanagerEvents.SendMicromanagerNotif(randomCrew, targetMessage);
     }
+
     public override void Initialize(PlayerControl player)
     {
         RoleBehaviourStubs.Initialize(this, player);
@@ -418,7 +419,6 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             Faded = false;
         }
     }
-
 
     public override bool CanUse(IUsable console)
     {
@@ -554,6 +554,15 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             {
                 completed++;
             }
+        }
+    }
+
+    [MethodRpc((uint) JAMRpcCalls.MicromanageTask)]
+    public static void RpcCompleteTask(PlayerControl player, uint taskId)
+    {
+        if (player.AmOwner)
+        {
+            player.RpcCompleteTask(taskId);
         }
     }
 }
