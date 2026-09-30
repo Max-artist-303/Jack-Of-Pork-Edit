@@ -4727,9 +4727,9 @@
   "project": {
     "version": "0.1.0-v",
     "restore": {
-      "projectUniqueName": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\K2AndNull.csproj",
-      "projectName": "K2AndNull",
-      "projectPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\K2AndNull.csproj",
+      "projectUniqueName": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\JackOfAllMods.csproj",
+      "projectName": "JackOfAllMods",
+      "projectPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\JackOfAllMods.csproj",
       "packagesPath": "C:\\Users\\K2\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\K2\\Documents\\All K2's Stuff\\Among Us Stuff\\K2-And-Null-Mod\\K2AndNull\\obj\\",
       "projectStyle": "PackageReference",

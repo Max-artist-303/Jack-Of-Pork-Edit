@@ -27,15 +27,15 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 {
     public bool didWin { get; set; }
 
-        public DoomableType DoomHintType => DoomableType.Fearmonger;
-        public string LocaleKey => "Scrubber";
-        public string RoleName => "Scrubber";
-        public string RoleDescription => "Cleanse the land of modifiers to win";
-        public string RoleLongDescription => RoleDescription;
+    public DoomableType DoomHintType => DoomableType.Fearmonger;
+    public string LocaleKey => "Scrubber";
+    public string RoleName => "Scrubber";
+    public string RoleDescription => "Cleanse the land of modifiers to win";
+    public string RoleLongDescription => RoleDescription;
 
-        public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
-        [HideFromIl2Cpp]
+    [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities
     {
         get
@@ -47,11 +47,11 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
         }
     }
 
-        public Color RoleColor => JackOfAllMods.Colors.Scrubber;
-        public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
-        public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
+    public Color RoleColor => JackOfAllMods.Colors.Scrubber;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
+    public RoleAlignment RoleAlignment => RoleAlignment.NeutralOutlier;
 
-        public CustomRoleConfiguration Configuration => new(this)
+    public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Scrubber.LoadAsset(), "JackOfAllMods.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,

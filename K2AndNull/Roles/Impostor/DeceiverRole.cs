@@ -31,6 +31,9 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
+using Reactor.Networking.Attributes;
+using JackOfAllMods;
+using JackOfAllMods.Modifiers;
 
 //Note: This Role Was Suggested By: ‧₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Discord)
 public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant
@@ -50,7 +53,19 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 		return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType());
 	}
 
-	public Color RoleColor => TownOfUsColors.Impostor;
+    [HideFromIl2Cpp]
+    public List<CustomButtonWikiDescription> Abilities
+    {
+        get
+        {
+            return new List<CustomButtonWikiDescription>
+            {
+                new("Deceive", "Give Someone A Fake Shield That Does Nothing", TouCrewAssets.MedicSprite),
+            };
+        }
+    }
+
+    public Color RoleColor => TownOfUsColors.Impostor;
 
     public ModdedRoleTeams Team => ModdedRoleTeams.Impostor;
 
@@ -98,6 +113,18 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
         {
             confuseRole = false;
             hasGameStarted = false;
+        }
+    }
+
+    [MethodRpc((uint)OurRpcCalls.DeceiverShield)]
+    public static void RpcDeceiverShield(PlayerControl deceiver, PlayerControl target, bool medicShield)
+    {
+        if(PlayerControl.LocalPlayer == deceiver || PlayerControl.LocalPlayer == target)
+        {
+            if (medicShield)
+                target.AddModifier<DeceiverMedicShield>();
+            else
+                target.AddModifier<DeceiverWardenShield>();
         }
     }
 

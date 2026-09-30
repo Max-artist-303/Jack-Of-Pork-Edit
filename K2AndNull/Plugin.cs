@@ -75,9 +75,11 @@ public partial class Plugin : BasePlugin, IMiraPlugin
 
 public enum OurRpcCalls : uint
 {
-    ScrubModifiers = 0
+    ScrubModifiers = 0,
+    DeceiverShield = 1
 }
 
 // =============== FIXES ===============
 /*
+ * Added Fake Shield Ability To Deceiver
 */
