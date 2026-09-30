@@ -85,7 +85,6 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         }
 
         Player.RpcAddModifier<ZombieRevealedModifier>();
-        Player.RpcAddModifier<ZombieAllianceModifier>();
     }
 
     public bool WinConditionMet()
@@ -99,7 +98,11 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return WinConditionMet();
+        if (Helpers.GetAlivePlayers().FirstOrDefault(p => p.GetRoleWhenAlive() is ZombieLeaderRole)?.GetRoleWhenAlive() is ZombieLeaderRole zombieLeader)
+        {
+            return zombieLeader.DidWin(gameOverReason);
+        }
+        return false;
     }
     
     public override bool CanUse(IUsable usable)
@@ -166,6 +169,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
 
 public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant, IContinuesGame
 {
+    public static bool hasZombies = false;
     public bool HasImpostorVision => true;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralEvil;
     public DoomableType DoomHintType => DoomableType.Death;
@@ -200,18 +204,11 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();
 
-    // public override void OnRoleSet()
-    // {
-    //     base.OnRoleSet();
-
-    //     Player.AddModifier<ZombieAllianceModifier>();
-    // }
     public override void Initialize(PlayerControl player)
     {
         RoleBehaviourStubs.Initialize(this, player);
 
         Player.RpcAddModifier<ZombieLeaderRevealedModifier>();
-        Player.RpcAddModifier<ZombieAllianceModifier>();
     }
     float timer;
     public void Update()
@@ -307,10 +304,9 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         get
         {
             bool killersAlive = TownOfUs.Utilities.MiscUtils.KillersAliveCount > 0;
-            bool hasZombies = PlayerControl.AllPlayerControls.ToArray().Any(p => p.Data.Role is ZombieRole);
             bool canGetDeadBody = Helpers.GetNearestDeadBodies(Player.transform.position, ShipStatus.Instance.MaxLightRadius * 100, Helpers.CreateFilter(Constants.NotShipMask)).Count > 0;
 
-            return (killersAlive && MiraAPI.Utilities.Helpers.GetAlivePlayers().Count >= 3) || hasZombies || canGetDeadBody
+            return killersAlive || hasZombies || canGetDeadBody
                 || Helpers.GetAlivePlayers().Any(p => p.Data.Role is SurvivorRole);
         }
     }

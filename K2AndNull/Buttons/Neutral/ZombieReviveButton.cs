@@ -72,16 +72,13 @@ public class ZombieReviveButton : TownOfUsButton
 
     public static void SetZombieRole(PlayerControl player, DeadBody body)
     {
-        if (player.HasModifier<ZombieAllianceModifier>()) return;
-
         foreach (BaseModifier modifier in player.GetModifiers<BaseModifier>().Where(m => m is not IVisualAppearance))
         {
             player.RpcRemoveModifier(modifier.UniqueId);
         }
 
-        if (player.Data.Role is not ZombieRole)
-            player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), true);
-        else
-            player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), false);
+        player.RpcFullRevive(false, body.TruePosition, RoleId.Get<ZombieRole>(), player.Data.Role is not ZombieRole);
+
+        ZombieLeaderRole.hasZombies = true;
     }
 }

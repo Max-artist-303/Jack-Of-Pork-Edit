@@ -83,7 +83,8 @@ public enum OurRpcCalls : uint
 /*
  * Added Fake Shield Ability To Deceiver
  * Bounty Target No Longer Shows Up In Win/Loss Screen
- * Zombie Alliance Modifier No Longer Shows Up In Win/Loss Screen
+ * Removed Zombie Alliance Modifier
  * Bounty Reward Modifier No Longer Shows Up In The Wiki
  * Made Bounty Target Modifier Hidden
+ * Zombies No Longer Win With Crew Without The Alliance Modifier
 */

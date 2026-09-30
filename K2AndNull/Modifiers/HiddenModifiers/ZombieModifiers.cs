@@ -5,6 +5,7 @@ using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
+using MiraAPI.Modifiers.Types;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using Reactor.Utilities;
@@ -41,33 +42,9 @@ public sealed class ZombieLeaderRevealedModifier() : BaseRevealModifier
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        Visible = OptionGroupSingleton<ZombieOptions>.Instance.ZombieShowsRole && PlayerControl.LocalPlayer.HasModifier<ZombieAllianceModifier>();
+        Visible = OptionGroupSingleton<ZombieOptions>.Instance.ZombieShowsRole && (PlayerControl.LocalPlayer.Data.Role is ZombieRole || PlayerControl.LocalPlayer.Data.Role is ZombieLeaderRole);
     }
 }
-
-public sealed class  ZombieAllianceModifier : AllianceGameModifier
-{
-    public override string ModifierName => "Zombie Alliance Modifier";
-    public override bool HideOnUi => true;
-    public override int GetAssignmentChance()
-    {
-        return 0;
-    }
-
-    public override bool? DidWin(GameOverReason gameOverReason)
-    {
-        if (Helpers.GetAlivePlayers().Any(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead))
-        {
-            ZombieLeaderRole? leader = Helpers.GetAlivePlayers().First(p => p.Data.Role is ZombieLeaderRole && !p.Data.IsDead).Data.Role as ZombieLeaderRole;
-            int numNonZombies = Helpers.GetAlivePlayers().Count(p => !(p.Data.Role is ZombieLeaderRole || p.Data.Role is ZombieRole));
-            int numZombies = PlayerControl.AllPlayerControls.ToArray().Count(p => p.Data.Role is ZombieRole || p.Data.Role is ZombieLeaderRole);
-
-            return leader?.WinConditionMet() == true;
-        }
-        return false;
-    }
-}
-
 public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowDeadBodyModifier(deadBody, color, 0)
 {
     public override string ModifierName => "Zombie Arrow";
