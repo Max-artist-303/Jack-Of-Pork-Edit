@@ -202,6 +202,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "JackOfAllMods.Roles.Neutral.ZombieLeader", 1.45f),
         IntroSound = TouAudio.ScreamIntro,
         Icon = K2RoleIcons.ZombieLeader,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<AltruistRole>();

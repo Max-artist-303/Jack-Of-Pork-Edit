@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JackOfAllMods;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "0.1.0")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "0.2.0")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
