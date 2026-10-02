@@ -4,7 +4,8 @@
 > This mod is ONLY available on PC Among Us.
 
 -----------------------
-> I put LOGO here when its created ;)
+> <img width="256" height="256" alt="Jack Of All" src="https://github.com/user-attachments/assets/cca303ee-d8d1-46ad-b6fb-175c905348c4" />
+
 <!-- <div align="center">
   <img src="https://raw.githubusercontent.com/AU-Avengers/TOU-Mira/main/Images/Logo.png" alt="Town of Us Mira"/>
   <p>Town Of Us Mira</p>
