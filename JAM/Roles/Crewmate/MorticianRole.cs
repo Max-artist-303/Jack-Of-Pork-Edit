@@ -16,6 +16,7 @@ using TownOfUs.Roles;
 using TownOfUs;
 using JAM.Options.Roles.Crewmate;
 using JAM.Modifiers.Hidden;
+using JAM.Assets;
 
 namespace JAM.Roles.Crewmate;
 
@@ -31,8 +32,8 @@ public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
-        Icon = Assets.NullsIcons.Mortician,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
+        Icon = JamRoleIcons.Mortician,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         IntroSound = TouAudio.ScientistIntroSound
     };

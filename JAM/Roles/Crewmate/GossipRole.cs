@@ -65,8 +65,8 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
 
         public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Gossip.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Gossip", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Gossip.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Gossip", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = K2RoleIcons.Gossip
+        Icon = JamRoleIcons.Gossip
     };
 }

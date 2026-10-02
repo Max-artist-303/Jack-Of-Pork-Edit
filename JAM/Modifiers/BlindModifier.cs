@@ -28,7 +28,7 @@ public sealed class BlindModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(Colors.Blind, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(Colors.Blind, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
      
@@ -49,7 +49,7 @@ public sealed class BlindModifier : TouGameModifier, IWikiDiscoverable
      
     public override bool HideOnUi => false;
      
-    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Blind;
+    public override LoadableAsset<Sprite> ModifierIcon => JamModifierIcons.Blind;
      
     public override int GetAmountPerGame()
     {

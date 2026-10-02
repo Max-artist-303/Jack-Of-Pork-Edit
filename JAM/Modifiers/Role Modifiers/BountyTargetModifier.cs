@@ -65,11 +65,11 @@ public sealed class BountyTargetModifier : BaseModifier
 
         if (Player.AmOwner)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On You...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
         }
         else
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("A Bounty Has Been Placed On " + Player.Data.PlayerName + "'s Head.\nKill Them To Get A Reward!", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
             
             if(OptionGroupSingleton<BountyHunterOptions>.Instance.TargetArrow)
                 Player.AddModifier<BountyArrowModifier>(PlayerControl.LocalPlayer, Player.Data.Color, 0f);
@@ -91,7 +91,7 @@ public sealed class BountyTargetModifier : BaseModifier
     {
         if (!MiraAPI.Utilities.Helpers.GetAlivePlayers().Any(p => p.Data.Role is BountyHunterRole))
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Has Died, They Can No Longer Give A Reward...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
         
             ModifierComponent.RemoveModifier(this);
         }
@@ -107,7 +107,7 @@ public sealed class BountyTargetModifier : BaseModifier
     {
         if (!player.AmOwner)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Has Been Claimed...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Has Been Claimed...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
         }
         
         if (player.AmOwner)
@@ -128,7 +128,7 @@ public sealed class BountyTargetModifier : BaseModifier
     {
         if(__instance.Player.HasModifier<BountyTargetModifier>())
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About It...", Color.red, null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About It...", Color.red, null, JamRoleIcons.BountyHunter.LoadAsset());
             return false;
         }
 
@@ -208,7 +208,7 @@ public sealed class BountyRewardModifier : BaseModifier
             return;
         }
 
-        MiraAPI.Utilities.Helpers.CreateAndShowNotification("You killed the Bounty Hunter Target", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+        MiraAPI.Utilities.Helpers.CreateAndShowNotification("You killed the Bounty Hunter Target", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
         BountyHunterOptions opts = OptionGroupSingleton<BountyHunterOptions>.Instance;
 
         RoleAlignment thisFaction = Player.Data.Role.GetRoleAlignment();
@@ -274,7 +274,7 @@ public sealed class BountyRewardModifier : BaseModifier
         if(rewards.Count == 0)
         {
             Error("No Rewards Available");
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Is Too Poor To Give Handouts", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The Bounty Hunter Is Too Poor To Give Handouts", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
             return;
         }
 
@@ -310,7 +310,7 @@ public sealed class BountyRewardModifier : BaseModifier
 
                 possibleModifiers.Shuffle();
                 Player.RpcAddModifier(possibleModifiers[0]);
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Got A Random Crewmate Modifier", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Got A Random Crewmate Modifier", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.GoodUnivMod:
                 possibleModifiers.Add(typeof(ButtonBarryModifier));
@@ -331,15 +331,15 @@ public sealed class BountyRewardModifier : BaseModifier
 
                 possibleModifiers.Shuffle();
                 Player.RpcAddModifier(possibleModifiers[0]);
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Got A Random Universal Modifier", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Got A Random Universal Modifier", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.LowerCooldown:
                 //Not Accessable Atm because not implemented
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Cooldowns Are Decreased", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Cooldowns Are Decreased", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.GiveVentable:
                 Player.RpcAddModifier<VentableModifier>();
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Can Now Vent", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Can Now Vent", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.ExtraVote:
                 if(!Player.HasModifier<JackOfAllVotes>())
@@ -351,19 +351,19 @@ public sealed class BountyRewardModifier : BaseModifier
                     JackOfAllVotes votes = Player.GetModifier<JackOfAllVotes>();
                     votes.NumVotes++;
                 }
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have An Extra Vote", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have An Extra Vote", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.RevealRole:
                 Player.RpcAddModifier<BountyRevealModifier>();
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Role Has Been Revealed To Everyone", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Role Has Been Revealed To Everyone", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.DoubleShot:
                 Player.RpcAddModifier<DoubleShotModifier>();
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Know Have Double Shot", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Know Have Double Shot", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
             case RewardType.GiveShield:
                 Player.RpcAddModifier<BountyShieldModifier>();
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have A Temporary Shield", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have A Temporary Shield", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
                 break;
         }
 
@@ -401,7 +401,7 @@ public sealed class BountyRewardModifier : BaseModifier
         public static bool Prefix()
         {
             if(PlayerControl.LocalPlayer.HasModifier<BountyTargetModifier>())
-                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About it...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, K2RoleIcons.BountyHunter.LoadAsset());
+                MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About it...", Colors.BountyHunter, new UnityEngine.Vector3(0f, 1f, -20f), null, JamRoleIcons.BountyHunter.LoadAsset());
             return !PlayerControl.LocalPlayer.HasModifier<BountyTargetModifier>();
         }
     }

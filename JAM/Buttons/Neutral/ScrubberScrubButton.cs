@@ -24,7 +24,7 @@ public sealed class ScrubberScrubButton : TownOfUsRoleButton<ScrubberRole, Playe
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
     public override Color TextOutlineColor => Colors.Scrubber;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<ScrubberOptions>.Instance.ScrubCooldown, 5f, 120f);
-    public override LoadableAsset<Sprite> Sprite => K2RoleIcons.Scrubber;
+    public override LoadableAsset<Sprite> Sprite => JamRoleIcons.Scrubber;
 
     public override void CreateButton(Transform parent)
     {

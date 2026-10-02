@@ -15,6 +15,7 @@ using UnityEngine.UI;
 using JAM.Options.Roles.Impostor;
 using JAM.Modifiers.Hidden;
 using JAM.Roles.Impostor;
+using JAM.Assets;
 
 namespace JAM.Buttons.Roles.Impostor;
 
@@ -23,7 +24,7 @@ public sealed class CamouflagerAbilityButton : TownOfUsRoleButton<CamouflagerRol
     public override string Name => "Camouflage";
     public override Color TextOutlineColor => TownOfUsColors.Impostor;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
-    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? Assets.NullsIcons.CamouflagerButton : Assets.NullsIcons.CamouflagerButton;
+    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? JamAssets.CamouflagerButton : JamAssets.CamouflagerButton;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<CamouflagerOptions>.Instance.CamoCooldown + MapCooldown, 5f, 120f);
     public override float EffectDuration => OptionGroupSingleton<CamouflagerOptions>.Instance.CamoDuration;
 

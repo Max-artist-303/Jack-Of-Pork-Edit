@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Reactor.Networking.Rpc;
 using UnityEngine;
 using Reactor.Networking.Attributes;
 using MiraAPI.Events;
@@ -14,7 +15,7 @@ using AmongUs.GameOptions;
 using JAM.Options.Roles.Crewmate;
 using JAM.Roles.Crewmate;
 using JAM.Patches;
-using Reactor.Networking.Rpc;
+using JAM.Assets;
 
 namespace JAM.Events.Crewmate;
 
@@ -82,7 +83,7 @@ public static class MorticianEvents
             $"<b>The <color=#{ColorUtility.ToHtmlStringRGBA(Colors.Mortician)}>Mortician</color> performed an Autopsy on {target.Data.PlayerName}</b>",
             Color.white,
             new Vector3(0f, 2f, -20f),
-            spr: Assets.NullsIcons.MorticianAbility.LoadAsset());
+            spr: JamAssets.MorticianAbility.LoadAsset());
 
         notification.AdjustNotification();
         notification.alphaTimer = 5f;

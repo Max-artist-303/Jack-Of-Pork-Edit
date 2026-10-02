@@ -71,10 +71,10 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Deceiver.LoadAsset(), "JackOfAllMods.Roles.Impostor.Deceiver", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Deceiver.LoadAsset(), "JackOfAllMods.Roles.Impostor.Deceiver", 1.45f),
         UseVanillaKillButton = true,
         IntroSound = TouAudio.HackedSound,
-        Icon = K2RoleIcons.Deceiver
+        Icon = JamRoleIcons.Deceiver
     };
 
     public RoleBehaviour CrewVariant => DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<SeerRole>());

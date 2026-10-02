@@ -6,12 +6,13 @@ using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
 using JAM.Options.Modifiers;
+using JAM.Assets;
 
 namespace JAM.Modifiers.Universal;
 
 public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
     public override string IdPart => "Exposed";
     public override string ModifierName => "Exposed";
     public override string IntroInfo => "Your vote is Exposed!";
@@ -30,7 +31,7 @@ public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale => "Your votes are visible to everyone!";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => Assets.NullsIcons.Exposed;
+    public override LoadableAsset<Sprite>? ModifierIcon => JamModifierIcons.Exposed;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalVisibility;
     public override Color FreeplayFileColor => Colors.Exposed;

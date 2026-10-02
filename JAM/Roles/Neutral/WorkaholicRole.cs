@@ -17,6 +17,7 @@ using TownOfUs;
 using UnityEngine;
 using JAM.Options.Roles.Neutral;
 using JAM.Modifiers.Hidden;
+using JAM.Assets;
 
 namespace JAM.Roles.Neutral;
 
@@ -54,9 +55,9 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Workaholic.LoadAsset(), "Workaholic", 1.45f),
         IntroSound = WorkahoilcIntro,
-        Icon = Assets.NullsIcons.Workaholic,
+        Icon = JamRoleIcons.Workaholic,
         OptionsScreenshot = TouBanners.NeutralRoleBanner,
         GhostRole = (RoleTypes)RoleId.Get<WorkaholicGhostRole>(),
         MaxRoleCount = 1

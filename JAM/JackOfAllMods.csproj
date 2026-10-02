@@ -30,7 +30,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="Assets\K2ModifierIcons.cs" />
+      <None Include="Assets\JamModifierIcons.cs" />
       <None Include="Roles\Impostor\DeceiverRole.cs" />
     </ItemGroup>
 

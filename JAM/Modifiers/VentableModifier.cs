@@ -58,7 +58,7 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
 
@@ -67,7 +67,7 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
      
     public override bool HideOnUi => false;
      
-    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Ventable;
+    public override LoadableAsset<Sprite> ModifierIcon => JamModifierIcons.Ventable;
      
     public override int GetAmountPerGame()
     {

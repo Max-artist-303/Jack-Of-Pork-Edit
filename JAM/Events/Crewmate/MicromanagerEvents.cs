@@ -10,6 +10,7 @@ using Reactor.Utilities;
 using Reactor;
 using JAM.Roles.Crewmate;
 using JAM.Options.Roles.Crewmate;
+using JAM.Assets;
 
 namespace JAM.Events.Crewmate;
 public static class MicromanagerEvents
@@ -69,7 +70,7 @@ public static class MicromanagerEvents
         }
 
         var notif = Helpers.CreateAndShowNotification(message, Color.white, new Vector3(0f, 1f, -20f),
-            spr: Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JamRoleIcons.Micromanager.LoadAsset());
 
         notif?.AdjustNotification();
     }

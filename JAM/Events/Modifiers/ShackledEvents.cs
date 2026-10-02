@@ -9,6 +9,7 @@ using TownOfUs;
 using UnityEngine;
 using JAM.Modifiers.Universal;
 using JAM.Modifiers.Hidden;
+using JAM.Assets;
 
 namespace JAM.Events.Modifiers;
 
@@ -37,7 +38,7 @@ public static class ShackledEvents
             $"<b>{text}</b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: Assets.NullsIcons.Shackled.LoadAsset());
+            spr: JamModifierIcons.Shackled.LoadAsset());
 
         notif?.AdjustNotification();
     }

@@ -15,6 +15,7 @@ using TownOfUs.Buttons;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Utilities;
+using JAM.Assets;
 using UnityEngine;
 
 namespace JAM.Buttons.Game.Universal;
@@ -26,7 +27,7 @@ public sealed class BountyHuntingButton : TownOfUsKillRoleButton<RoleBehaviour, 
 
     public override float Cooldown => OptionGroupSingleton<BountyHunterOptions>.Instance.HuntedGracePeriod;
 
-    public override LoadableAsset<Sprite> Sprite => Assets.K2RoleIcons.BountyHunter;
+    public override LoadableAsset<Sprite> Sprite => JamRoleIcons.BountyHunter;
 
     public override float Distance => base.Distance / 3f;
 

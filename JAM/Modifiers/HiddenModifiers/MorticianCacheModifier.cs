@@ -7,6 +7,7 @@ using TownOfUs.Modifiers.Impostor.Herbalist;
 using UnityEngine;
 using JAM.Roles.Crewmate;
 using JAM.Events.Crewmate;
+using JAM.Assets;
 
 namespace JAM.Modifiers.Hidden;
 
@@ -27,7 +28,7 @@ public sealed class MorticianCacheModifier : BaseModifier
         }
 
         _meetingMenu = new MeetingMenu(Player.Data.Role, Click, MeetingAbilityType.Click,
-            Assets.NullsIcons.MorticianAbility, exemption: IsExempt, activeColor: Color.white, hoverColor: new Color(0.8f, 0.8f, 0.8f))
+            JamAssets.MorticianAbility, exemption: IsExempt, activeColor: Color.white, hoverColor: new Color(0.8f, 0.8f, 0.8f))
         {
             Position = new Vector3(-0.40f, 0f, -3f)
         };

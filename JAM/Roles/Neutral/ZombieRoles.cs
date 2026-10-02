@@ -54,8 +54,8 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     public new bool IsDraftable => false;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Zombie.LoadAsset(), "JackOfAllMods.Roles.Neutral.Zombie", 1.45f),
-        Icon = K2RoleIcons.Zombie,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Zombie.LoadAsset(), "JackOfAllMods.Roles.Neutral.Zombie", 1.45f),
+        Icon = JamRoleIcons.Zombie,
         HideSettings = true,
         CanModifyChance = false,
         DefaultChance = 0,
@@ -199,9 +199,9 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public bool IsGuessable => PlayerControl.LocalPlayer != null && PlayerControl.LocalPlayer.Data.Role is VigilanteRole;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.ZombieLeader.LoadAsset(), "JackOfAllMods.Roles.Neutral.ZombieLeader", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.ZombieLeader.LoadAsset(), "JackOfAllMods.Roles.Neutral.ZombieLeader", 1.45f),
         IntroSound = TouAudio.ScreamIntro,
-        Icon = K2RoleIcons.ZombieLeader,
+        Icon = JamRoleIcons.ZombieLeader,
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
@@ -246,7 +246,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
                     flashColor: RoleColor,
                     revivedOwnerNotificationText: "You Are Now A Zombie",
                     reviverOwnerNotificationText: "You Have Successfully Revived A Player... Kinda",
-                    notificationIcon: K2RoleIcons.Zombie.LoadAsset()
+                    notificationIcon: JamRoleIcons.Zombie.LoadAsset()
                 );
 
                 timer = OptionGroupSingleton<ZombieOptions>.Instance.ZombieReviveTimer;

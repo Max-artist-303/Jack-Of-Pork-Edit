@@ -70,7 +70,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(K2ModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
      
@@ -91,7 +91,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
      
     public override bool HideOnUi => false;
      
-    public override LoadableAsset<Sprite> ModifierIcon => K2ModifierIcons.Unstable;
+    public override LoadableAsset<Sprite> ModifierIcon => JamModifierIcons.Unstable;
      
     public override int CustomAmount => (int)OptionGroupSingleton<UnstableOptions>.Instance.UnstableCount;
      
@@ -211,7 +211,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
         {
             var notif1 = Helpers.CreateAndShowNotification(
                 $"<b>{Colors.Unstable.ToTextColor()}You have been transported</color></b>", Color.white,
-                new Vector3(0f, 1f, -20f), spr: K2ModifierIcons.Unstable.LoadAsset());
+                new Vector3(0f, 1f, -20f), spr: JamModifierIcons.Unstable.LoadAsset());
 
             notif1.AdjustNotification();
 

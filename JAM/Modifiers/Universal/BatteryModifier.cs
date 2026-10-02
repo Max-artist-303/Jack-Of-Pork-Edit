@@ -6,12 +6,13 @@ using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
 using JAM.Options.Modifiers;
+using JAM.Assets;
 
 namespace JAM.Modifiers.Universal;
 
 public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
     public override string IdPart => "Battery";
     public override string ModifierName => "Battery";
     public override string IntroInfo => "Use Utilities Whenever!";
@@ -29,7 +30,7 @@ public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale() => "Lets you use Utilities during Comms Disabled sabotage";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => Assets.NullsIcons.Battery;
+    public override LoadableAsset<Sprite>? ModifierIcon => JamModifierIcons.Battery;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalUtility;
     public override Color FreeplayFileColor => Colors.Battery;

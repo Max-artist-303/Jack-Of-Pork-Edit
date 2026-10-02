@@ -28,7 +28,7 @@ using TownOfUs.Roles;
 using JAM.Options.Roles.Crewmate;
 using JAM.Events.Crewmate;
 using JAM.Modifiers.Hidden;
-using TownOfUs.Options;
+using JAM.Assets;
 using Reactor.Networking.Attributes;
 
 namespace JAM.Roles.Crewmate;
@@ -50,8 +50,8 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
-        Icon = Assets.NullsIcons.Micromanager,
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Micromanager.LoadAsset(), "Micromanager", 1.55f),
+        Icon = JamRoleIcons.Micromanager,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         TasksCountForProgress = false,
         HideSettings = false,
@@ -263,7 +263,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             $"There are no more tasks available to manage.",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JamRoleIcons.Micromanager.LoadAsset());
 
             warn.AdjustNotification();
             return;
@@ -303,7 +303,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
             $"<b>{microColor.ToTextColor()}You completed </color>{TownOfUsColors.Crewmate.ToTextColor()}{playerText}'s</color> {TownOfUsColors.Doomsayer.ToTextColor()}{taskText}</color>. </color></b>",
             Color.white,
             new Vector3(0f, 1f, -20f),
-            spr: Assets.NullsIcons.Micromanager.LoadAsset());
+            spr: JamRoleIcons.Micromanager.LoadAsset());
 
         notif.AdjustNotification();
 
@@ -504,7 +504,7 @@ public sealed class MicromanagerRole(IntPtr cppPtr) : CrewmateGhostRole(cppPtr),
                 var notif1 = Helpers.CreateAndShowNotification(
                     $"<b>{Colors.Micromanager.ToTextColor()}{"You are now clickable by players!"}</b></color>",
                     Color.white,
-                    new Vector3(0f, 1f, -20f), spr: Assets.NullsIcons.Micromanager.LoadAsset());
+                    new Vector3(0f, 1f, -20f), spr: JamRoleIcons.Micromanager.LoadAsset());
                 notif1.AdjustNotification();
             }
         }

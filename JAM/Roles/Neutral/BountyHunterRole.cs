@@ -47,9 +47,9 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.BountyHunter.LoadAsset(), "JackOfAllMods.Roles.Neutral.BountyHunter", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.BountyHunter.LoadAsset(), "JackOfAllMods.Roles.Neutral.BountyHunter", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
-        Icon = K2RoleIcons.BountyHunter,
+        Icon = JamRoleIcons.BountyHunter,
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
@@ -64,7 +64,7 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
             Player.Data.Role,
             Click,
             MeetingAbilityType.Toggle,
-            K2Assets.BountyTarget,
+            JamAssets.BountyTarget,
             TouAssets.Guess,
             IsExempt,
             Color.white)

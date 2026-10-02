@@ -6,12 +6,13 @@ using TownOfUs.Utilities;
 using TownOfUs.Modifiers.Game;
 using UnityEngine;
 using JAM.Options.Modifiers;
+using JAM.Assets;
 
 namespace JAM.Modifiers.Universal;
 
 public sealed class ShackledModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(Colors.Shackled, TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Shackled.LoadAsset(), "Shackled", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(Colors.Shackled, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Shackled.LoadAsset(), "Shackled", 1.45f));
     public override string IdPart => "Shackled";
     public override string ModifierName => "Shackled";
     public override string IntroInfo => "Shackle your Killer!";
@@ -29,7 +30,7 @@ public sealed class ShackledModifier : UniversalGameModifier, IWikiDiscoverable
     }
     public string RoleMedDescriptionLocale => "Shackle your killer, Chaining them to your dead body !";
 
-    public override LoadableAsset<Sprite>? ModifierIcon => Assets.NullsIcons.Shackled;
+    public override LoadableAsset<Sprite>? ModifierIcon => JamModifierIcons.Shackled;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalPostmortem;
     public override Color FreeplayFileColor => Colors.Shackled;

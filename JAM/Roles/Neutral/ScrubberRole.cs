@@ -55,9 +55,9 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Scrubber.LoadAsset(), "JackOfAllMods.Roles.Neutral.Scrubber", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Scrubber.LoadAsset(), "JackOfAllMods.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,
-        Icon = K2RoleIcons.Scrubber,
+        Icon = JamRoleIcons.Scrubber,
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
     public void OnRoundStart()
@@ -68,7 +68,7 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
         if (didWin)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", RoleColor, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("The world has been cleansed of impurities, the only thing left to cleanse is yourself...", RoleColor, new Vector3(0f, 1f, -20f), null, JamRoleIcons.Scrubber.LoadAsset());
         
             Player.RpcPlayerExile();
             Player.AddModifier<BasicGhostModifier>();
@@ -118,11 +118,11 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
 
         if (scrubbedPlayer.AmOwner)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Modifiers Have Been Scrubbed", Colors.Scrubber, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("Your Modifiers Have Been Scrubbed", Colors.Scrubber, new Vector3(0f, 1f, -20f), null, JamRoleIcons.Scrubber.LoadAsset());
         }
         if (scrubber.AmOwner)
         {
-            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have Successfully Scrubbed " + scrubbedPlayer.Data.PlayerName + "'s Modifiers", Colors.Scrubber, new Vector3(0f, 1f, -20f), null, K2RoleIcons.Scrubber.LoadAsset());
+            MiraAPI.Utilities.Helpers.CreateAndShowNotification("You Have Successfully Scrubbed " + scrubbedPlayer.Data.PlayerName + "'s Modifiers", Colors.Scrubber, new Vector3(0f, 1f, -20f), null, JamRoleIcons.Scrubber.LoadAsset());
         }
     }
 }

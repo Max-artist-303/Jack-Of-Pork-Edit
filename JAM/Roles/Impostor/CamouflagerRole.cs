@@ -2,6 +2,7 @@ using AmongUs.GameOptions;
 using UnityEngine;
 using Il2CppInterop.Runtime.Attributes;
 using MiraAPI.Hud;
+using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
@@ -14,7 +15,7 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
 using TownOfUs.Extensions;
 using JAM.Options.Roles.Impostor;
-using MiraAPI.GameOptions;
+using JAM.Assets;
 
 namespace JAM.Roles.Impostor;
 
@@ -39,9 +40,9 @@ public sealed class CamouflagerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITown
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(Assets.NullsIcons.Camouflager.LoadAsset(), "Camouflager", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Camouflager.LoadAsset(), "Camouflager", 1.45f),
         OptionsScreenshot = TouBanners.ImpostorRoleBanner,
-        Icon = Assets.NullsIcons.Camouflager
+        Icon = JamRoleIcons.Camouflager
     };
 
     public override void Initialize(PlayerControl player)
@@ -57,7 +58,7 @@ public sealed class CamouflagerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITown
             return
             [
                 new($"Camouflage", $"Camouflage Changes the Appearance of every player making them gray and with {OptionGroupSingleton<CamouflagerOptions>.Instance.CamoVision} you can see everyone's names",
-                    Assets.NullsIcons.CamouflagerButton),
+                    JamAssets.CamouflagerButton),
             ];
         }
     }
