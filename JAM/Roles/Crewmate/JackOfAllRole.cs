@@ -27,8 +27,8 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public int NumTasksUntilMod = (int)OptionGroupSingleton<JackOfAllOptions>.Instance.TasksPerMod;
 
     public DoomableType DoomHintType => DoomableType.Perception;
-    public string RoleName => "Jack Of All";
-    public string RoleDescription => "Have a lot of modifiers";
+    public string RoleName => "Jack Of Pork";
+    public string RoleDescription => "Have a lot of modifiers and pork ofc";
     public string RoleMedDescription => RoleDescription;
     public string RoleLongDescription => RoleDescription;
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
