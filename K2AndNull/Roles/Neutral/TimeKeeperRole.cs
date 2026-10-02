@@ -39,8 +39,8 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.TimeKeeper.LoadAsset(), "JackOfAllMods.Roles.Neutral.Forbearing", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
         Icon = K2RoleIcons.TimeKeeper,
-        CanUseVent = true
-        // CanUseVent = OptionGroupSingleton<TimeKeeperOptions>.Instance.ForbearingCanVent
+        CanUseVent = true,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
     public RoleBehaviour CrewVariant => (RoleBehaviour)RoleId.Get<SheriffRole>();
     public override void OnVotingComplete()

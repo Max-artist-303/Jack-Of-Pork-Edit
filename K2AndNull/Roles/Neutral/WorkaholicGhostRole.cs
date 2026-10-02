@@ -1,12 +1,13 @@
+using AmongUs.GameOptions;
+using JackOfAllMods.Options.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
-using TownOfUs.Utilities;
-using TownOfUs.Interfaces;
-using UnityEngine;
 using TownOfUs;
+using TownOfUs.Interfaces;
 using TownOfUs.Roles.Neutral;
-using JackOfAllMods.Options.Roles.Neutral;
+using TownOfUs.Utilities;
+using UnityEngine;
 
 
 
@@ -33,6 +34,7 @@ public sealed class WorkaholicGhostRole(IntPtr cppPtr) : NeutralGhostRole(cppPtr
         DefaultRoleCount = 0,
         MaxRoleCount = 0,
         ShowInFreeplay = false,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
     private void FixedUpdate()

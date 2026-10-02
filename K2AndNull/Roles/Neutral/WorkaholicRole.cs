@@ -59,7 +59,7 @@ public sealed class WorkaholicRole(IntPtr cppPtr)
         Icon = JackOfAllMods.Assets.NullsIcons.Workaholic,
         OptionsScreenshot = TouBanners.NeutralRoleBanner,
         GhostRole = (RoleTypes)RoleId.Get<WorkaholicGhostRole>(),
-        MaxRoleCount = 1,
+        MaxRoleCount = 1
     };
 
     public bool WinConditionMet()

@@ -50,6 +50,7 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.BountyHunter.LoadAsset(), "JackOfAllMods.Roles.Neutral.BountyHunter", 1.45f),
         IntroSound = TouAudio.SinisterIntro,
         Icon = K2RoleIcons.BountyHunter,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
     public Color RoleColor => JackOfAllMods.Colors.BountyHunter;

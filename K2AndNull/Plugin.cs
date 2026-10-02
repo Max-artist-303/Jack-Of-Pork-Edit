@@ -90,4 +90,5 @@ public enum JAMRpcCalls : uint
  * Zombies No Longer Win With Crew Without The Alliance Modifier
  * Fixed Role Option Description Text (RoleMedDescription) For Roles
  * Changed Micromanager To Use An RPC Call Instead Of A Modifier
+ * Made This Mod's Neutrals Win/Lose Correctly When Dead
 */

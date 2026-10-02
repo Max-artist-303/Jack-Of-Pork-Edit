@@ -62,6 +62,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         DefaultRoleCount = 0,
         MaxRoleCount = 0,
         TasksCountForProgress = false,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
     public List<CustomButtonWikiDescription> Abilities

@@ -1,7 +1,8 @@
+using AmongUs.GameOptions;
 using Il2CppInterop.Runtime.Attributes;
+using JackOfAllMods;
 using JackOfAllMods.Assets;
 using JackOfAllMods.Modifiers.Neutral;
-using JackOfAllMods;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.Modifiers;
@@ -56,7 +57,8 @@ public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(K2RoleIcons.Scrubber.LoadAsset(), "JackOfAllMods.Roles.Neutral.Scrubber", 1.45f),
         IntroSound = TouAudio.JanitorCleanSound,
-        Icon = K2RoleIcons.Scrubber
+        Icon = K2RoleIcons.Scrubber,
+        GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
     public void OnRoundStart()
     {
