@@ -4,14 +4,14 @@
 > This mod is ONLY available on PC Among Us.
 
 -----------------------
-> Logo goes here
+> Probaly works with the latest version https://github.com/PurelyK2/Jack-Of-All-Mods/releases/tag/v1.0-exp
 <!-- <div align="center">
 
 <br/> -->
 
 
 > [!TIP]
-> Join the Jack Of All Mods [Discord]([https://discord.gg/3s9ekkTkU]) if you have any problems or suggestions for the mod!
+> Join the Jack Of All Mods [Discord]([https://discord.gg/3s9ekkTkU]) if you have any problems or suggestions for the mod! Also this is a fork
 -----------------------
 
 # Contents
