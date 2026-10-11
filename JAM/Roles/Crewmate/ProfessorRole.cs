@@ -40,15 +40,15 @@ public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         {
             return new List<CustomButtonWikiDescription>
             {
-				new("Train", "Select A Player To Let Them Change Their Role", TouModifierIcons.Crewpostor),
+				new("Train", "Select A Player To Let Them Change Their Role", JamRoleIcons.Professor),
             };
         }
     }
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Agent.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Professor", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Professor.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Professor", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,
-        Icon = TouRoleIcons.Agent
+        Icon = JamRoleIcons.Professor
     };
 
     #region Meeting Stuff
@@ -60,7 +60,7 @@ public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
             Player.Data.Role,
             Click,
             MeetingAbilityType.Toggle,
-            JamAssets.BountyTarget,
+            JamRoleIcons.Professor,
             TouAssets.Guess,
             IsExempt,
             Color.white)

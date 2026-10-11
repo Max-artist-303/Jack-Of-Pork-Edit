@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.2")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.3")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -44,6 +44,8 @@ public partial class Plugin : BasePlugin, IMiraPlugin
         try
         {
             Harmony.PatchAll();
+
+            JamRoleIcons.Professor.LoadAsset();
         }
         catch(Exception e)
         {
