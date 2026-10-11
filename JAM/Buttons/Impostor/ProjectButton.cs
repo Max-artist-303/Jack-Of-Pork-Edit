@@ -14,6 +14,7 @@ using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Components;
 using TownOfUs.Options.Maps;
+using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -21,7 +22,7 @@ using UnityEngine.UI;
 
 namespace JAM.Buttons.Impostor;
 
-public sealed class ProjectorButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCapable
+public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCapable
 {
     public override string Name => "Project";
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
@@ -59,10 +60,9 @@ public sealed class ProjectorButton : TownOfUsRoleButton<ProjectorRole>, ILegacy
 
     protected override void OnClick()
     {
-        if (EffectActive)
+        if (Role.Spirit != null)
         {
             ResetCooldownAndOrEffect();
-            EffectActive = false;
             if (Role.Spirit != null)
             {
                 ProjectorRole.RpcRemoveMediumSpirit(PlayerControl.LocalPlayer, Role.Spirit);
@@ -70,6 +70,7 @@ public sealed class ProjectorButton : TownOfUsRoleButton<ProjectorRole>, ILegacy
             else Info("No Spirit Found");
             return;
         }
+
         ProjectorRole.RpcMediate(PlayerControl.LocalPlayer);
     }
 
@@ -82,5 +83,27 @@ public sealed class ProjectorButton : TownOfUsRoleButton<ProjectorRole>, ILegacy
         }
         Info("Removing Spirit");
         ProjectorRole.RpcRemoveMediumSpirit(PlayerControl.LocalPlayer, Role.Spirit);
+    }
+
+    public override bool CanUse()
+    {
+        if (HudManager.Instance.Chat.IsOpenOrOpening || MeetingHud.Instance)
+        {
+            return false;
+        }
+
+        if (PlayerControl.LocalPlayer.GetModifiers<DisabledModifier>().Any(x => !x.CanUseAbilities))
+        {
+            return false;
+        }
+
+        return EffectActive || Timer <= 0;
+    }
+
+    protected override void FixedUpdate(PlayerControl playerControl)
+    {
+        EffectActive = Role.Spirit != null;
+
+        base.FixedUpdate(playerControl);
     }
 }

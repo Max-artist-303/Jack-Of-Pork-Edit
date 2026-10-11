@@ -81,9 +81,6 @@ public enum JAMRpcCalls : uint
     BountyCollected = 3,
     MultiProject = 4
 }
-
-// Jack Of All assassin continues game even when all crew
-
 // Concealed looks odd... (icon in-game)
 
 // =============== FIXES ===============
@@ -110,6 +107,8 @@ public enum JAMRpcCalls : uint
  * Bounty Now Correctly Goes Away When Bounty Hunter Dies
  * Bounty Target Can Now Optionally Have A Timed Period Where It Can Be Caught
  * Deceiver Shield Now Hides In Comms
- * Added "Vacillator" Role
  * Bounty Hunter Now Wins Correctly
+ * Added "Vacillator" Role
+ * Added "Mimic" Role
+ * Added "Projector" Role
 */

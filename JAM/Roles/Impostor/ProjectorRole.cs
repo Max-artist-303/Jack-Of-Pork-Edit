@@ -25,11 +25,13 @@ using TownOfUs.Extensions;
 using JAM.Options.Roles.Impostor;
 using JAM.Assets;
 using JAM.Modifiers.Hidden;
+using JAM.Buttons.Impostor;
 
 namespace JAM.Roles.Impostor;
 
 public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
+    public ProjectorKillButton? killButton;
     public RoleBehaviour CrewVariant => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MediumRole>());
     public Color RoleColor => TownOfUsColors.Impostor;
     public string RoleName => "Projector";
@@ -51,7 +53,8 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Projector.LoadAsset(), "Projector", 1.45f),
         OptionsScreenshot = TouBanners.ImpostorRoleBanner,
-        Icon = JamRoleIcons.Projector
+        Icon = JamRoleIcons.Projector,
+        UseVanillaKillButton = false
     };
 
     public override void Deinitialize(PlayerControl targetPlayer)
@@ -59,6 +62,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
         RoleBehaviourStubs.Deinitialize(this, targetPlayer);
         if (Spirit == null) return;
         Spirit.DestroyImmediate();
+        Spirit = null;
     }
 
     public override void OnMeetingStart()
@@ -67,6 +71,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
 
         if (Spirit == null) return;
         Spirit.DestroyImmediate();
+        Spirit = null;
     }
 
     public override void Initialize(PlayerControl player)
@@ -95,19 +100,8 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
         AmongUsClient.Instance.Spawn(spirit, player.OwnerId);
     }
 
-    public static void RpcMultiMediate(
-        PlayerControl source,
-        List<PlayerControl> targets)
-    {
-        var newTargets = targets.Count == 0
-            ? []
-            : targets.Select(x => new KeyValuePair<byte, string>(x.PlayerId, x.Data.PlayerName))
-                .ToDictionary(x => x.Key, x => x.Value);
-        RpcMultiMediate(source, newTargets);
-    }
-
     [MethodRpc((uint)JAMRpcCalls.MultiProject)]
-    public static void RpcMultiMediate(PlayerControl player, Dictionary<byte, string> targets)
+    public static void RpcMultiMediate(PlayerControl player)
     {
         if (LobbyBehaviour.Instance)
         {
@@ -119,59 +113,19 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
             var spirit = Instantiate(TouAssets.MediumSpirit.LoadAsset()).GetComponent<MedSpiritObject>();
             AmongUsClient.Instance.Spawn(spirit, player.OwnerId);
         }
-        // if (targets.Count != 0)
-        // {
-        //     Coroutines.Start(CoShowGhosts(player, targets));
-        // }
-
-        var hidden = true;
-        if (player.AmOwner && hidden)
-        {
-            foreach (var plr in Helpers.GetAlivePlayers())
-            {
-                if (plr.AmOwner)
-                {
-                    continue;
-                }
-
-                plr.AddModifier<ProjectorHiddenModifier>();
-            }
-        }
     }
 
-    // public static IEnumerator CoShowGhosts(PlayerControl player, Dictionary<byte, string> targets)
-    // {
-    //     // This must be a coroutine for it to show the arrow to everyone besides the host.
-    //     yield return new WaitForSeconds(0.5f);
-    //     var allPlayers = PlayerControl.AllPlayerControls.ToArray().ToList();
-    //     allPlayers.Remove(player);
-    //     foreach (var target in targets)
-    //     {
-    //         var newPlayer =
-    //             allPlayers.FirstOrDefault(x => x.PlayerId == target.Key || x.Data.PlayerName == target.Value);
-    //         if (newPlayer == null)
-    //         {
-    //             continue;
-    //         }
-
-    //         allPlayers.Remove(newPlayer);
-    //         if (player.AmOwner || newPlayer.AmOwner)
-    //         {
-    //             newPlayer.AddModifier<MediatedModifier>(player.PlayerId);
-    //         }
-    //     }
-    // }
-
     [MethodRpc((uint)TownOfUsRpc.RemoveMediumSpirit)]
-    public static void RpcRemoveMediumSpirit(PlayerControl medium, MedSpiritObject spirit)
+    public static void RpcRemoveMediumSpirit(PlayerControl projector, MedSpiritObject spirit)
     {
         if (LobbyBehaviour.Instance)
         {
-            MiscUtils.RunAnticheatWarning(medium);
+            MiscUtils.RunAnticheatWarning(projector);
             return;
         }
 
         spirit.StartCoroutine(spirit.CoDestroy().WrapToIl2Cpp());
+        (projector.Data.Role as ProjectorRole)?.Spirit = null;
     }
 
     [HideFromIl2Cpp]
