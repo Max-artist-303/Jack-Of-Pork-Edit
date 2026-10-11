@@ -1,5 +1,6 @@
 ﻿using AmongUs.GameOptions;
 using HarmonyLib;
+using JAM.Assets;
 using JAM.Modifiers.Role;
 using JAM.Roles.Crewmate;
 using JAM.Roles.Neutral;
@@ -39,7 +40,7 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
     static List<RoleBehaviour> ChosenRoles { get; } = [];
     RoleBehaviour? RandomRole;
 
-    public override LoadableAsset<Sprite> Sprite => TouRoleIcons.Agent;
+    public override LoadableAsset<Sprite> Sprite => JamRoleIcons.Mimic;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
     public override Color TextOutlineColor => Colors.Mimic;
 

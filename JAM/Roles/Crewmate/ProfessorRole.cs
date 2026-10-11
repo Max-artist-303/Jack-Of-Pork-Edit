@@ -1,0 +1,128 @@
+using Il2CppInterop.Runtime.Attributes;
+using JAM.Assets;
+using JAM.Modifiers.Role;
+using JAM.Options.Roles.Crewmate;
+using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
+using MiraAPI.Roles;
+using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
+using TownOfUs.Assets;
+using TownOfUs.Extensions;
+using TownOfUs.Modifiers.Crewmate;
+using TownOfUs.Modules;
+using TownOfUs.Modules.Wiki;
+using TownOfUs.Roles;
+using TownOfUs.Utilities;
+using UnityEngine;
+
+namespace JAM.Roles.Crewmate;
+
+public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+{
+    public int Uses = (int)OptionGroupSingleton<ProfessorOptions>.Instance.MaxUses;
+
+    public DoomableType DoomHintType => DoomableType.Protective;
+    public string RoleName => "Professor";
+    public string RoleDescription => "Train Players To Change Their Role";
+    public string RoleMedDescription => "Select Players To Make Them Change Their Role";
+    public string RoleLongDescription => "You Can Pick A Player In Meetings. They Will Be Able To Change Their Role The Next Round.";
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
+    public Color RoleColor => Colors.Professor;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
+    [HideFromIl2Cpp]
+    public List<CustomButtonWikiDescription> Abilities
+    {
+        get
+        {
+            return new List<CustomButtonWikiDescription>
+            {
+				new("Train", "Select A Player To Let Them Change Their Role", TouModifierIcons.Crewpostor),
+            };
+        }
+    }
+    public CustomRoleConfiguration Configuration => new(this)
+    {
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(TouRoleIcons.Agent.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Professor", 1.45f),
+        IntroSound = TouAudio.DetectiveIntroSound,
+        Icon = TouRoleIcons.Agent
+    };
+
+    #region Meeting Stuff
+    private MeetingMenu? meetingMenu;
+    private NetworkedPlayerInfo? selectedPlr;
+    public override void OnMeetingStart()
+    {
+        meetingMenu = new MeetingMenu(
+            Player.Data.Role,
+            Click,
+            MeetingAbilityType.Toggle,
+            JamAssets.BountyTarget,
+            TouAssets.Guess,
+            IsExempt,
+            Color.white)
+        {
+            Position = new Vector3(-0.40f, 0f, -3f)
+        };
+
+        var meeting = MeetingHud.Instance;
+        if (Player.AmOwner && meeting != null)
+        {
+            meetingMenu.GenButtons(meeting,
+                Player.AmOwner && !Player.HasDied() && !Player.HasModifier<JailedModifier>());
+            if (selectedPlr != null)
+            {
+                meetingMenu.Actives[selectedPlr.PlayerId] = true;
+            }
+        }
+    }
+
+    public void OnVotingComplete()
+    {
+        if (Player.AmOwner)
+        {
+            meetingMenu?.HideButtons();
+        }
+
+        if (selectedPlr != null && !selectedPlr.IsDead)
+            AssignChangeRoleModifier(selectedPlr);
+    }
+
+    public void Click(PlayerVoteArea voteArea, MeetingHud __)
+    {
+        var player = GameData.Instance.GetPlayerById(voteArea.PlayerId);
+
+        if (selectedPlr == player)
+        {
+            selectedPlr = null;
+            meetingMenu?.Actives[voteArea.PlayerId] = false;
+            return;
+        }
+
+        if (selectedPlr != null)
+        {
+            meetingMenu?.Actives[selectedPlr.PlayerId] = false;
+            selectedPlr = null;
+        }
+
+        meetingMenu?.Actives[voteArea.PlayerId] = true;
+        selectedPlr = player;
+    }
+
+    private bool IsExempt(PlayerVoteArea voteArea)
+    {
+        return voteArea.AmDead || voteArea.GetPlayer().AmOwner;
+    }
+    #endregion
+
+    void AssignChangeRoleModifier(NetworkedPlayerInfo player)
+    {
+        if (player.IsDead) return;
+
+        Uses--;
+        player.Role.Player.RpcAddModifier<ProfessorRetrainModifier>();
+    }
+}

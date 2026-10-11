@@ -22,4 +22,7 @@ public sealed class ZombieOptions : AbstractOptionGroup<ZombieLeaderRole>
 
     [ModdedNumberOption("Zombie Dead Duration", 0f, 120f, 5f, MiraNumberSuffixes.Seconds)]
     public float ZombieReviveTimer { get; set; } = 5f;
+
+    [ModdedToggleOption("Zombie Leader Is Unlovable")]
+    public bool ZombieCantLove { get; set; } = true;
 }

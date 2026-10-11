@@ -37,7 +37,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     public string RoleDescription => "THE APOCOLYPSE HAS BEGUN!";
     public string RoleMedDescription => "Convert Dead Players Into Zombies.";
     public string RoleLongDescription => "Convert Dead Players Into Zombies.";
-    
+
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public Color RoleColor => Colors.Zombie;
@@ -69,6 +69,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
             ];
         }
     }
+
 
     public override void Initialize(PlayerControl player)
     {
@@ -163,7 +164,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
     }
 }
 
-public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant, IContinuesGame
+public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IUnguessable, ICrewVariant, IContinuesGame, IUnlovable
 {
     public static bool hasZombies = false;
     public bool HasImpostorVision => true;
@@ -172,7 +173,8 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public string RoleName => "Zombie Leader";
     public string RoleDescription => "START AN APOCOLYPSE";
     public string RoleLongDescription => "Convert Dead Players Into Zombies!";
-    
+    public bool IsUnlovable => OptionGroupSingleton<ZombieOptions>.Instance.ZombieCantLove;
+
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public List<CustomButtonWikiDescription> Abilities
@@ -283,7 +285,6 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     {
         return WinConditionMet() && gameOverReason != GameOverReason.CrewmatesByTask && gameOverReason != GameOverReason.CrewmatesByVote;
     }
-    
 
     public override bool CanUse(IUsable usable)
     {

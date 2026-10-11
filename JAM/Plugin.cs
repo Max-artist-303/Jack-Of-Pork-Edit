@@ -108,7 +108,9 @@ public enum JAMRpcCalls : uint
  * Bounty Target Can Now Optionally Have A Timed Period Where It Can Be Caught
  * Deceiver Shield Now Hides In Comms
  * Bounty Hunter Now Wins Correctly
+ * Battery Modifier Now Shows Up Right
  * Added "Vacillator" Role
  * Added "Mimic" Role
  * Added "Projector" Role
+ * Added "Professor" Role
 */

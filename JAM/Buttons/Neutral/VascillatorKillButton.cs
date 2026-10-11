@@ -65,13 +65,13 @@ public sealed class VascillatorKillButton : TownOfUsKillRoleButton<VacillatorRol
             return;
         }
 
-        if(Target.IsCrewmate() && !Target.HasModifier<AllianceGameModifier>() && Role.winsWithCrew)
+        if(Target.IsCrewmate() && !Target.HasModifier<AllianceGameModifier>() && Role.winsWithCrew == true)
         {
             //Killed Crewmate on crew team, misfire
             IndecisiveMisfire();
             return;
         }
-        else if(!Role.winsWithCrew && (!Target.IsCrewmate() || Target.HasModifier<AllianceGameModifier>()))
+        else if(Role.winsWithCrew == false && (!Target.IsCrewmate() || Target.HasModifier<AllianceGameModifier>()))
         {
             //Killed Non-Crew On Non-Crew Team, misfire
             IndecisiveMisfire();
