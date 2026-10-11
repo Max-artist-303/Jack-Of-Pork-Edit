@@ -83,7 +83,15 @@ public enum JAMRpcCalls : uint
     BountyCollected = 3,
     MultiProject = 4
 }
+
 // Concealed looks odd... (icon in-game)
+
+// Professor can get more uses from tasks as option?
+// Give Mimic Options
+    // Number of roles
+    // Have a random option
+    // Mimic Round 1
+// 
 
 // =============== FIXES ===============
 /*

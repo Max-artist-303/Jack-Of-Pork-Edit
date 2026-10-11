@@ -40,18 +40,17 @@ internal class MimicCacheModifier : BaseModifier
         if (PlayerControl.LocalPlayer.HasModifier<MimicCacheModifier>())
         {
             PlayerControl.LocalPlayer.RpcChangeRole(RoleId.Get<MimicRole>(), false);
+            if(PlayerControl.LocalPlayer.Data.Role is MimicRole)
+                showAsMimic = false;
         }
     }
+    /*
     [HarmonyPatch(typeof(EndGameResult), "Create", [typeof(MessageReader)])]
     public static class ReturnToMimicAtEnd
     {
         public static void Prefix()
         {
-            foreach(PlayerControl player in PlayerControl.AllPlayerControls)
-            {
-                if (player.HasModifier<MimicCacheModifier>())
-                    player.RpcChangeRole(RoleId.Get<MimicRole>(), false);
-            }
+            showAsMimic = true;
         }
     }
 
@@ -69,7 +68,7 @@ internal class MimicCacheModifier : BaseModifier
     }
 
     [HarmonyPatch(typeof(LogicGameFlowNormal), nameof(LogicGameFlowNormal.CheckEndCriteria))]
-    public static class DeceiverDoesntDeceiveTheGamePatch
+    public static class MimicDoesntDeceiveTheGamePatch
     {
         [HarmonyPriority(801)]
         public static void Prefix()
@@ -87,6 +86,8 @@ internal class MimicCacheModifier : BaseModifier
     {
         public static void Postfix(ref RoleBehaviour __result, ref NetworkedPlayerInfo __instance)
         {
+            if (!ShipStatus.Instance) return;
+
             if((showAsMimic || !__result.Player.AmOwner) && __result.Player.HasModifier<MimicCacheModifier>())
             {
                 __result = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
@@ -102,4 +103,5 @@ internal class MimicCacheModifier : BaseModifier
             if (player.HasModifier<MimicCacheModifier>()) __result = false;
         }
     }
+    */
 }

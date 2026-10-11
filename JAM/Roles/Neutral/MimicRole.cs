@@ -19,6 +19,10 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
     public Color RoleColor => Colors.Mimic;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public DoomableType DoomHintType => DoomableType.Trickster;
+    public string RoleDescription => "Copy-Pasta!";
+    public string RoleMedDescription => "Each Round, Pick A Role To Mimic For That Round.";
+    public string RoleLongDescription => "Each Round, Pick A Role To Mimic For That Round.";
+    public string GetAdvancedDescription() { return RoleLongDescription + TownOfUs.Utilities.MiscUtils.AppendOptionsText(base.GetType()); }
 
     public CustomRoleConfiguration Configuration => new(this)
     {
