@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.3")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.4")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -81,14 +81,12 @@ public enum JAMRpcCalls : uint
     DeceiverShield = 1,
     MicromanageTask = 2,
     BountyCollected = 3,
-    MultiProject = 4
+    Project = 4,
+    RemoveProjection = 5,
+    AssignSpirit = 6
 }
 
 // Concealed looks odd... (icon in-game)
-
-// Projector is acting weird
-    // Projections aren't going away
-    // Killing happens at player, not projection
 
 // =============== FIXES ===============
 /*

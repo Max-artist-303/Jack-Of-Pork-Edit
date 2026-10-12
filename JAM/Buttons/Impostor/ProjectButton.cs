@@ -1,35 +1,33 @@
+using JAM;
 using JAM.Assets;
-using JAM.Modifiers.Hidden;
 using JAM.Options.Roles.Impostor;
 using JAM.Roles.Impostor;
 using MiraAPI.GameOptions;
 using MiraAPI.Keybinds;
 using MiraAPI.Modifiers;
+using MiraAPI.Translation;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
-using TownOfUs;
 using TownOfUs.Assets;
-using TownOfUs.Buttons;
 using TownOfUs.Modifiers;
-using TownOfUs.Modules;
-using TownOfUs.Modules.Components;
-using TownOfUs.Options.Maps;
+using TownOfUs.Modifiers.Crewmate;
+using TownOfUs.Modules.MedSpirit;
 using TownOfUs.Options.Roles.Crewmate;
-using TownOfUs.Roles.Impostor;
-using TownOfUs.Utilities;
+using TownOfUs.Roles.Crewmate;
 using UnityEngine;
-using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
-namespace JAM.Buttons.Impostor;
+namespace TownOfUs.Buttons.Crewmate;
 
-public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCapable
+public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>
 {
-    public override string Name => "Project";
+    public override string Name => "PROJECT";
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
-    public override Color TextOutlineColor => TownOfUsColors.Medium;
-    public override LoadableAsset<Sprite> Sprite => LegacyAssets.IsLegacy ? JamAssets.ProjectButton : JamAssets.ProjectButton;
+    public override Color TextOutlineColor => TownOfUsColors.Impostor;
     public override float Cooldown => Math.Clamp(OptionGroupSingleton<ProjectorOptions>.Instance.ProjectCd + MapCooldown, 0.001f, 120f);
     public override float EffectDuration => OptionGroupSingleton<ProjectorOptions>.Instance.ProjectDuration;
+
+    public override LoadableAsset<Sprite> Sprite => JamRoleIcons.Projector;
 
     public override bool ZeroIsInfinite { get; set; } = true;
 
@@ -60,17 +58,22 @@ public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCa
 
     protected override void OnClick()
     {
-        if (Role.Spirit != null)
+        if (EffectActive)
         {
-            ResetCooldownAndOrEffect();
+            if(Role.Spirit == null)
+            {
+                Role.Spirit = GameObject.FindObjectsByType<MedSpiritObject>(FindObjectsSortMode.None).FirstOrDefault(med => med.AmOwner);
+            }
+
             if (Role.Spirit != null)
             {
+                Info("Removing Spirit");
+                Role.isProjected = false;
                 ProjectorRole.RpcRemoveMediumSpirit(PlayerControl.LocalPlayer, Role.Spirit);
             }
-            else Info("No Spirit Found");
+            else Error("Projection Is Null");
             return;
         }
-
         ProjectorRole.RpcMediate(PlayerControl.LocalPlayer);
     }
 
@@ -78,10 +81,10 @@ public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCa
     {
         if (Role.Spirit == null)
         {
-            Info("No Spirit");
+            Error("Projector Spirit Is Null");
             return;
         }
-        Info("Removing Spirit");
+        Role.isProjected = false;
         ProjectorRole.RpcRemoveMediumSpirit(PlayerControl.LocalPlayer, Role.Spirit);
     }
 
@@ -97,11 +100,20 @@ public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCa
             return false;
         }
 
-        return EffectActive || Timer <= 0;
+        return ((Timer <= 0 && !EffectActive) || (EffectActive && Timer <= EffectDuration - 2.5f - 1f));
     }
 
     protected override void FixedUpdate(PlayerControl playerControl)
     {
+        Role.Spirit = GameObject.FindObjectsByType<MedSpiritObject>(FindObjectsSortMode.None).FirstOrDefault(med => med.AmOwner);
+        Role.isProjected = Role.Spirit != null;
+
+        if (EffectActive && !Role.isProjected)
+        {
+            ResetCooldownAndOrEffect();
+        }
+
+
         EffectActive = Role.isProjected;
 
         base.FixedUpdate(playerControl);
