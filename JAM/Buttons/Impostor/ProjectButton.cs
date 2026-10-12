@@ -102,7 +102,7 @@ public sealed class ProjectButton : TownOfUsRoleButton<ProjectorRole>, ILegacyCa
 
     protected override void FixedUpdate(PlayerControl playerControl)
     {
-        EffectActive = Role.Spirit != null;
+        EffectActive = Role.isProjected;
 
         base.FixedUpdate(playerControl);
     }

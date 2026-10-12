@@ -21,17 +21,18 @@ namespace JAM.Roles.Crewmate;
 public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public int Uses = (int)OptionGroupSingleton<ProfessorOptions>.Instance.MaxUses;
+    public int TasksUntilUse = (int)OptionGroupSingleton<ProfessorOptions>.Instance.TasksPerUse;
 
     public DoomableType DoomHintType => DoomableType.Protective;
     public string RoleName => "Professor";
     public string RoleDescription => "Train Players To Change Their Role";
     public string RoleMedDescription => "Select Players To Make Them Change Their Role";
-    public string RoleLongDescription => "You Can Pick A Player In Meetings. They Will Be Able To Change Their Role The Next Round.";
+    public string RoleLongDescription => "You Can Pick A Player In Meetings. They Will Be Able To Change Their Role The Next Round.\n\nUses Left: " + Uses;
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
     public Color RoleColor => Colors.Professor;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
 
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return "You Can Pick A Player In Meetings. They Will Be Able To Change Their Role The Next Round." + MiscUtils.AppendOptionsText(base.GetType()); }
 
     [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities

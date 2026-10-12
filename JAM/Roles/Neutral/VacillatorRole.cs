@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game.Alliance;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
@@ -25,7 +26,7 @@ public sealed class VacillatorRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public bool? winsWithCrew = false;
 
     public bool HasImpostorVision => winsWithCrew == false;
-    public int SafeShotsLeft = (int)OptionGroupSingleton<VacillatorOptions>.Instance.SafeShots;
+    public int SafeShotsLeft = 1;
     public string RoleName => "Vacillator";
     public string RoleDescription => "Decide Who You Want To Win With";
     public string RoleMedDescription => "Kill Players To Decide Who You Win With!";
@@ -33,7 +34,7 @@ public sealed class VacillatorRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     {
         get
         {
-            return "Select A Team To Win With.\nCurrent Alignment: " + (winsWithCrew == true ? "Crewmate" : "Non-Crew") + "\n\nShots Until Team Is Forced: " + SafeShotsLeft;
+            return "Select A Team To Win With.\nCurrent Alignment: " + (winsWithCrew == null ? "None" : (winsWithCrew == true ? "Crewmate" : "Non-Crew")) + "\n\nShots Until Team Is Forced: " + SafeShotsLeft;
         }
     }
     public string GetAdvancedDescription() { return RoleMedDescription + TownOfUs.Utilities.MiscUtils.AppendOptionsText(base.GetType()); }
@@ -49,6 +50,14 @@ public sealed class VacillatorRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>(),
         TasksCountForProgress = false
     };
+
+    public override void OnDeath(DeathReason reason)
+    {
+        if(winsWithCrew != null)
+            Player.AddModifier<BasicGhostModifier>();
+
+        base.OnDeath(reason);
+    }
 
     public override bool DidWin(GameOverReason gameOverReason)
     {

@@ -12,7 +12,4 @@ namespace JAM.Options.Roles.Neutral;
 public sealed class VacillatorOptions : AbstractOptionGroup<VacillatorRole>
 {
     public override string GroupName => "Indecisive Options";
-
-    [ModdedNumberOption("Shots Before Fixed Team", 1f, 5f, 1f)]
-    public float SafeShots { get; set; } = 1;
 }

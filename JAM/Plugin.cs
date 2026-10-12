@@ -86,12 +86,9 @@ public enum JAMRpcCalls : uint
 
 // Concealed looks odd... (icon in-game)
 
-// Professor can get more uses from tasks as option?
-// Give Mimic Options
-    // Number of roles
-    // Have a random option
-    // Mimic Round 1
-// 
+// Projector is acting weird
+    // Projections aren't going away
+    // Killing happens at player, not projection
 
 // =============== FIXES ===============
 /*
@@ -119,6 +116,12 @@ public enum JAMRpcCalls : uint
  * Deceiver Shield Now Hides In Comms
  * Bounty Hunter Now Wins Correctly
  * Battery Modifier Now Shows Up Right
+ * Increased Bounty Hunting Range
+ * Bounty Target Speed Modifier Now Is Optional And Changeable
+ * Crew Protective Can Now Kill The Bounty Target
+ * Made Option For "breaks" between bounties
+ * You Can No Longer Create Bounties When You've Won As Bounty Hunter
+ * You Can Now Collect More Than One Bounty In A Game.
  * Added "Vacillator" Role
  * Added "Mimic" Role
  * Added "Projector" Role

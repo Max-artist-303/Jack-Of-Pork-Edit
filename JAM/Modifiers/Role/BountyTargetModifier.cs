@@ -180,11 +180,11 @@ public sealed class BountyTargetModifier : BaseModifier
             GivePlayerBonus(@event.Source, @event.Target);
     }
 
-    [HarmonyPatch(typeof(RoleBehaviour), "CanVent")]
+    [HarmonyPatch(typeof(PlayerPhysics), "RpcEnterVent", [typeof(int)])]
     [HarmonyPrefix]
-    public static bool DontVentAsTarget(ref RoleBehaviour __instance)
+    public static bool DontVentAsTarget2(ref PlayerPhysics __instance, int ventId)
     {
-        if(__instance.Player.HasModifier<BountyTargetModifier>())
+        if (__instance.myPlayer.HasModifier<BountyTargetModifier>())
         {
             MiraAPI.Utilities.Helpers.CreateAndShowNotification("Don't Even Think About It...", Color.red, null, JamRoleIcons.BountyHunter.LoadAsset());
             return false;
@@ -210,7 +210,7 @@ public sealed class BountyTargetModifier : BaseModifier
         {
             if (pc.HasModifier<BountyTargetModifier>())
             {
-                __result *= 2;
+                __result *= OptionGroupSingleton<BountyHunterOptions>.Instance.TargetSpeed;
             }
         }
     }
@@ -490,6 +490,8 @@ public sealed class BountyRewardModifier : BaseModifier
         {
             Error(e);
         }
+
+        ModifierComponent?.RemoveModifier(this);
     }
 
     enum RewardType
@@ -528,11 +530,6 @@ public sealed class BountySparedModifier : BaseModifier
 {
     public override string ModifierName => "Bounty Immune";
     public override bool HideOnUi => true;
-
-    public override void OnDeath(DeathReason reason)
-    {
-        ModifierComponent?.RemoveModifier(this);
-    }
 
     [RegisterEvent(0)]
     public static void OnVotingCompleteEvent(VotingCompleteEvent @event)

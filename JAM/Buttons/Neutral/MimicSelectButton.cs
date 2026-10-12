@@ -2,6 +2,7 @@
 using HarmonyLib;
 using JAM.Assets;
 using JAM.Modifiers.Role;
+using JAM.Options.Roles.Neutral;
 using JAM.Roles.Crewmate;
 using JAM.Roles.Neutral;
 using MiraAPI.Events;
@@ -40,6 +41,7 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
     static List<RoleBehaviour> ChosenRoles { get; } = [];
     RoleBehaviour? RandomRole;
 
+    public override bool UsableFirstRound => OptionGroupSingleton<MimicOptions>.Instance.MimicRound1;
     public override LoadableAsset<Sprite> Sprite => JamRoleIcons.Mimic;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
     public override Color TextOutlineColor => Colors.Mimic;
@@ -70,6 +72,7 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
                 if (r is MercenaryRole) return false; // Technically Not A Targeting One
                 if (r is IDoubleDraftRole) return false; // For Things Like Recruiter And Vampire
                 if (r.GetRoleAlignment() == RoleAlignment.NeutralOutlier) return false; // Removing Chef, Inquiz, etc.
+                if (r.GetRoleAlignment() == RoleAlignment.CrewmateSupport) return false; // No Crewmate Support
 
                 return true; //Will Be Ok Here
             }).ToList();
@@ -77,7 +80,7 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
             roleList.Shuffle();
             var random = roleList[0];
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < (int)OptionGroupSingleton<MimicOptions>.Instance.ChoiceCount; i++)
             {
                 roleList.Shuffle();
                 var selected = roleList[0];

@@ -19,8 +19,14 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
     [ModdedToggleOption("Arrow To Bounty Target")]
     public bool TargetArrow { get; set; } = true;
 
+    [ModdedNumberOption("Bounty Target Speed Modifier", 1f, 3f, 0.25f, MiraNumberSuffixes.Multiplier)]
+    public float TargetSpeed { get; set; } = 1.5f;
+
     [ModdedNumberOption("Hunted Player Grace Period", 0f, 30f, 5f, MiraNumberSuffixes.Seconds)]
     public float HuntedGracePeriod { get; set; } = 15;
+
+    [ModdedToggleOption("Breaks Between Bounties")]
+    public bool BountyBreaks { get; set; } = false;
 
     //Reward Stuff
     [ModdedNumberOption("Faction Modifier Weight", 0f, 100f, 5f, MiraNumberSuffixes.Percent)]

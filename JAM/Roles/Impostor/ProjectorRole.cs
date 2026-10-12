@@ -26,12 +26,15 @@ using JAM.Options.Roles.Impostor;
 using JAM.Assets;
 using JAM.Modifiers.Hidden;
 using JAM.Buttons.Impostor;
+using HarmonyLib;
 
 namespace JAM.Roles.Impostor;
 
 public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public ProjectorKillButton? killButton;
+    public bool isProjected = false;
+
     public RoleBehaviour CrewVariant => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MediumRole>());
     public Color RoleColor => TownOfUsColors.Impostor;
     public string RoleName => "Projector";
@@ -62,7 +65,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
         RoleBehaviourStubs.Deinitialize(this, targetPlayer);
         if (Spirit == null) return;
         Spirit.DestroyImmediate();
-        Spirit = null;
+        isProjected = false;
     }
 
     public override void OnMeetingStart()
@@ -71,7 +74,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
 
         if (Spirit == null) return;
         Spirit.DestroyImmediate();
-        Spirit = null;
+        isProjected = false;
     }
 
     public override void Initialize(PlayerControl player)
@@ -98,6 +101,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
         var spirit = Instantiate(TouAssets.MediumSpirit.LoadAsset()).GetComponent<MedSpiritObject>();
         (player.Data.Role as ProjectorRole)?.Spirit = spirit;
         AmongUsClient.Instance.Spawn(spirit, player.OwnerId);
+        (player.Data.Role as ProjectorRole)?.isProjected = true;
     }
 
     [MethodRpc((uint)JAMRpcCalls.MultiProject)]
@@ -125,7 +129,7 @@ public sealed class ProjectorRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOf
         }
 
         spirit.StartCoroutine(spirit.CoDestroy().WrapToIl2Cpp());
-        (projector.Data.Role as ProjectorRole)?.Spirit = null;
+        (projector.Data.Role as ProjectorRole)?.isProjected = false;
     }
 
     [HideFromIl2Cpp]
