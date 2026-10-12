@@ -1,3 +1,4 @@
+using AmongUs.GameOptions;
 using Il2CppInterop.Runtime.Attributes;
 using JAM.Assets;
 using JAM.Modifiers.Role;
@@ -13,12 +14,13 @@ using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
+using TownOfUs.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
 
 namespace JAM.Roles.Crewmate;
 
-public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, ICrewVariant
 {
     public int Uses = (int)OptionGroupSingleton<ProfessorOptions>.Instance.MaxUses;
     public int TasksUntilUse = (int)OptionGroupSingleton<ProfessorOptions>.Instance.TasksPerUse;
@@ -51,6 +53,8 @@ public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
         IntroSound = TouAudio.DetectiveIntroSound,
         Icon = JamRoleIcons.Professor
     };
+
+    public RoleBehaviour CrewVariant => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<PoliticianRole>());
 
     #region Meeting Stuff
     private MeetingMenu? meetingMenu;

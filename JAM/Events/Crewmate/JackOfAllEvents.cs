@@ -14,7 +14,6 @@ namespace JAM.Events.Crewmate
 		[RegisterEvent(0)]
 		public static void CompleteTaskEvent(CompleteTaskEvent @event)
 		{
-			Info("Completed Task");
 			if(@event.Player.GetRoleWhenAlive() is JackOfAllRole jackOfAllRole)
 			{
 				if(jackOfAllRole.NumTasksUntilMod <= 1)

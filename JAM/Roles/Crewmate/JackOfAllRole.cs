@@ -9,6 +9,7 @@ using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using Reactor.Utilities.Extensions;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
 using TownOfUs.Modifiers;
@@ -31,11 +32,11 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public string RoleName => "Jack Of All";
     public string RoleDescription => "Have a lot of modifiers";
     public string RoleMedDescription => RoleDescription;
-    public string RoleLongDescription => RoleDescription;
+    public string RoleLongDescription => RoleDescription + (Player == null ? "" : "\n\nCurrent Modifiers:\n" + string.Join("\n", Player.GetModifiers<BaseModifier>().Select(m => m.ModifierName)));
+    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
-
     public Color RoleColor => Colors.JackOfAll;
-
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
 
     public CustomRoleConfiguration Configuration => new(this)
@@ -72,8 +73,6 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
             return Player.GetModifiers<BaseModifier>().Any(m => m is IContinuesGame gameHalt && gameHalt.ContinuesGame);
         }
     }
-
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public override void Initialize(PlayerControl player)
     {
@@ -139,6 +138,8 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     modifier = modifiers[0];
                     modifiers.Remove(modifier);
                 } while (player.HasModifier(modifier.TypeId) && modifier is not JackOfAllVotes && modifiers.Count > 0);
+
+                Helpers.CreateAndShowNotification($"You Gained The {modifier.FreeplayFileColor.ToHtmlStringRGBA()}" + modifier.ModifierName + "</color> Modifier", Colors.JackOfAll, null, JamRoleIcons.JackOfAll.LoadAsset());
 
                 if (modifier is JackOfAllVotes)
                 {
