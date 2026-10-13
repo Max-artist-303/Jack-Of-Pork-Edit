@@ -75,13 +75,14 @@
 [Mehzz](https://www.youtube.com/watch?v=E4WlUXrJgy4) - For a bit of extra tasks code.\
 [Endless Host Roles](https://github.com/Gurge44/EndlessHostRoles) - For the Workaholic role idea.\
 
-<b>Artists</b>./
-Atlas./
-Xinav./
-HarckDOof./
-Lightblade./
-Phantombee./
-Jay./
+<b>Artists</b> |
+Atlas |
+Xinav |
+HarckDOof |
+Lightblade |
+Phantombee |
+Jay |
+Tiberius |
 
 > [!NOTE]
 > The following credits originate from the original TOU/TOUR repositories.
