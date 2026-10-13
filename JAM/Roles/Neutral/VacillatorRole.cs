@@ -1,4 +1,5 @@
 ﻿using AmongUs.GameOptions;
+using HarmonyLib;
 using JAM.Assets;
 using JAM.Options.Roles.Neutral;
 using MiraAPI.GameOptions;
@@ -14,6 +15,7 @@ using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Game.Alliance;
+using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Neutral;
@@ -51,14 +53,6 @@ public sealed class VacillatorRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
         TasksCountForProgress = false
     };
 
-    public override void OnDeath(DeathReason reason)
-    {
-        if(winsWithCrew != null)
-            Player.AddModifier<BasicGhostModifier>();
-
-        base.OnDeath(reason);
-    }
-
     public override bool DidWin(GameOverReason gameOverReason)
     {
         return RoleManager.Instance.GetRole(RoleTypes.Crewmate).DidWin(gameOverReason) == winsWithCrew;
@@ -73,5 +67,17 @@ public sealed class VacillatorRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
 
         var console = usable.TryCast<Console>()!;
         return console == null || console.AllowImpostor;
+    }
+
+    [HarmonyPatch(typeof(TownOfUs.Utilities.TouRoleUtils), "CanGetGhostRole", [typeof(PlayerControl)])]
+    public static class CantGetGhostRole
+    {
+        public static void Postfix(ref bool __result, PlayerControl player)
+        {
+            if(player.GetRoleWhenAlive() is VacillatorRole vacillator && vacillator.winsWithCrew != null)
+            {
+                __result = false;
+            }
+        }
     }
 }

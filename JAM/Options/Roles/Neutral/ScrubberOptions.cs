@@ -3,9 +3,9 @@ using MiraAPI.GameOptions.Attributes;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
 using JAM.Roles.Crewmate;
-using JAM.Roles.Neutral;
 using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
+using JAM.Roles.Impostor;
 
 namespace JAM.Options.Roles.Neutral;
 

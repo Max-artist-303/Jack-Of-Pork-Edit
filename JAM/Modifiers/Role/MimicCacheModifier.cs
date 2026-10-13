@@ -18,7 +18,9 @@ using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
+using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules;
+using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
@@ -27,7 +29,7 @@ using TownOfUs.Utilities;
 
 namespace JAM.Modifiers.Role;
 
-internal class MimicCacheModifier : BaseModifier, ICachedRole
+public sealed class MimicCacheModifier : BaseModifier, ICachedRole
 {
     public override string ModifierName => "Mimic Cache Modifier";
     public override bool HideOnUi => true;
@@ -41,6 +43,13 @@ internal class MimicCacheModifier : BaseModifier, ICachedRole
 
     public RoleBehaviour CachedRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
     public string CachedRoleName => "M";
+
+    public override void OnActivate()
+    {
+        Player.AddModifier<MimicAllianceModifier>();
+
+        base.OnActivate();
+    }
 
     [RegisterEvent(0)]
     public static void OnEjectionEvent(EjectionEvent @event)
@@ -71,5 +80,43 @@ internal class MimicCacheModifier : BaseModifier, ICachedRole
         {
             PlayerControl.LocalPlayer.RpcChangeRole(RoleId.Get<MimicRole>(), false);
         }
+    }
+
+    [HarmonyPatch(typeof(TownOfUs.Utilities.Extensions), "IsImpostorAligned")]
+    public static class MimicAintImp
+    {
+        public static void Postfix(ref bool __result, ref PlayerControl player)
+        {
+            if (player.HasModifier<MimicCacheModifier>())
+            {
+                __result = false;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(TownOfUs.Modules.GameHistory), "GetRoleWhenAlive", [typeof(PlayerControl)])]
+    public static class MimicHidesFromItsFakeRoles
+    {
+        public static void Postfix(ref RoleBehaviour __result, PlayerControl player)
+        {
+            if(player.GetModifier<MimicCacheModifier>() is MimicCacheModifier modifier)
+            {
+                Info("Mimic Not Tricking Anyone");
+                __result = modifier.CachedRole;
+            }
+        }
+    }
+    //Override GetRoleWhenAlive for mimic
+}
+
+public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscoverable
+{
+    public override string ModifierName => "Mimic Alliance Modifier";
+    public bool IsHiddenFromList => true;
+    public override bool GetsPunished => false;
+
+    public override int GetAssignmentChance()
+    {
+        return 0;
     }
 }

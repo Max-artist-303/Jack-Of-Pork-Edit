@@ -88,18 +88,6 @@ public enum JAMRpcCalls : uint
 
 // Concealed looks odd... (icon in-game)
 
-// Make An Option To Show The list Of Mods On THe Right Side?
-
-// Mimic Bugs
-    // Imp Mimic Can See Imps (Is Imp Aligned = false?)
-    // Mimic Neutral Win Conditions work
-
-// Professor Gave Someone Who Was Crewmate 3 incorrect faction roles?
-
-// Vacillator Kills Lobby if it dies before picking a side (Or Projector Killed Weird?)
-
-// Rework Scrubber to be more like inquiz but modifiers?
-
 // =============== FIXES ===============
 /*
  * Fixed Bounty Target Speed Modifier
@@ -135,7 +123,7 @@ public enum JAMRpcCalls : uint
  * Zombie Leader Can No Longer Get Exposed
  * Gave Jack Of All A Notification When They Get A Modifier
  * Gave Jack Of All A List For The In-Game Description That Shows All Its Current Modifiers
- 
+ * Overhauled Scrubber
 
  * Added "Vacillator" Role
  * Added "Mimic" Role

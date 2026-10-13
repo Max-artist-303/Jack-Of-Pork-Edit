@@ -46,6 +46,11 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
     public override Color TextOutlineColor => Colors.Mimic;
 
+    public override bool Enabled(RoleBehaviour? role)
+    {
+        return base.Enabled(role) && role?.Player?.Data?.IsDead == false;
+    }
+
     public override void ClickHandler()
     {
         if (!CanClick() || Minigame.Instance || PlayerControl.LocalPlayer.HasDied())
@@ -71,7 +76,9 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
                 if (r is IAssignableTargets) return false; // Not A Targeting One (eg. Exe or Fairy)
                 if (r is MercenaryRole) return false; // Technically Not A Targeting One
                 if (r is IDoubleDraftRole) return false; // For Things Like Recruiter And Vampire
+
                 if (r.GetRoleAlignment() == RoleAlignment.NeutralOutlier) return false; // Removing Chef, Inquiz, etc.
+                if (r.GetRoleAlignment() == RoleAlignment.CrewmatePower) return false; // No Crewmate Power
                 if (r.GetRoleAlignment() == RoleAlignment.CrewmateSupport) return false; // No Crewmate Support
 
                 return true; //Will Be Ok Here

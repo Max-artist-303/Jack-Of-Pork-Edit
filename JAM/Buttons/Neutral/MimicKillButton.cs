@@ -27,11 +27,12 @@ public sealed class MimicKillButton : TownOfUsTargetButton<PlayerControl>, IDise
 
     public override bool Enabled(RoleBehaviour? role)
     {
-        return PlayerControl.LocalPlayer.Data.Role is MimicRole || (
+        return (PlayerControl.LocalPlayer.Data.Role is MimicRole || (
                 PlayerControl.LocalPlayer.HasModifier<MimicCacheModifier>()
                 && !PlayerControl.LocalPlayer.IsImpostor()
                 && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.NeutralKilling
-                && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.CrewmateKilling);
+                && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.CrewmateKilling))
+                && !PlayerControl.LocalPlayer.Data.IsDead;
     }
 
     public void SetDiseasedTimer(float multiplier)
