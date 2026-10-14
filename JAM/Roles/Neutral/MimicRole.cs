@@ -36,6 +36,13 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
+    public override void OnMeetingStart()
+    {
+        Info(string.Join("\n", OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.GetRolesList()));
+
+        base.OnMeetingStart();
+    }
+
     public static List<RoleBehaviour> GetValidMimicRoles()
     {
         List<RoleBehaviour> roleList = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(delegate (RoleBehaviour r)
@@ -60,6 +67,7 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         if (role is IAssignableTargets) return false; // Not A Targeting One (eg. Exe or Fairy)
         if (role is MercenaryRole) return false; // Technically Not A Targeting One
         if (role is IDoubleDraftRole) return false; // For Things Like Recruiter And Vampire
+        if (role is ZombieLeaderRole) return false; // I... don't want to deal with the consequences of this...
 
         if (role.IsImpostor()) return false; // Stupid Fix Right Now So Mimic At Least Can Be Played
 

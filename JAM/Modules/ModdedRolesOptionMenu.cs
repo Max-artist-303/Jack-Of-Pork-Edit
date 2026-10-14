@@ -23,10 +23,6 @@ using UnityEngine.UI;
 
 namespace JAM.Modules.Components;
 
-// Fix UI overlaps
-// Make Behind UI unable To Be Interacted With While In Menu
-// Fix Esc. Breaking Stuff
-
 [RegisterInIl2Cpp]
 public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
 {
@@ -83,10 +79,10 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
         newMenu.DestroyImmediate();
 
         customMenu.transform.SetParent(Camera.main.transform, false);
-        customMenu.transform.localPosition = new Vector3(0f, 0f, -100f);
+        customMenu.transform.localPosition = new Vector3(0f, 0f, -500f);
 
         var nextButton = Instantiate(customMenu.backButton, customMenu.transform).gameObject;
-        nextButton.transform.localPosition = new Vector3(1.85f, -2.185f, -100f);
+        nextButton.transform.localPosition = new Vector3(1.85f, -2.185f, -500f);
         nextButton.transform.localScale = new Vector3(0.65f, 0.65f, 1);
         nextButton.name = "RightArrowButton";
         nextButton.GetComponent<SpriteRenderer>().sprite = MiraAssets.NextButton.LoadAsset();
@@ -100,7 +96,7 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
         }));
 
         var backButton = Instantiate(nextButton, customMenu.transform).gameObject;
-        backButton.transform.localPosition = new Vector3(-1.85f, -2.185f, -100f);
+        backButton.transform.localPosition = new Vector3(-1.85f, -2.185f, -500f);
         backButton.name = "LeftArrowButton";
         backButton.gameObject.GetComponent<CloseButtonConsoleBehaviour>().Destroy();
         backButton.GetComponent<SpriteRenderer>().flipX = true;
@@ -272,7 +268,7 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
         var searchBounds = CalcSpriteBoundsInParentSpace(transform, searchObj);
         var deltaX = gridCenterX - searchBounds.center.x;
         var deltaY = desiredSearchBarCenterY - searchBounds.center.y;
-        searchObj.transform.localPosition += new Vector3(deltaX, deltaY, -100f);
+        searchObj.transform.localPosition += new Vector3(deltaX, deltaY, -500f);
         searchBounds = CalcSpriteBoundsInParentSpace(transform, searchObj);
 
         var wikiClickSound = HudManager.Instance?.MapButton?.ClickSound;
@@ -471,7 +467,7 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
             MeetingHud.Instance.playerStates.Do(x => x.gameObject.SetActive(true));
         }
 
-        roleOptions.rolesMenu = null;
+        Coroutines.Start(roleOptions.SetValues());
     }
 
     public void RefreshRoles()

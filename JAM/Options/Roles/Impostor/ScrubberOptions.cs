@@ -7,7 +7,7 @@ using TownOfUs.Extensions;
 using TownOfUs.Modules.Localization;
 using JAM.Roles.Impostor;
 
-namespace JAM.Options.Roles.Neutral;
+namespace JAM.Options.Roles.Impostor;
 
 public sealed class ScrubberOptions : AbstractOptionGroup<ScrubberRole>
 {

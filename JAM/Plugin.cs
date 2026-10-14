@@ -84,7 +84,7 @@ public enum JAMRpcCalls : uint
     Project = 4,
     RemoveProjection = 5,
     AssignSpirit = 6,
-    UpdateMimicBlacklist
+    RequestRolesOption = 7
 }
 
 // Concealed looks odd... (icon in-game)
@@ -95,10 +95,6 @@ public enum JAMRpcCalls : uint
 // Professor Sprite Is Too Big
 
 // MIMIC STILL SEES IMPS!?! (Did A "Fix" for now that stops imp cards from being in selections)
-
-// Make a custom menu in the mimic options to blacklist certain roles from being able to be picked
-
-// Make a custom menu in the bounty hunter options for making selecting chances cleaner
 
 // =============== FIXES ===============
 /*

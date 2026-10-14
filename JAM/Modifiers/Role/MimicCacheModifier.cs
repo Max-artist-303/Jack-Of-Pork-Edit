@@ -40,7 +40,7 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     public bool Visible => Player.AmOwner || PlayerControl.LocalPlayer.HasDied() ||
                            FairyRole.FairySeesRoleVisibilityFlag(Player);
 
-    public CacheRoleGuess GuessMode => CacheRoleGuess.CachedRole;
+    public CacheRoleGuess GuessMode => CacheRoleGuess.ActiveOrCachedRole;
 
     public RoleBehaviour CachedRole => RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
     public string CachedRoleName => "M";
@@ -67,7 +67,7 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     {
         public static void Prefix(PlayerControl player, bool recordRole)
         {
-            if (player.HasModifier<MimicCacheModifier>() && recordRole)
+            if (player?.HasModifier<MimicCacheModifier>() == true && recordRole)
             {
                 player.RpcRemoveModifier<MimicCacheModifier>();
             }
@@ -77,9 +77,9 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     [RegisterEvent(0)]
     public static void OnGameEndEvent(GameEndEvent @event)
     {
-        if (PlayerControl.LocalPlayer.HasModifier<MimicCacheModifier>())
+        if (PlayerControl.LocalPlayer?.HasModifier<MimicCacheModifier>() == true)
         {
-            PlayerControl.LocalPlayer.RpcChangeRole(RoleId.Get<MimicRole>(), false);
+            PlayerControl.LocalPlayer?.RpcChangeRole(RoleId.Get<MimicRole>(), false);
         }
     }
 
@@ -89,27 +89,15 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     {
         public static void Postfix(ref RoleBehaviour __result, ref NetworkedPlayerInfo __instance)
         {
-            if (__instance == null) return;
+            if (__instance == null || PlayerControl.LocalPlayer?.Data.IsDead == true) return;
 
             PlayerControl player = TownOfUs.Utilities.MiscUtils.PlayerById(__instance.PlayerId);
 
             if (player == null) return;
 
-            if(player.HasModifier<MimicCacheModifier>() && !player.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead)
+            if(player.HasModifier<MimicCacheModifier>() == true && !player.AmOwner)
             {
                 __result = (player.GetModifier<MimicCacheModifier>() as ICachedRole)?.CachedRole ?? RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(TownOfUs.Modules.GameHistory), "GetRoleWhenAlive", [typeof(PlayerControl)])]
-    public static class MimicHidesFromItsFakeRoles
-    {
-        public static void Postfix(ref RoleBehaviour __result, PlayerControl player)
-        {
-            if(player?.GetModifier<MimicCacheModifier>() is MimicCacheModifier modifier)
-            {
-                __result = modifier.CachedRole;
             }
         }
     }
