@@ -139,7 +139,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
                     modifiers.Remove(modifier);
                 } while (player.HasModifier(modifier.TypeId) && modifier is not JackOfAllVotes && modifiers.Count > 0);
 
-                Helpers.CreateAndShowNotification($"You Gained The {modifier.FreeplayFileColor.ToHtmlStringRGBA()}" + modifier.ModifierName + "</color> Modifier", Colors.JackOfAll, null, JamRoleIcons.JackOfAll.LoadAsset());
+                Helpers.CreateAndShowNotification("You Gained The " + modifier.ModifierName + " Modifier", Colors.JackOfAll, null, JamRoleIcons.JackOfAll.LoadAsset());
 
                 if (modifier is JackOfAllVotes)
                 {

@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.5")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.5.5")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -83,10 +83,22 @@ public enum JAMRpcCalls : uint
     BountyCollected = 3,
     Project = 4,
     RemoveProjection = 5,
-    AssignSpirit = 6
+    AssignSpirit = 6,
+    UpdateMimicBlacklist
 }
 
 // Concealed looks odd... (icon in-game)
+
+// Zombie/Leader sprites are too big
+// Zombies Shouldn't Be Able To Report
+
+// Professor Sprite Is Too Big
+
+// MIMIC STILL SEES IMPS!?! (Did A "Fix" for now that stops imp cards from being in selections)
+
+// Make a custom menu in the mimic options to blacklist certain roles from being able to be picked
+
+// Make a custom menu in the bounty hunter options for making selecting chances cleaner
 
 // =============== FIXES ===============
 /*
@@ -96,6 +108,7 @@ public enum JAMRpcCalls : uint
  * Zombies Can No Longer Call Meetings
  * Zombie Leader Is Now Guessable Until Final 3
  * Made Concealed And Shy Mutually Exclusive
+ * Conceal Name Now Works
  * You Are No Longer Concealed During Camo Comms
  * Adjusted Wording In Bounty Hunter Options
  * Micromanager Task Completion Names Look Right
@@ -124,6 +137,7 @@ public enum JAMRpcCalls : uint
  * Gave Jack Of All A Notification When They Get A Modifier
  * Gave Jack Of All A List For The In-Game Description That Shows All Its Current Modifiers
  * Overhauled Scrubber
+ * Made Options Look Good
 
  * Added "Vacillator" Role
  * Added "Mimic" Role

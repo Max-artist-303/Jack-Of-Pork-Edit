@@ -29,14 +29,14 @@ using UnityEngine;
 
 namespace JAM.Roles.Impostor;
 
-public sealed class ScrubberRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class ScrubberRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string LocaleKey => "Scrubber";
     public string RoleName => "Scrubber";
-    public string RoleDescription => "Cleanse the land of modifiers to win";
+    public string RoleDescription => "No Modifiers For You!";
     public string RoleMedDescription => RoleDescription;
-    public string RoleLongDescription => RoleDescription;
+    public string RoleLongDescription => "Remove Modifiers From Crewmates To Make The Impostors' Lives Easier!";
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     [HideFromIl2Cpp]

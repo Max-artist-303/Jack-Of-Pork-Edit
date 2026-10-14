@@ -18,7 +18,8 @@ public sealed class ProfessorOptions : AbstractOptionGroup<ProfessorRole>
 
     [ModdedToggleOption("Get More Uses From Tasks")]
     public bool GetMoreUses { get; set; } = false;
-
-    [ModdedNumberOption("Number Of Tasks Per Extra Use", 1f, 5f, 1f)]
-    public float TasksPerUse { get; set; } = 3f;
+    public ModdedNumberOption TasksPerUse { get; set; } = new("Number Of Tasks Per Extra Use", 3f, 1f, 5f, 1f, MiraNumberSuffixes.None)
+    {
+        Visible = () => OptionGroupSingleton<ProfessorOptions>.Instance.GetMoreUses
+    };
 }

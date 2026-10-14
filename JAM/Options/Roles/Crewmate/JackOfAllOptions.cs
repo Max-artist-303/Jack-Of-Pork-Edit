@@ -18,7 +18,8 @@ public sealed class JackOfAllOptions : AbstractOptionGroup<JackOfAllRole>
 
     [ModdedToggleOption("Can Get More Modifiers From Tasks")]
     public bool ModsFromTasks { get; set; } = true;
-
-    [ModdedNumberOption("Number of tasks per modifier", 1f, 5f, 1f)]
-    public float TasksPerMod { get; set; } = 1f;
+    public ModdedNumberOption TasksPerMod { get; set; } = new("Number of tasks per modifier", 1f, 1f, 5f, 1f, MiraNumberSuffixes.None)
+    {
+        Visible = () => OptionGroupSingleton<JackOfAllOptions>.Instance.ModsFromTasks
+    };
 }

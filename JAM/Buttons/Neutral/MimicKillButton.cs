@@ -29,7 +29,7 @@ public sealed class MimicKillButton : TownOfUsTargetButton<PlayerControl>, IDise
     {
         return (PlayerControl.LocalPlayer.Data.Role is MimicRole || (
                 PlayerControl.LocalPlayer.HasModifier<MimicCacheModifier>()
-                && !PlayerControl.LocalPlayer.IsImpostor()
+                && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.Impostor
                 && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.NeutralKilling
                 && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.CrewmateKilling))
                 && !PlayerControl.LocalPlayer.Data.IsDead;

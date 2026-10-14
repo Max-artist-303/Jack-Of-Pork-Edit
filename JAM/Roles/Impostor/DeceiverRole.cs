@@ -30,7 +30,7 @@ using JAM.Modifiers.Hidden;
 using JAM.Modifiers.Role;
 
 //Note: This Role Was Suggested By: ‧₊˚✧ 𝒥𝒶𝓎 :3 ✧˚₊‧ (Discord)
-public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant
+public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, ICrewVariant, IDoomable
 {
     public RoleBehaviour randomizedRole;
     public static bool confuseRole;
@@ -72,6 +72,7 @@ public sealed class DeceiverRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
     };
 
     public RoleBehaviour CrewVariant => DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<SeerRole>());
+    public DoomableType DoomHintType => DoomableType.Trickster;
 
     public override void OnRoleSet()
     {

@@ -15,9 +15,10 @@ public sealed class TimeKeeperOptions : AbstractOptionGroup<TimeKeeperRole>
 
     [ModdedToggleOption("Cooldown Decreases Each Tie")]
     public bool AlwaysDecreaseCd { get; set; } = true;
-
-    [ModdedNumberOption("Cd Decrease", 0f, 10f, 0.5f, MiraNumberSuffixes.Seconds)]
-    public float CooldownDecrease { get; set; } = 5f;
+    public ModdedNumberOption CooldownDecrease { get; set; } = new("Cooldown Decrease", 5f, 0f, 10f, 0.5f, MiraNumberSuffixes.Seconds)
+    {
+        Visible = () => OptionGroupSingleton<TimeKeeperOptions>.Instance.AlwaysDecreaseCd
+    };
 
     [ModdedToggleOption("Time Keeper Notifies")]
     public bool TimeNotif { get; set; } = true;

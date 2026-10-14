@@ -107,7 +107,7 @@ public sealed class JamConcealedModifier : UniversalGameModifier, IWikiDiscovera
 
         if (!Player.Data.IsDead && !(commsActive && TownOfUsMapOptions.IsCamoCommsOn()) && !Player.HasModifier<CamouflagerCamoModifier>())
         {
-            ShyModifier.SetVisibility(Player, OptionGroupSingleton<ConcealedOptions>.Instance.ConcealedOpacity / 100f);
+            ShyModifier.SetVisibility(Player, OptionGroupSingleton<ConcealedOptions>.Instance.ConcealedOpacity / 100f, OptionGroupSingleton<ConcealedOptions>.Instance.ConcealName);
         }
     }
 }

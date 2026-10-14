@@ -21,6 +21,7 @@ using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modifiers.Game;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Options;
 using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Crewmate;
@@ -82,14 +83,21 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
         }
     }
 
-    [HarmonyPatch(typeof(TownOfUs.Utilities.Extensions), "IsImpostorAligned")]
+    //Make Is So No One Else Will See The Mimic
+    [HarmonyPatch(typeof(NetworkedPlayerInfo), "Role", MethodType.Getter)]
     public static class MimicAintImp
     {
-        public static void Postfix(ref bool __result, ref PlayerControl player)
+        public static void Postfix(ref RoleBehaviour __result, ref NetworkedPlayerInfo __instance)
         {
-            if (player.HasModifier<MimicCacheModifier>())
+            if (__instance == null) return;
+
+            PlayerControl player = TownOfUs.Utilities.MiscUtils.PlayerById(__instance.PlayerId);
+
+            if (player == null) return;
+
+            if(player.HasModifier<MimicCacheModifier>() && !player.AmOwner && !PlayerControl.LocalPlayer.Data.IsDead)
             {
-                __result = false;
+                __result = (player.GetModifier<MimicCacheModifier>() as ICachedRole)?.CachedRole ?? RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
             }
         }
     }
@@ -99,14 +107,12 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     {
         public static void Postfix(ref RoleBehaviour __result, PlayerControl player)
         {
-            if(player.GetModifier<MimicCacheModifier>() is MimicCacheModifier modifier)
+            if(player?.GetModifier<MimicCacheModifier>() is MimicCacheModifier modifier)
             {
-                Info("Mimic Not Tricking Anyone");
                 __result = modifier.CachedRole;
             }
         }
     }
-    //Override GetRoleWhenAlive for mimic
 }
 
 public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscoverable
@@ -114,6 +120,7 @@ public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscovera
     public override string ModifierName => "Mimic Alliance Modifier";
     public bool IsHiddenFromList => true;
     public override bool GetsPunished => false;
+    public override AlliedFaction TrueFactionType => AlliedFaction.NeutralKiller;
 
     public override int GetAssignmentChance()
     {

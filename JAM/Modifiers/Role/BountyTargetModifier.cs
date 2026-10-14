@@ -146,7 +146,7 @@ public sealed class BountyTargetModifier : BaseModifier
         {
             TimeRemaining -= 0.02f;
             bountyTimerTMP.text = TimeRemaining.ToString("###");
-            bountyTimerTMP?.gameObject.SetActive(TimeRemaining < OptionGroupSingleton<BountyHunterOptions>.Instance.BountyTimeframe);
+            bountyTimerTMP?.gameObject.SetActive(TimeRemaining < (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountyTimeframe);
         }
 
         base.FixedUpdate();
@@ -323,7 +323,7 @@ public sealed class BountyRewardModifier : BaseModifier
 
         // Reveal Role (If Crew)
         if(Player.Data.Role.IsCrewmate())
-            for (int i = 0; i < (int)opts.RevealCKRole; i++)
+            for (int i = 0; i < (int)opts.RevealRole; i++)
             {
                 rewards.Add(RewardType.RevealRole);
             }
@@ -371,7 +371,7 @@ public sealed class BountyRewardModifier : BaseModifier
         {
             guaranteedRewards.Add(RewardType.ExtraVote);
         }
-        if ((int)opts.RevealCKRole == 100 && rewards.Contains(RewardType.RevealRole))
+        if ((int)opts.RevealRole == 100 && rewards.Contains(RewardType.RevealRole))
         {
             guaranteedRewards.Add(RewardType.RevealRole);
         }
