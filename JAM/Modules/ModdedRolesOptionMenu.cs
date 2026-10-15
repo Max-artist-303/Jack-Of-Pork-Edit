@@ -466,13 +466,11 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
         {
             MeetingHud.Instance.playerStates.Do(x => x.gameObject.SetActive(true));
         }
-
-        Coroutines.Start(roleOptions.SetValues());
     }
 
     public void RefreshRoles()
     {
-        List<RoleBehaviour> rolesList = roleOptions.GetRolesList();
+        List<RoleBehaviour> rolesList = roleOptions.rolesList;
 
         foreach(MenuEntry entry in allEntries)
         {

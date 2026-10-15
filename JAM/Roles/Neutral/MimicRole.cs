@@ -1,10 +1,16 @@
 ﻿using AmongUs.GameOptions;
+using Hazel;
 using JAM.Assets;
+using JAM.Options.OptionTypes;
 using JAM.Options.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using Reactor.Networking.Attributes;
+using Reactor.Networking.Rpc;
 using TownOfUs.Assets;
 using TownOfUs.Extensions;
 using TownOfUs.Interfaces;
@@ -36,18 +42,11 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
-    public override void OnMeetingStart()
-    {
-        Info(string.Join("\n", OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.GetRolesList()));
-
-        base.OnMeetingStart();
-    }
-
     public static List<RoleBehaviour> GetValidMimicRoles()
     {
         List<RoleBehaviour> roleList = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(delegate (RoleBehaviour r)
         {
-            if (OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.GetRolesList().Any(role => role.Role == r.Role))
+            if (OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.Any(role => role.Role == r.Role))
                 return false;
 
             return IsValidMimicRole(r);
@@ -76,5 +75,65 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         if (role.GetRoleAlignment() == RoleAlignment.CrewmateSupport) return false; // No Crewmate Support
 
         return true; //Will Be Ok Here
+    }
+
+    // Events And Such
+    [RegisterEvent(0)]
+    public static void OnRoundStartEvent(RoundStartEvent @event)
+    {
+        if (@event.TriggeredByIntro && PlayerControl.LocalPlayer.IsHost())
+        {
+            RoleTypes[] roleTypes = OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.Select(r => r.Role).ToArray();
+
+            Rpc<SyncMimicBlacklistRpc>.Instance.Send(roleTypes);
+        }
+    }
+}
+
+[RegisterCustomRpc((uint)JAMRpcCalls.SyncMimicBlacklist)]
+public class SyncMimicBlacklistRpc(Plugin plugin, uint id) : PlayerCustomRpc<JAM.Plugin, RoleTypes[]>(plugin, id)
+{
+    public override RpcLocalHandling LocalHandling => RpcLocalHandling.After;
+
+    public override void Handle(PlayerControl sender, RoleTypes[]? data)
+    {
+        OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.RemoveAll(r => true);
+
+        foreach (RoleTypes roleType in data)
+        {
+            OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.Add(DestroyableSingleton<RoleManager>.Instance.GetRole(roleType));
+        }
+    }
+
+    public override RoleTypes[] Read(MessageReader reader)
+    {
+        int length = reader.ReadInt32();
+        RoleTypes[] roleTypes = new RoleTypes[length];
+
+        for(int i = 0; i < length; i++)
+        {
+            roleTypes[i] = (RoleTypes)reader.ReadUInt32();
+            if (roleTypes[i] == null)
+            {
+                Error("Error: Role Not Found - " + reader.ReadUInt32());
+            }
+            else
+            {
+                Info("New Blacklist Role: " + roleTypes[i]);
+            }
+        }
+
+        return roleTypes;
+    }
+
+    public override void Write(MessageWriter writer, RoleTypes[]? data)
+    {
+        writer.Write(data.Length);
+
+        foreach(var value in data)
+        {
+            Info("Sending Blacklist Role: " + value.ToString());
+            writer.Write((uint)value);
+        }
     }
 }

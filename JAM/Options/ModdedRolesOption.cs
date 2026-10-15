@@ -7,40 +7,30 @@ using JAM.Options.Roles.Neutral;
 using JAM.Roles.Neutral;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.OptionTypes;
+using MiraAPI.Networking;
+using MiraAPI.Roles;
 using MiraAPI.Translation;
 using MiraAPI.Utilities;
 using Reactor.Networking.Attributes;
 using Reactor.Networking.Rpc;
 using Reactor.Utilities;
+using System.Globalization;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Text;
 using UnityEngine;
+using static Il2CppSystem.Linq.Expressions.Interpreter.NullableMethodCallInstruction;
 using Object = UnityEngine.Object;
 
 namespace JAM.Options.OptionTypes;
 
-// Make Incoming Clients Accept The List Properly
-// Make Saves Work Properly
+// Make Saves for when you leave and come back
+// Make Append Stuff Work
 
-public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bool includeInPreset = true) : ModdedEnumOption(title, 0, typeof(RoleTypes))
+public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bool includeInPreset = true) : ModdedOption<RoleTypes>(title, RoleTypes.Crewmate, includeInPreset)
 {
-    [HarmonyPatch(typeof(LobbyBehaviour), "Start")]
-    public static class RequestRoleOptionsPatch
-    {
-        public static void Postfix()
-        {
-            if (PlayerControl.LocalPlayer.IsHost())
-            {
-                Coroutines.Start(OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.SetValues());
-            }
-            else
-            {
-                RequestSetValues(OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles);
-            }
-        }
-    }
-
     public ModdedRolesMenu? rolesMenu;
-    List<RoleBehaviour> rolesList = new List<RoleBehaviour>();
+    public List<RoleBehaviour> rolesList = new List<RoleBehaviour>();
 
     public override OptionBehaviour CreateOption(ToggleOption toggleOpt, NumberOption numberOpt, StringOption stringOpt, PlayerOption playerOpt, Transform container)
     {
@@ -51,6 +41,8 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
         toggleOption.TitleText.text = base.Title.Translate();
         toggleOption.CheckMark.enabled = false;
         toggleOption.OnValueChanged = new Action<OptionBehaviour>(OnRoleButtonClicked);
+
+
         base.OptionBehaviour = toggleOption;
 
         return toggleOption;
@@ -68,38 +60,30 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
         (OptionBehaviour as ToggleOption)?.CheckMark.enabled = false;
     }
 
-    protected override void OnValueChanged(int newValue)
+    protected override void OnValueChanged(RoleTypes newValue)
     {
-        if (newValue == (int)RoleTypes.Crewmate || newValue == (int)RoleTypes.Impostor) return;
+        if (newValue == RoleTypes.Crewmate || newValue == RoleTypes.Impostor) return;
 
-        RoleBehaviour role = DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)newValue);
+        RoleBehaviour role = DestroyableSingleton<RoleManager>.Instance.GetRole(newValue);
 
-        if (newValue == -1 && !PlayerControl.LocalPlayer.IsHost())
-        {
-            rolesList.RemoveAll(r => true);
-            StringOption? option = base.OptionBehaviour as StringOption;
-            if (option != null)
-            {
-                option.Value = 0;
-            }
-            return;
-        }
-        else if (newValue == -1)
-        {
-            return;
-        }
-        else if (!PlayerControl.LocalPlayer.IsHost()) ClickRoleHandle(role, false);
+        if (!PlayerControl.LocalPlayer.IsHost()) ClickRoleHandle(role, false);
 
-        bool addedRole = rolesList.Any(r => (int)r.Role == newValue);
-
-        ModdedOptionsManager.AddSettingsChangeMessage(DestroyableSingleton<HudManager>.Instance.Notifier, base.StringName, (addedRole ? "Added " : "Removed ") + role.GetRoleName(), this.Configuration.PopUpTextColor, this.Configuration.PopUpIconTmp, true);
+        bool addedRole = rolesList.Any(r => r.Role == newValue);
 
         StringOption? opt = base.OptionBehaviour as StringOption;
         if (opt != null)
         {
-            opt.Value = 0;
+            opt.Value = (int)RoleTypes.Crewmate;
         }
 
+        if(PlayerControl.LocalPlayer.IsHost())
+        {
+            RoleTypes[] roleTypes = OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.Select(r => r.Role).ToArray();
+
+            Rpc<SyncMimicBlacklistRpc>.Instance.Send(roleTypes);
+        }
+
+        ModdedOptionsManager.AddSettingsChangeMessage(DestroyableSingleton<HudManager>.Instance.Notifier, base.StringName, (rolesList.Any(r => r.Role == newValue) ? "Added " : "Removed ") + DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)newValue).GetRoleName(), this.Configuration.PopUpTextColor, this.Configuration.PopUpIconTmp, false);
     }
 
     private void ClickRoleHandle(RoleBehaviour role)
@@ -126,66 +110,52 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
 
         if (!isSetting) return;
 
-        SetValue((int)role.Role, true);
+        SetValue(role.Role, true);
 
         rolesMenu?.RefreshRoles();
     }
 
-    public List<RoleBehaviour> GetRolesList()
+    public override float GetFloatData()
     {
-        return rolesList;
-    }
-    public void SetRolesList()
-    {
-        rolesList = rolesList;
+        return 0;
     }
 
-    public System.Collections.IEnumerator SetValues()
+    public override NetData GetNetData()
     {
-        SetValue(-1, true);
+        return new NetData(base.Id, Encoding.Unicode.GetBytes(Convert.ToString(base.Value, NumberFormatInfo.InvariantInfo)));
+    }
 
-        List<RoleBehaviour> skippedRoles = new List<RoleBehaviour>();
+    public override void HandleNetData(byte[] data)
+    {
+        base.SetValue((RoleTypes)((object)Enum.Parse(typeof(RoleTypes), Encoding.Unicode.GetString(data))), true);
+    }
 
-        foreach(RoleBehaviour role in rolesList)
+    public override RoleTypes GetValueFromOptionBehaviour(OptionBehaviour optionBehaviour)
+    {
+        return (RoleTypes)((object)Enum.Parse(typeof(RoleTypes), optionBehaviour.GetInt().ToString(NumberFormatInfo.InvariantInfo)));
+    }
+
+    [HarmonyPatch(typeof(AbstractOptionGroup), "Options", MethodType.Getter)]
+    public static class RemoveModRoleOptionFromOptions
+    {
+        public static void Postfix(ref List<IModdedOption> __result)
         {
-            yield return null;
-            try
+            __result.RemoveAll(delegate (IModdedOption option)
             {
-                SetValue((int)role.Role, true);
-            }
-            catch
-            {
-                skippedRoles.Add(role);
-            }
-        }
-
-        while(skippedRoles.Count > 0)
-        {
-            List<RoleBehaviour> tempRoleList = new List<RoleBehaviour>();
-            foreach(RoleBehaviour role in skippedRoles)
-            {
-                yield return null;
-                try
+                if(option.GetType() == typeof(ModdedRolesOption))
                 {
-                    SetValue((int)role.Role, true);
+                    Info("Purging Role Option");
+                    return true;
                 }
-                catch
-                {
-                    tempRoleList.Add(role);
-                }
-            }
-            skippedRoles = tempRoleList;
-        }
 
-        rolesMenu = null;
-    }
-
-    [MethodRpc((uint)JAMRpcCalls.RequestRolesOption)]
-    public static void RequestSetValues(ModdedRolesOption rolesOption)
-    {
-        if (PlayerControl.LocalPlayer.IsHost())
-        {
-            Coroutines.Start(rolesOption.SetValues());
+                return false;
+            });
         }
     }
 }
+
+//Useful To Have For Generalizing
+/*
+List<AbstractOptionGroup> optionGroups = AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>;
+AbstractOptionGroup abstractOptionGroup = optionGroups.FirstOrDefault((AbstractOptionGroup x) => x.OptionableType == classType);
+*/

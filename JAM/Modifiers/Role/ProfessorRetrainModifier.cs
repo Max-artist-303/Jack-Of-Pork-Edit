@@ -1,4 +1,6 @@
-﻿using Il2CppSystem.Web.Util;
+﻿using AmongUs.GameOptions;
+using Il2CppSystem.Web.Util;
+using JAM.Roles.Crewmate;
 using JAM.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
@@ -47,6 +49,7 @@ internal class ProfessorRetrainModifier : BaseModifier
                 if (!CustomRoleUtils.CanSpawnOnCurrentMode(r)) return false; // Only If It Can Spawn On The Current Mode
                 if (r is IDoubleDraftRole) return false; // For Things Like Recruiter And Vampire
                 if (r.Role == PlayerControl.LocalPlayer.Data.Role.Role) return false; // Can't Turn Into Your Role
+                if (r.Role == (RoleTypes)RoleId.Get<ProfessorRole>()) return false; // Can't Turn Into Professor
 
                 return true; //Will Be Ok Here
             }).ToList();

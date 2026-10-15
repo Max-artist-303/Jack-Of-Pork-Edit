@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.6")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.6.1")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -84,7 +84,7 @@ public enum JAMRpcCalls : uint
     Project = 4,
     RemoveProjection = 5,
     AssignSpirit = 6,
-    RequestRolesOption = 7
+    SyncMimicBlacklist = 7
 }
 
 // Concealed looks odd... (icon in-game)

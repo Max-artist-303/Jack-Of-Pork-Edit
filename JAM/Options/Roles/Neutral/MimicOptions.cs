@@ -1,7 +1,11 @@
-﻿using JAM.Options.OptionTypes;
+﻿using HarmonyLib;
+using JAM.Options.OptionTypes;
 using JAM.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
+using MiraAPI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +27,5 @@ public sealed class MimicOptions : AbstractOptionGroup<MimicRole>
     [ModdedToggleOption("Mimic Round 1")]
     public bool MimicRound1 { get; set; } = true;
 
-    public ModdedRolesOption BlacklistedRoles { get; set; } = new("Blacklisted Roles", new List<RoleBehaviour>());
+    public ModdedRolesOption BlacklistedRoles { get; set; } = new("Blacklisted Mimic Roles", new List<RoleBehaviour>());
 }

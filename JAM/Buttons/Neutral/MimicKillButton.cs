@@ -27,7 +27,7 @@ public sealed class MimicKillButton : TownOfUsTargetButton<PlayerControl>, IDise
 
     public override bool Enabled(RoleBehaviour? role)
     {
-        return (PlayerControl.LocalPlayer.Data.Role is MimicRole || (
+        return !Disabled && (PlayerControl.LocalPlayer.Data.Role is MimicRole || (
                 PlayerControl.LocalPlayer.HasModifier<MimicCacheModifier>()
                 && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.Impostor
                 && PlayerControl.LocalPlayer.Data.Role.GetRoleAlignment() != TownOfUs.Roles.RoleAlignment.NeutralKilling

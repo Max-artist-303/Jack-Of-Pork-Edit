@@ -73,34 +73,6 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
             }
         }
     }
-
-    [RegisterEvent(0)]
-    public static void OnGameEndEvent(GameEndEvent @event)
-    {
-        if (PlayerControl.LocalPlayer?.HasModifier<MimicCacheModifier>() == true)
-        {
-            PlayerControl.LocalPlayer?.RpcChangeRole(RoleId.Get<MimicRole>(), false);
-        }
-    }
-
-    //Make Is So No One Else Will See The Mimic
-    [HarmonyPatch(typeof(NetworkedPlayerInfo), "Role", MethodType.Getter)]
-    public static class MimicAintImp
-    {
-        public static void Postfix(ref RoleBehaviour __result, ref NetworkedPlayerInfo __instance)
-        {
-            if (__instance == null || PlayerControl.LocalPlayer?.Data.IsDead == true) return;
-
-            PlayerControl player = TownOfUs.Utilities.MiscUtils.PlayerById(__instance.PlayerId);
-
-            if (player == null) return;
-
-            if(player.HasModifier<MimicCacheModifier>() == true && !player.AmOwner)
-            {
-                __result = (player.GetModifier<MimicCacheModifier>() as ICachedRole)?.CachedRole ?? RoleManager.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>());
-            }
-        }
-    }
 }
 
 public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscoverable
