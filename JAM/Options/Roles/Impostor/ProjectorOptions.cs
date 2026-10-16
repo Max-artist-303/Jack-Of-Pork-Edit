@@ -14,9 +14,4 @@ public sealed class ProjectorOptions : AbstractRoleOptionGroup<ProjectorRole>
 
     [ModdedNumberOption("Ability Duration", 5f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float ProjectDuration { get; set; } = 20f;
-    [ModdedToggleOption("Can Kill While Projected")]
-    public bool ProjectKill { get; set; } = false;
-
-    [ModdedNumberOption("Ghost Speed Multiplier", 0.5f, 2.5f, 0.1f, MiraNumberSuffixes.Multiplier)]
-    public float GhostSpeed { get; set; } = 1f;
 }

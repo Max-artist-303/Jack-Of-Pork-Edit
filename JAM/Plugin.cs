@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.2")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.6.2")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -44,6 +44,8 @@ public partial class Plugin : BasePlugin, IMiraPlugin
         try
         {
             Harmony.PatchAll();
+
+            JamRoleIcons.Professor.LoadAsset();
         }
         catch(Exception e)
         {
@@ -79,9 +81,29 @@ public enum JAMRpcCalls : uint
     DeceiverShield = 1,
     MicromanageTask = 2,
     BountyCollected = 3,
-    MultiProject = 4
+    Project = 4,
+    RemoveProjection = 5,
+    AssignSpirit = 6,
+    SyncRolesList = 7
 }
+
 // Concealed looks odd... (icon in-game)
+
+// Zombie/Leader sprites are too big
+// Zombies Shouldn't Be Able To Report
+
+// Professor Sprite Is Too Big
+
+// MIMIC STILL SEES IMPS!?! (Did A "Fix" for now that stops imp cards from being in selections)
+
+// Bounty Hunter Doesn't Win
+
+// Concealed Snoop Is Bugged
+
+// Mimic Alliance Modifier Shows In End
+// Micromanager Can Have Dupe Tasks
+
+// Mimic Ends Game As Crewmate
 
 // =============== FIXES ===============
 /*
@@ -91,6 +113,7 @@ public enum JAMRpcCalls : uint
  * Zombies Can No Longer Call Meetings
  * Zombie Leader Is Now Guessable Until Final 3
  * Made Concealed And Shy Mutually Exclusive
+ * Conceal Name Now Works
  * You Are No Longer Concealed During Camo Comms
  * Adjusted Wording In Bounty Hunter Options
  * Micromanager Task Completion Names Look Right
@@ -108,7 +131,22 @@ public enum JAMRpcCalls : uint
  * Bounty Target Can Now Optionally Have A Timed Period Where It Can Be Caught
  * Deceiver Shield Now Hides In Comms
  * Bounty Hunter Now Wins Correctly
+ * Battery Modifier Now Shows Up Right
+ * Increased Bounty Hunting Range
+ * Bounty Target Speed Modifier Now Is Optional And Changeable
+ * Crew Protective Can Now Kill The Bounty Target
+ * Made Option For "breaks" between bounties
+ * You Can No Longer Create Bounties When You've Won As Bounty Hunter
+ * You Can Now Collect More Than One Bounty In A Game.
+ * Zombie Leader Can No Longer Get Exposed
+ * Gave Jack Of All A Notification When They Get A Modifier
+ * Gave Jack Of All A List For The In-Game Description That Shows All Its Current Modifiers
+ * Overhauled Scrubber
+ * Made Options Look Good
+
+ * Added ModdedRolesOption Option Type
  * Added "Vacillator" Role
  * Added "Mimic" Role
  * Added "Projector" Role
+ * Added "Professor" Role
 */

@@ -12,7 +12,7 @@ namespace JAM.Modifiers;
 
 public sealed class BatteryModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override ModifierUiConfiguration Configuration => new(Colors.Exposed, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Exposed.LoadAsset(), "Exposed", 1.45f));
+    public override ModifierUiConfiguration Configuration => new(Colors.Battery, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Battery.LoadAsset(), "Battery", 1.45f));
     public override string IdPart => "Battery";
     public override string ModifierName => "Battery";
     public override string IntroInfo => "Use Utilities Whenever!";

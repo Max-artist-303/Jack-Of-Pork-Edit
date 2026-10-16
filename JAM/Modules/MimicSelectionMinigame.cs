@@ -1,6 +1,8 @@
 ﻿using AmongUs.GameOptions;
 using Il2CppInterop.Runtime.Attributes;
 using JAM;
+using JAM.Options.Roles.Neutral;
+using MiraAPI.GameOptions;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Translation;
@@ -120,12 +122,15 @@ public sealed class MimicSelectMinigame(IntPtr cppPtr) : Minigame(cppPtr)
             z++;
         }
 
-        var randomCard = CreateCard("Random", "", TouRoleIcons.RandomAny.LoadAsset(), z, Colors.Mimic);
-        randomCard.OnClick.RemoveAllListeners();
-        randomCard.OnClick.AddListener((UnityAction)(() =>
+        if(OptionGroupSingleton<MimicOptions>.Instance.HaveRandomOption)
         {
-            clickHandler.Invoke(RoleManager.Instance.GetRole(_selectedRole!.Value));
-        }));
+            var randomCard = CreateCard("Random", "", TouRoleIcons.RandomAny.LoadAsset(), z, Colors.Mimic);
+            randomCard.OnClick.RemoveAllListeners();
+            randomCard.OnClick.AddListener((UnityAction)(() =>
+            {
+                clickHandler.Invoke(RoleManager.Instance.GetRole(_selectedRole!.Value));
+            }));
+        }
 
         Coroutines.Start(CoAnimateCards());
         TransType = TransitionType.None;

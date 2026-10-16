@@ -47,6 +47,8 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     private NetworkedPlayerInfo? selectedPlr;
     public override void OnMeetingStart()
     {
+        if (PlayerControl.AllPlayerControls.ToArray().Any(p => p.HasModifier<BountySparedModifier>()) && OptionGroupSingleton<BountyHunterOptions>.Instance.BountyBreaks || NumBountiesCollected >= OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin) return;
+
         meetingMenu = new MeetingMenu(
             Player.Data.Role,
             Click,
@@ -80,6 +82,8 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         if(selectedPlr != null && !selectedPlr.IsDead)
             AssignBountyTarget(selectedPlr);
+
+        selectedPlr = null;
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)
@@ -133,12 +137,6 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     }
 
     public int NumBountiesCollected;
-    public bool WinConditionMet()
-    {
-        Info(NumBountiesCollected >= (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin);
-
-        return NumBountiesCollected >= (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin;
-    }
 
     [MethodRpc((uint) JAMRpcCalls.BountyCollected)]
     public void RpcAddBountyCollected()
@@ -146,8 +144,12 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         NumBountiesCollected++;
     }
 
+    public bool WinConditionMet()
+    {
+        return false;
+    }
     public override bool DidWin(GameOverReason gameOverReason)
     {
-        return WinConditionMet();
+        return NumBountiesCollected >= (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin;
     }
 }

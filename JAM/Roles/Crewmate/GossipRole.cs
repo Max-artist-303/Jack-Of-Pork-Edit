@@ -14,8 +14,6 @@ namespace JAM.Roles.Crewmate;
 
 public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
-    static bool OnlyOneType = true;
-
     public DoomableType DoomHintType => DoomableType.Insight;
     public string RoleName => "Gossip";
     public string RoleDescription => "Share some local lore!";
@@ -31,12 +29,12 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         {
             return new List<CustomButtonWikiDescription>
             {
-				new("Overhear", "Select A Player To Share Info About In The Meeting", TouModifierIcons.Crewpostor),
+				new("Overhear", "Select A Player To Share Info About In The Meeting", JamAssets.GossipOverhear),
             };
         }
     }
     
-        public static void GenerateGossip(PlayerControl player, List<RoleBehaviour> randomRolesList)
+    public static void GenerateGossip(PlayerControl player, List<RoleBehaviour> randomRolesList)
     {
         string alertString = "Gossip Has Been Spread About " + player.Data.PlayerName + "! View Details In The Chat!";
         MiraAPI.Utilities.Helpers.CreateAndShowNotification(alertString, Colors.Gossip, new Vector3(0f, 1f, -20f), null, TouModifierIcons.Crewpostor.LoadAsset());
@@ -56,11 +54,11 @@ public sealed class GossipRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsR
         MiscUtils.AddFakeChat(player.Data, "Gossip:", gossipString, false, true);
     }
     
-        public Color RoleColor => Colors.Gossip;
-        public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
-        public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
+    public Color RoleColor => Colors.Gossip;
+    public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
 
-        public CustomRoleConfiguration Configuration => new(this)
+    public CustomRoleConfiguration Configuration => new(this)
     {
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Gossip.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Gossip", 1.45f),
         IntroSound = TouAudio.DetectiveIntroSound,

@@ -11,7 +11,7 @@ namespace JAM.Options.Roles.Crewmate;
 
 public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
 {
-    public override string GroupName => "Gossip";
+    public override string GroupName => "Gossip Options";
     
     [ModdedNumberOption("Overhear Cooldown", 0f, 35f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float GossipCooldown { get; set; } = 15f;
@@ -20,7 +20,7 @@ public sealed class GossipOptions : AbstractOptionGroup<GossipRole>
     public float GossipRoles { get; set; } = 8f;
 
     [ModdedToggleOption("Shares Info")]
-    public bool ShowGossip { get; set; } = true;
+    public bool ShowGossip { get; set; } = false;
 
     [ModdedNumberOption("Crew Role Weight", 25f, 75f, 5f, MiraNumberSuffixes.Percent)]
     public float CrewWeight { get; set; } = 50;

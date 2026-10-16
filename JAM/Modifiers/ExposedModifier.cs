@@ -7,6 +7,7 @@ using TownOfUs.Modifiers.Game;
 using UnityEngine;
 using JAM.Options.Modifiers;
 using JAM.Assets;
+using JAM.Roles.Neutral;
 
 namespace JAM.Modifiers;
 
@@ -41,6 +42,11 @@ public sealed class ExposedModifier : UniversalGameModifier, IWikiDiscoverable
     public override int GetAssignmentChance()
     {
         return (int)OptionGroupSingleton<ExposedOptions>.Instance.ExposedChance;
+    }
+
+    public override bool IsModifierValidOn(RoleBehaviour role)
+    {
+        return base.IsModifierValidOn(role) && role is not ZombieLeaderRole;
     }
 
     public override int GetAmountPerGame()

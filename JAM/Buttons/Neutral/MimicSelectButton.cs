@@ -1,6 +1,8 @@
 ﻿using AmongUs.GameOptions;
 using HarmonyLib;
+using JAM.Assets;
 using JAM.Modifiers.Role;
+using JAM.Options.Roles.Neutral;
 using JAM.Roles.Crewmate;
 using JAM.Roles.Neutral;
 using MiraAPI.Events;
@@ -39,9 +41,15 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
     static List<RoleBehaviour> ChosenRoles { get; } = [];
     RoleBehaviour? RandomRole;
 
-    public override LoadableAsset<Sprite> Sprite => TouRoleIcons.Agent;
+    public override bool UsableFirstRound => OptionGroupSingleton<MimicOptions>.Instance.MimicRound1;
+    public override LoadableAsset<Sprite> Sprite => JamRoleIcons.Mimic;
     public override BaseKeybind Keybind => Keybinds.SecondaryAction;
     public override Color TextOutlineColor => Colors.Mimic;
+
+    public override bool Enabled(RoleBehaviour? role)
+    {
+        return base.Enabled(role) && role?.Player?.Data?.IsDead == false;
+    }
 
     public override void ClickHandler()
     {
@@ -57,26 +65,12 @@ public sealed class MimicSelectButton : TownOfUsRoleButton<MimicRole>
     {
         if (ChosenRoles.Count == 0)
         {
-            List<RoleBehaviour> roleList = DestroyableSingleton<RoleManager>.Instance.AllRoles.ToArray().Where(delegate (RoleBehaviour r)
-            {
-                RoleManager.RoleAssignmentData roleData = CustomRoleUtils.GetAssignData(r.Role);
-
-                if (roleData.Count == 0 || roleData.Chance == 0) return false; // Only If It Can Currenlty Be In The Game
-                if (!CustomRoleUtils.CanSpawnOnCurrentMode(r)) return false; // Only If It Can Spawn On The Current Mode
-                if (r is IGhostRole) return false; // No Ghost Roles
-                if (r is MimicRole) return false; // Not Self
-                if (r is IAssignableTargets) return false; // Not A Targeting One (eg. Exe or Fairy)
-                if (r is MercenaryRole) return false; // Technically Not A Targeting One
-                if (r is IDoubleDraftRole) return false; // For Things Like Recruiter And Vampire
-                if (r.GetRoleAlignment() == RoleAlignment.NeutralOutlier) return false; // Removing Chef, Inquiz, etc.
-
-                return true; //Will Be Ok Here
-            }).ToList();
+            List<RoleBehaviour> roleList = MimicRole.GetValidMimicRoles();
 
             roleList.Shuffle();
             var random = roleList[0];
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < (int)OptionGroupSingleton<MimicOptions>.Instance.ChoiceCount && roleList.Count > 0; i++)
             {
                 roleList.Shuffle();
                 var selected = roleList[0];

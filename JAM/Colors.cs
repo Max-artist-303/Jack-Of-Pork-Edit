@@ -10,9 +10,9 @@ public static class Colors
     public static Color Gossip => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(255, 237, 162, byte.MaxValue);
     public static Color JackOfAll => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : Color.white;
     public static Color Snoop => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(97, 147, 212, byte.MaxValue);
+    public static Color Professor => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(68, 97, 173, byte.MaxValue);
 
     //Neutral Colors
-    public static Color Scrubber => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(97, 147, 212, byte.MaxValue);
     public static Color BountyHunter => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(24, 102, 31, byte.MaxValue);
     public static Color TimeKeeper => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(230, 242, 200, byte.MaxValue);
     public static Color Zombie => TownOfUsColors.UseBasic ? Palette.CrewmateBlue : new Color32(84, 192, 113, byte.MaxValue);
