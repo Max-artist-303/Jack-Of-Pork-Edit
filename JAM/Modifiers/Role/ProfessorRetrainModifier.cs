@@ -100,4 +100,8 @@ internal class ProfessorRetrainModifier : BaseModifier
 
         PlayerControl.LocalPlayer.RpcRemoveModifier<ProfessorRetrainModifier>();
     }
+    public override void OnMeetingStart()
+    {
+        ModifierComponent.RemoveModifier(this);
+    }
 }

@@ -144,6 +144,7 @@ public enum JAMRpcCalls : uint
  * Overhauled Scrubber
  * Made Options Look Good
 
+ * Added ModdedRolesOption Option Type
  * Added "Vacillator" Role
  * Added "Mimic" Role
  * Added "Projector" Role
