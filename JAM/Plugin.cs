@@ -84,7 +84,7 @@ public enum JAMRpcCalls : uint
     Project = 4,
     RemoveProjection = 5,
     AssignSpirit = 6,
-    SyncMimicBlacklist = 7
+    SyncRolesList = 7
 }
 
 // Concealed looks odd... (icon in-game)
@@ -95,6 +95,10 @@ public enum JAMRpcCalls : uint
 // Professor Sprite Is Too Big
 
 // MIMIC STILL SEES IMPS!?! (Did A "Fix" for now that stops imp cards from being in selections)
+
+// Bounty Hunter Doesn't Win
+
+// Concealed Snoop Is Bugged
 
 // =============== FIXES ===============
 /*

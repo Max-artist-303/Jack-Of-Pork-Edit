@@ -32,7 +32,7 @@ public sealed class JackOfAllRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
     public string RoleName => "Jack Of All";
     public string RoleDescription => "Have a lot of modifiers";
     public string RoleMedDescription => RoleDescription;
-    public string RoleLongDescription => RoleDescription + (Player == null ? "" : "\n\nCurrent Modifiers:\n" + string.Join("\n", Player.GetModifiers<BaseModifier>().Select(m => m.ModifierName)));
+    public string RoleLongDescription => RoleDescription + (Player == null ? "" : "\n\nCurrent Modifiers:\n" + string.Join("\n", Player.GetModifiers<BaseModifier>().Where(m => !m.HideOnUi).Select(m => m.ModifierName)));
     public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;

@@ -2,15 +2,19 @@
 using HarmonyLib;
 using Hazel;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppSystem.Text.Json;
 using JAM.Modules.Components;
 using JAM.Options.Roles.Neutral;
 using JAM.Roles.Neutral;
+using MiraAPI.Events;
+using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Networking;
 using MiraAPI.Roles;
 using MiraAPI.Translation;
 using MiraAPI.Utilities;
+using MiraAPI.Utilities.Assets;
 using Reactor.Networking.Attributes;
 using Reactor.Networking.Rpc;
 using Reactor.Utilities;
@@ -18,16 +22,17 @@ using System.Globalization;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
+using TownOfUs.Utilities;
 using UnityEngine;
-using static Il2CppSystem.Linq.Expressions.Interpreter.NullableMethodCallInstruction;
 using Object = UnityEngine.Object;
 
 namespace JAM.Options.OptionTypes;
 
 // Make Saves for when you leave and come back
-// Make Append Stuff Work
+// Make View Lobby Rules work
+// Make SyncRoles happen on player join
 
-public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bool includeInPreset = true) : ModdedOption<RoleTypes>(title, RoleTypes.Crewmate, includeInPreset)
+public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Func<RoleBehaviour, bool> CheckValidRole = null, bool includeInPreset = true) : ModdedOption<RoleTypes>(title, RoleTypes.Crewmate, includeInPreset)
 {
     public ModdedRolesMenu? rolesMenu;
     public List<RoleBehaviour> rolesList = new List<RoleBehaviour>();
@@ -76,11 +81,9 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
             opt.Value = (int)RoleTypes.Crewmate;
         }
 
-        if(PlayerControl.LocalPlayer.IsHost())
+        if (PlayerControl.LocalPlayer.IsHost())
         {
-            RoleTypes[] roleTypes = OptionGroupSingleton<MimicOptions>.Instance.BlacklistedRoles.rolesList.Select(r => r.Role).ToArray();
-
-            Rpc<SyncMimicBlacklistRpc>.Instance.Send(roleTypes);
+            SyncRoles(this);
         }
 
         ModdedOptionsManager.AddSettingsChangeMessage(DestroyableSingleton<HudManager>.Instance.Notifier, base.StringName, (rolesList.Any(r => r.Role == newValue) ? "Added " : "Removed ") + DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)newValue).GetRoleName(), this.Configuration.PopUpTextColor, this.Configuration.PopUpIconTmp, false);
@@ -93,7 +96,9 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
 
     bool IsRoleValid(RoleBehaviour role)
     {
-        return MimicRole.IsValidMimicRole(role);
+        var predicate = CheckValidRole ?? (x => true);
+
+        return predicate(role);
     }
     void ClickRoleHandle(RoleBehaviour role, bool isSetting)
     {
@@ -135,27 +140,139 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, bo
         return (RoleTypes)((object)Enum.Parse(typeof(RoleTypes), optionBehaviour.GetInt().ToString(NumberFormatInfo.InvariantInfo)));
     }
 
-    [HarmonyPatch(typeof(AbstractOptionGroup), "Options", MethodType.Getter)]
-    public static class RemoveModRoleOptionFromOptions
+    internal static uint currOptionId = 0;
+    public static void SyncRoles(ModdedRolesOption? option)
     {
-        public static void Postfix(ref List<IModdedOption> __result)
+        if (option == null)
         {
-            __result.RemoveAll(delegate (IModdedOption option)
-            {
-                if(option.GetType() == typeof(ModdedRolesOption))
-                {
-                    Info("Purging Role Option");
-                    return true;
-                }
+            Info("Option Is Null");
+            return;
+        }
 
-                return false;
-            });
+        SyncRolesListRpc.currOptionId = option.Id;
+
+        RoleTypes[] roleTypes = option.rolesList.Select(r => r.Role).ToArray();
+
+        Rpc<SyncRolesListRpc>.Instance.Send(roleTypes);
+    }
+
+    // Events And Such
+    [RegisterEvent(0)]
+    public static void OnRoundStartEvent(RoundStartEvent @event)
+    {
+        if (@event.TriggeredByIntro && PlayerControl.LocalPlayer.IsHost())
+        {
+            List<AbstractOptionGroup>? optionsGroups = (AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>);
+            if (optionsGroups == null)
+            {
+                Info("Options Is Null");
+                return;
+            }
+
+            foreach(AbstractOptionGroup options in optionsGroups)
+            {
+                foreach (ModdedRolesOption option in options.Children.OfType<ModdedRolesOption>())
+                {
+                    SyncRoles(option);
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(MiscUtils), "AppendOptionsText", [typeof(Type)])]
+    public static class AppendRoleOptionsPatch
+    {
+        public static void Postfix(Type classType, ref string __result)
+        {
+            List<IModdedOption>? options = MiscUtils.GetModdedOptionsForRole(classType)?.Where(option => option is ModdedRolesOption).ToList();
+            if (options == null)
+            {
+                return;
+            }
+
+            foreach (IModdedOption option in options)
+            {
+                Il2CppReferenceArray<Il2CppSystem.Object> tempArray = null;
+                __result += DestroyableSingleton<TranslationController>.Instance.GetString(option.StringName, tempArray) + ": ";
+
+                ModdedRolesOption? rolesOption = (option as ModdedRolesOption);
+
+                if (rolesOption != null)
+                {
+                    List<RoleBehaviour> roles = rolesOption.rolesList;
+
+                    __result += string.Join(" ", roles.Select(role => MiscUtils.GetRoleTmpIcon(role)));
+                }
+            }
         }
     }
 }
 
-//Useful To Have For Generalizing
-/*
-List<AbstractOptionGroup> optionGroups = AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>;
-AbstractOptionGroup abstractOptionGroup = optionGroups.FirstOrDefault((AbstractOptionGroup x) => x.OptionableType == classType);
-*/
+[RegisterCustomRpc((uint)JAMRpcCalls.SyncRolesList)]
+public class SyncRolesListRpc(Plugin plugin, uint id) : PlayerCustomRpc<JAM.Plugin, RoleTypes[]>(plugin, id)
+{
+    public static uint currOptionId = 0;
+    public override RpcLocalHandling LocalHandling => RpcLocalHandling.After;
+
+    public override void Handle(PlayerControl sender, RoleTypes[]? data)
+    {
+        ModdedRolesOption? option = GetOptionWithId(currOptionId);
+
+        if(option == null)
+        {
+            Info("Error: Option For handling role options is null");
+            return;
+        }
+
+        option.rolesList.RemoveAll(r => true);
+
+        foreach (RoleTypes roleType in data)
+        {
+            option.rolesList.Add(DestroyableSingleton<RoleManager>.Instance.GetRole(roleType));
+        }
+    }
+
+    static ModdedRolesOption? GetOptionWithId(uint Id)
+    {
+        List<AbstractOptionGroup>? optionsGroups = (AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>);
+
+
+        foreach (AbstractOptionGroup options in optionsGroups)
+        {
+            foreach (ModdedRolesOption option in options.Children.OfType<ModdedRolesOption>())
+            {
+                if (option.Id == Id)
+                    return option;
+            }
+        }
+
+        return null;
+    }
+
+    public override RoleTypes[] Read(MessageReader reader)
+    {
+        int length = reader.ReadInt32();
+        RoleTypes[] roleTypes = new RoleTypes[length];
+        currOptionId = (uint)reader.ReadInt32();
+
+        for (int i = 0; i < length; i++)
+        {
+            roleTypes[i] = (RoleTypes)reader.ReadUInt32();
+            Info("New Role For " + currOptionId + ": " + roleTypes[i]);
+        }
+
+        return roleTypes;
+    }
+
+    public override void Write(MessageWriter writer, RoleTypes[]? data)
+    {
+        writer.Write(data.Length);
+        writer.Write(currOptionId);
+
+        foreach (var value in data)
+        {
+            Info("Sending Blacklist Role: " + value.ToString());
+            writer.Write((uint)value);
+        }
+    }
+}

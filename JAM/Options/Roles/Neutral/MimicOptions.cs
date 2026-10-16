@@ -27,5 +27,8 @@ public sealed class MimicOptions : AbstractOptionGroup<MimicRole>
     [ModdedToggleOption("Mimic Round 1")]
     public bool MimicRound1 { get; set; } = true;
 
-    public ModdedRolesOption BlacklistedRoles { get; set; } = new("Blacklisted Mimic Roles", new List<RoleBehaviour>());
+    public ModdedRolesOption BlacklistedRoles { get; set; } = new("Blacklisted Mimic Roles", new List<RoleBehaviour>(), role =>
+    {
+        return MimicRole.IsValidMimicRole(role);
+    });
 }
