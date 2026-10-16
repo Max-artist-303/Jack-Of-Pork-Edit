@@ -121,7 +121,8 @@ public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
     private bool IsExempt(PlayerVoteArea voteArea)
     {
-        return voteArea.AmDead || voteArea.GetPlayer().AmOwner;
+        RoleBehaviour? role = voteArea.GetPlayer()?.Data.Role;
+        return voteArea.AmDead || voteArea.GetPlayer()?.AmOwner == true || (role?.IsNeutral() == true && role?.DidWin(GameOverReason.CrewmatesByTask) == true && role?.DidWin(GameOverReason.ImpostorsByKill) == true);
     }
     #endregion
 

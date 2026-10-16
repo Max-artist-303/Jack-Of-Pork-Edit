@@ -100,6 +100,11 @@ public enum JAMRpcCalls : uint
 
 // Concealed Snoop Is Bugged
 
+// Mimic Alliance Modifier Shows In End
+// Micromanager Can Have Dupe Tasks
+
+// Mimic Ends Game As Crewmate
+
 // =============== FIXES ===============
 /*
  * Fixed Bounty Target Speed Modifier

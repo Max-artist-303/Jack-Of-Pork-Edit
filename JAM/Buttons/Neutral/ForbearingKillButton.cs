@@ -19,7 +19,7 @@ public sealed class TimeKeeperKillButton : TownOfUsKillRoleButton<TimeKeeperRole
     public override string Name => TranslationController.Instance.GetStringWithDefault(StringNames.KillLabel, "Kill");
     public override BaseKeybind Keybind => Keybinds.PrimaryAction;
     public override Color TextOutlineColor => Colors.TimeKeeper;
-    public override float Cooldown => Role != null ? OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeKeeperCooldown - OptionGroupSingleton<TimeKeeperOptions>.Instance.CooldownDecrease * Role.numMeetingsSkipped : 15;
+    public override float Cooldown => Role != null ? Mathf.Max(0, OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeKeeperCooldown - OptionGroupSingleton<TimeKeeperOptions>.Instance.CooldownDecrease * Role.numMeetingsSkipped) : OptionGroupSingleton<TimeKeeperOptions>.Instance.TimeKeeperCooldown;
     public override LoadableAsset<Sprite> Sprite => TouAssets.KillSprite;
 
     public override void CreateButton(Transform parent)

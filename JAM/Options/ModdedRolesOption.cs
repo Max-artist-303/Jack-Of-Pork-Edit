@@ -1,4 +1,6 @@
 ﻿using AmongUs.GameOptions;
+using BepInEx.Configuration;
+using BepInEx.Core.Logging.Interpolation;
 using HarmonyLib;
 using Hazel;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
@@ -6,6 +8,7 @@ using Il2CppSystem.Text.Json;
 using JAM.Modules.Components;
 using JAM.Options.Roles.Neutral;
 using JAM.Roles.Neutral;
+using MiraAPI;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
@@ -28,11 +31,10 @@ using Object = UnityEngine.Object;
 
 namespace JAM.Options.OptionTypes;
 
-// Make Saves for when you leave and come back
+// Make Saves for when you close the game and reopen it
 // Make View Lobby Rules work
-// Make SyncRoles happen on player join
 
-public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Func<RoleBehaviour, bool> CheckValidRole = null, bool includeInPreset = true) : ModdedOption<RoleTypes>(title, RoleTypes.Crewmate, includeInPreset)
+public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Func<RoleBehaviour, bool> CheckValidRole = null, bool includeInPreset = true) : ModdedOption<RoleTypes>(title, RoleTypes.Crewmate, includeInPreset), IModdedOption
 {
     public ModdedRolesMenu? rolesMenu;
     public List<RoleBehaviour> rolesList = new List<RoleBehaviour>();
@@ -158,6 +160,8 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Fu
 
     public static void SyncAllRoles()
     {
+        if (!PlayerControl.LocalPlayer.IsHost()) return;
+
         List<AbstractOptionGroup>? optionsGroups = (AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>);
         if (optionsGroups == null)
         {
@@ -178,7 +182,7 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Fu
     [RegisterEvent(0)]
     public static void OnRoundStartEvent(RoundStartEvent @event)
     {
-        if (@event.TriggeredByIntro && PlayerControl.LocalPlayer.IsHost())
+        if (@event.TriggeredByIntro)
         {
             SyncAllRoles();
         }

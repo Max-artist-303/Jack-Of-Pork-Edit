@@ -23,8 +23,7 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
 {
     public int numMeetingsSkipped = -1;
 
-    public string RoleName => "Time Keeper";
-    public string LocaleKey => "Time Keeper";
+    public string RoleName => "Forbearing";
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleDescription => "You are patient, but irritated...";
     public string RoleMedDescription => "Decrease Your Cooldowns Whenever A Meeting Is Skipped Or Tied";
@@ -36,7 +35,7 @@ public sealed class TimeKeeperRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOf
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.TimeKeeper.LoadAsset(), "JackOfAllMods.Roles.Neutral.TimeKeeper", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.TimeKeeper.LoadAsset(), "JackOfAllMods.Roles.Neutral.Forbearing", 1.45f),
         IntroSound = JamAudio.TimeKeeperIntro,
         Icon = JamRoleIcons.TimeKeeper,
         CanUseVent = true,
