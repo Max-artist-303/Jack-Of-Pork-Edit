@@ -100,6 +100,8 @@ public sealed class ScrubberRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
         if (selectedPlr != null && !selectedPlr.IsDead)
             ScrubPlayerModifiers(selectedPlr);
+
+        selectedPlr = null;
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)

@@ -82,6 +82,8 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 
         if(selectedPlr != null && !selectedPlr.IsDead)
             AssignBountyTarget(selectedPlr);
+
+        selectedPlr = null;
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)

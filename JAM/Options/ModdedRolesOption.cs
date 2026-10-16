@@ -156,26 +156,47 @@ public class ModdedRolesOption(string title, List<RoleBehaviour> defaultList, Fu
         Rpc<SyncRolesListRpc>.Instance.Send(roleTypes);
     }
 
+    public static void SyncAllRoles()
+    {
+        List<AbstractOptionGroup>? optionsGroups = (AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>);
+        if (optionsGroups == null)
+        {
+            Info("Options Is Null");
+            return;
+        }
+
+        foreach (AbstractOptionGroup options in optionsGroups)
+        {
+            foreach (ModdedRolesOption option in options.Children.OfType<ModdedRolesOption>())
+            {
+                SyncRoles(option);
+            }
+        }
+    }
+
     // Events And Such
     [RegisterEvent(0)]
     public static void OnRoundStartEvent(RoundStartEvent @event)
     {
         if (@event.TriggeredByIntro && PlayerControl.LocalPlayer.IsHost())
         {
-            List<AbstractOptionGroup>? optionsGroups = (AccessTools.Field(typeof(ModdedOptionsManager), "Groups").GetValue(null) as List<AbstractOptionGroup>);
-            if (optionsGroups == null)
-            {
-                Info("Options Is Null");
-                return;
-            }
+            SyncAllRoles();
+        }
+    }
+    [HarmonyPatch]
+    public static class RefreshModdedRolesOptionsOnJoin
+    {
+        [HarmonyTargetMethod]
+        public static MethodBase TargetMethod()
+        {
+            System.Type internalClass = AccessTools.TypeByName("TownOfUs.Networking.SendClientModInfoRpc");
 
-            foreach(AbstractOptionGroup options in optionsGroups)
-            {
-                foreach (ModdedRolesOption option in options.Children.OfType<ModdedRolesOption>())
-                {
-                    SyncRoles(option);
-                }
-            }
+            return AccessTools.Method(internalClass, "ReceiveClientModInfo", [typeof(PlayerControl), typeof(Dictionary<byte, string>)]);
+        }
+
+        public static void Postfix()
+        {
+            SyncAllRoles();
         }
     }
 

@@ -94,6 +94,8 @@ public sealed class ProfessorRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
         if (selectedPlr != null && !selectedPlr.IsDead)
             AssignChangeRoleModifier(selectedPlr);
+
+        selectedPlr = null;
     }
 
     public void Click(PlayerVoteArea voteArea, MeetingHud __)
