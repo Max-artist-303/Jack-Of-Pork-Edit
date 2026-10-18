@@ -137,6 +137,6 @@ public sealed class ScrubberRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfU
 
         PlayerControl player = netPlayer.Role.Player;
 
-        player.AddModifier<ScrubberScrubModifier>();
+        player.RpcAddModifier<ScrubberScrubModifier>();
     }
 }
