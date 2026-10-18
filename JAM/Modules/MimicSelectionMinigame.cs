@@ -177,6 +177,7 @@ public sealed class MimicSelectMinigame(IntPtr cppPtr) : Minigame(cppPtr)
         roleText.color = color;
         teamText.color = color;
 
+        newRoleObj.transform.SetAsLastSibling();
         return passiveButton;
     }
 

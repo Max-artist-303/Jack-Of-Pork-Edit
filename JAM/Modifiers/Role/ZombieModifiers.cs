@@ -87,3 +87,14 @@ public sealed class ZombieArrowModifier(DeadBody deadBody, Color color) : ArrowD
         }
     }
 }
+public sealed class ZombieDisabledModifier : DisabledModifier
+{
+    public override bool CanBeInteractedWith => true;
+    public override bool IsConsideredAlive => false;
+    public override bool CanUseAbilities => true;
+    public override bool CanOpenMap => true;
+    public override bool AutoStart => false;
+    public override bool CanReport => false;
+    public override bool HideOnUi => true;
+    public override float Duration => 1;
+}

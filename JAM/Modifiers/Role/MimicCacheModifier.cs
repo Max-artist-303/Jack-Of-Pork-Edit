@@ -75,15 +75,32 @@ public sealed class MimicCacheModifier : BaseModifier, ICachedRole
     }
 }
 
-public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscoverable
+public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscoverable, IContinuesGame
 {
     public override string ModifierName => "Mimic Alliance Modifier";
     public bool IsHiddenFromList => true;
     public override bool GetsPunished => false;
     public override AlliedFaction TrueFactionType => AlliedFaction.NeutralKiller;
+    public override bool HideOnUi => true;
+    public override string Symbol => "";
+
+    public bool ContinuesGame => (DestroyableSingleton<RoleManager>.Instance.GetRole((RoleTypes)RoleId.Get<MimicRole>()) as IContinuesGame)?.ContinuesGame == true;
 
     public override int GetAssignmentChance()
     {
         return 0;
+    }
+
+    public override void OnDeath(DeathReason reason)
+    {
+        ModifierComponent?.RemoveModifier(this);
+
+        base.OnDeath(reason);
+    }
+
+    [RegisterEvent(0)]
+    public void OnGameEndEvent(GameEndEvent @event)
+    {
+        ModifierComponent?.RemoveModifier(this);
     }
 }

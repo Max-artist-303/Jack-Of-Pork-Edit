@@ -1,4 +1,4 @@
-using JAM.Options.Roles.Crewmate;
+/*using JAM.Options.Roles.Crewmate;
 using JAM.Roles.Crewmate;
 using JAM.Roles.Neutral;
 using MiraAPI.GameOptions;
@@ -56,7 +56,7 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
     {
         Visible = () => OptionGroupSingleton<BountyHunterOptions>.Instance.ShowOptions
     };
-    */
+    *//*
 
     public ModdedNumberOption GiveVentable { get; set; } = new("Allow Venting", 10f, 0f, 100f, 5f, MiraNumberSuffixes.Percent)
     {
@@ -80,3 +80,4 @@ public sealed class BountyHunterOptions : AbstractOptionGroup<BountyHunterRole>
     };
     #endregion
 }
+*/

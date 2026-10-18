@@ -205,9 +205,6 @@ public sealed class ModdedRolesMenu(IntPtr cppPtr) : Minigame(cppPtr)
                 new Vector3(xStart + num * xOffset, yStart + num2 * yOffset, -1f);
             entry.Panel.gameObject.SetActive(true);
 
-            entry.Panel.GetComponentInChildren<SpriteRenderer>().rendererPriority = 0;
-            entry.Panel.GetComponentInChildren<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
-
             list2.Add(entry.Panel.Button);
         }
 

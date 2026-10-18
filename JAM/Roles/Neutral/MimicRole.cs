@@ -1,11 +1,14 @@
 ﻿using AmongUs.GameOptions;
+using HarmonyLib;
 using Hazel;
 using JAM.Assets;
+using JAM.Modifiers.Role;
 using JAM.Options.OptionTypes;
 using JAM.Options.Roles.Neutral;
 using MiraAPI.Events;
 using MiraAPI.Events.Vanilla.Gameplay;
 using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
@@ -22,7 +25,7 @@ using UnityEngine;
 
 namespace JAM.Roles.Neutral;
 
-public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
+public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable, IContinuesGame
 {
     public string RoleName => "Mimic";
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
@@ -41,6 +44,14 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
         IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Mimic.LoadAsset(), "JackOfAllMods.Roles.Neutral.Mimic", 1.45f),
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
+
+    public override void OnRoleSet()
+    {
+        if(!Player.HasModifier<MimicAllianceModifier>())
+            Player.AddModifier<MimicAllianceModifier>();
+
+        base.OnRoleSet();
+    }
 
     public static List<RoleBehaviour> GetValidMimicRoles()
     {
@@ -76,4 +87,6 @@ public sealed class MimicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRol
 
         return true; //Will Be Ok Here
     }
+
+    public bool ContinuesGame => MiraAPI.Utilities.Helpers.GetAlivePlayers().Count > 2;
 }

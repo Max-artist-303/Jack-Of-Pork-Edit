@@ -81,6 +81,7 @@ public class ZombieRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWi
         }
 
         Player.RpcAddModifier<ZombieRevealedModifier>();
+        Player.RpcAddModifier<ZombieDisabledModifier>();
         Player.RemainingEmergencies = 0;
     }
 
@@ -175,7 +176,7 @@ public sealed class ZombieLeaderRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public string RoleLongDescription => "Convert Dead Players Into Zombies!";
     public bool IsUnlovable => OptionGroupSingleton<ZombieOptions>.Instance.ZombieCantLove;
 
-    public string GetAdvancedDescription() { return RoleLongDescription + MiscUtils.AppendOptionsText(base.GetType()); }
+    public string GetAdvancedDescription() { return RoleDescription + "\nEach Zombie Gives You +1 Vote" + MiscUtils.AppendOptionsText(base.GetType()); }
 
     public List<CustomButtonWikiDescription> Abilities
     {
