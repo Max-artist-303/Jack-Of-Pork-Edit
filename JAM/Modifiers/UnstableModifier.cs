@@ -58,7 +58,7 @@ public sealed class UnstableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(Colors.Unstable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Unstable.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
      
