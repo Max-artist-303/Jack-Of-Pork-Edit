@@ -93,6 +93,7 @@ public sealed class MimicAllianceModifier : AllianceGameModifier, IWikiDiscovera
 
     public override void OnDeath(DeathReason reason)
     {
+        Player?.RpcChangeRole(RoleId.Get<MimicRole>());
         ModifierComponent?.RemoveModifier(this);
 
         base.OnDeath(reason);

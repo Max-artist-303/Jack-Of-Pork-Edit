@@ -27,7 +27,7 @@ public sealed class MorticianRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOf
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Mortician.LoadAsset(), "Mortician", 1.45f),
+        IconTmp = TmpSpriteUtils.CreateSpriteAsset(JamRoleIcons.Mortician.LoadAsset(), "JackOfAllMods.Roles.Crewmate.Mortician", 1.45f),
         Icon = JamRoleIcons.Mortician,
         OptionsScreenshot = TouBanners.CrewmateRoleBanner,
         IntroSound = TouAudio.ScientistIntroSound
