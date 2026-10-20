@@ -21,8 +21,7 @@ using JAM.Assets;
 
 namespace JAM.Roles.Neutral;
 
-public sealed class WorkaholicRole(IntPtr cppPtr)
-    : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IProgressTally, IUnlovable, IUnguessable
+public sealed class WorkaholicRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IProgressTally, IUnlovable, IUnguessable
 {
 
     // public string LocaleKey => "Workaholic";

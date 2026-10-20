@@ -1,4 +1,4 @@
-using JAM.Modifiers.Role;
+/*using JAM.Modifiers.Role;
 using JAM.Options.Roles.Neutral;
 using JAM.Roles.Neutral;
 using MiraAPI.GameOptions;
@@ -62,3 +62,4 @@ public sealed class BountyHuntingButton : TownOfUsKillRoleButton<RoleBehaviour, 
             this.Disabled = true;
     }
 }
+*/

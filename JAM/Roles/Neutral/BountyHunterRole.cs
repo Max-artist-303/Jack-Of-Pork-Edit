@@ -1,4 +1,4 @@
-using AmongUs.GameOptions;
+/*using AmongUs.GameOptions;
 using JAM.Assets;
 using JAM.Modifiers.Role;
 using JAM.Options.Roles.Neutral;
@@ -153,3 +153,4 @@ public sealed class BountyHunterRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         return NumBountiesCollected >= (int)OptionGroupSingleton<BountyHunterOptions>.Instance.BountiesToWin;
     }
 }
+*/

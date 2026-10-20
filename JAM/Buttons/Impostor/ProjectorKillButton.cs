@@ -68,7 +68,8 @@ public sealed class ProjectorKillButton : TownOfUsKillRoleButton<ProjectorRole, 
                                 player => !player.Data.Disconnected && !player.AmOwner
                                 && ((player.TryGetModifier<DisabledModifier>(out var mod) && mod.IsConsideredAlive)
                                     || !player.HasModifier<DisabledModifier>()
-                                ) && !player.Data.IsDead && !(player.HasModifier<LoverModifier>() && skipLovers)).ToList();
+                                ) && !player.Data.IsDead && !(player.HasModifier<LoverModifier>() && skipLovers)
+                                && !player.IsImpostor()).ToList();
 
         AlivePlayers.Sort((p1, p2) =>
             (p1.GetTruePosition() - position).sqrMagnitude.CompareTo((p2.GetTruePosition() - position).sqrMagnitude)

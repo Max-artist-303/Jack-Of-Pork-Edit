@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace JAM;
 
-[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.0.6.2")]
+[BepInAutoPlugin("com.JackOfAllMods.mod", "JackOfAllMods", "1.1")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency(MiraApiPlugin.Id)]
@@ -89,25 +89,10 @@ public enum JAMRpcCalls : uint
 
 // Concealed looks odd... (icon in-game)
 
-// Zombie/Leader sprites are too big
-// Zombies Shouldn't Be Able To Report
-
-// Professor Sprite Is Too Big
-
 // MIMIC STILL SEES IMPS!?! (Did A "Fix" for now that stops imp cards from being in selections)
-
-// Bounty Hunter Doesn't Win
-
-// Concealed Snoop Is Bugged
-
-// Mimic Alliance Modifier Shows In End
-// Micromanager Can Have Dupe Tasks
-
-// Mimic Ends Game As Crewmate
 
 // =============== FIXES ===============
 /*
- * Fixed Bounty Target Speed Modifier
  * Fixed Concealed Options Appearance
  * Micromanager Can No Longer Manager Alliance Modified Crew
  * Zombies Can No Longer Call Meetings
@@ -143,10 +128,13 @@ public enum JAMRpcCalls : uint
  * Gave Jack Of All A List For The In-Game Description That Shows All Its Current Modifiers
  * Overhauled Scrubber
  * Made Options Look Good
+ * Zombies Can No Longer Report
 
  * Added ModdedRolesOption Option Type
  * Added "Vacillator" Role
  * Added "Mimic" Role
  * Added "Projector" Role
  * Added "Professor" Role
+
+ * Removed "Bounty Hunter" Role For Now
 */

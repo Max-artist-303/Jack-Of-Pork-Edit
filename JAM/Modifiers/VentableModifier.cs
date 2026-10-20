@@ -55,7 +55,7 @@ public sealed class VentableModifier : TouGameModifier, IWikiDiscoverable
     {
         get
         {
-            return new ModifierUiConfiguration(Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Blind.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
+            return new ModifierUiConfiguration(Colors.Ventable, TmpSpriteUtils.CreateSpriteAsset(JamModifierIcons.Ventable.LoadAsset(), "TouMira.Modifier.Game.Universal.Blind", 1.45f));
         }
     }
 

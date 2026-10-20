@@ -1,4 +1,4 @@
-using HarmonyLib;
+/*using HarmonyLib;
 using UnityEngine;
 using Hazel;
 using MiraAPI.Events;
@@ -306,7 +306,7 @@ public sealed class BountyRewardModifier : BaseModifier
         {
             rewards.Add(RewardType.LowerCooldown);
         }
-        */
+        *//*
 
         // Give Ventable (if can't vent)
         if(!canVent)
@@ -540,3 +540,4 @@ public sealed class BountySparedModifier : BaseModifier
         }
     }
 }
+*/

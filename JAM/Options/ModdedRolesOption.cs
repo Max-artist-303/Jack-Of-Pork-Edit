@@ -283,7 +283,6 @@ public class SyncRolesListRpc(Plugin plugin, uint id) : PlayerCustomRpc<JAM.Plug
         for (int i = 0; i < length; i++)
         {
             roleTypes[i] = (RoleTypes)reader.ReadUInt32();
-            Info("New Role For " + currOptionId + ": " + roleTypes[i]);
         }
 
         return roleTypes;
@@ -296,7 +295,6 @@ public class SyncRolesListRpc(Plugin plugin, uint id) : PlayerCustomRpc<JAM.Plug
 
         foreach (var value in data)
         {
-            Info("Sending Blacklist Role: " + value.ToString());
             writer.Write((uint)value);
         }
     }

@@ -8,8 +8,8 @@
         <VersionPrefix>0.1</VersionPrefix>
         <VersionSuffix>v</VersionSuffix>
         <RootNamespace>JAM</RootNamespace>
-        <Description>Example mod for Town of Us Mira that shows the basics of adding new roles and modifiers.</Description>
-        <!-- <Authors>your name</Authors> -->
+        <Description>Hehe</Description>
+        <Authors>Purely_K2</Authors>
     </PropertyGroup>
 
     <ItemGroup>

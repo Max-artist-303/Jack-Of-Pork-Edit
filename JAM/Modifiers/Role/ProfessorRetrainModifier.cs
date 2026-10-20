@@ -85,6 +85,28 @@ internal class ProfessorRetrainModifier : BaseModifier
                 return;
             }
 
+            var professorConfirm = ProfessorConfirmMinigame.Create();
+
+            professorConfirm.Open(
+                (confirm) =>
+                {
+                    professorConfirm.Close();
+
+                    ConfirmProfessor(confirm);
+                }
+            );
+        }
+
+        PlayerControl.LocalPlayer.RpcRemoveModifier<ProfessorRetrainModifier>();
+    }
+    public override void OnMeetingStart()
+    {
+        ModifierComponent.RemoveModifier(this);
+    }
+    static void ConfirmProfessor(bool confirmed)
+    {
+        if (confirmed)
+        {
             var professorMenu = ProfessorSelectMinigame.Create();
             professorMenu.Open(
                 ChosenRoles,
@@ -97,11 +119,5 @@ internal class ProfessorRetrainModifier : BaseModifier
                 RandomRole?.Role
             );
         }
-
-        PlayerControl.LocalPlayer.RpcRemoveModifier<ProfessorRetrainModifier>();
-    }
-    public override void OnMeetingStart()
-    {
-        ModifierComponent.RemoveModifier(this);
     }
 }
